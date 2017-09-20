@@ -1,0 +1,63 @@
+.hide-section{
+    display: none;
+}
+/* .show-section{
+    display: block;
+} */
+/* .section-instrument{
+    position: absolute;
+    overflow: scroll;
+} */
+.section-pcs-left,.section-pcs-right{
+    width: 40%;
+    float: left;
+}
+.section-videobeam{
+    float: left;
+    width: 10%;
+    line-height: 30;
+}
+.section-audio{
+    float: left;
+    width: 10%;
+    line-height: 5;
+}
+/* 
+.card{
+    position: absolute;
+    background:#333;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height:400px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px #333;
+}
+.card::after{
+    content: "";
+
+} */
+.section-instrument{
+    position: relative;
+    display: table;
+    margin:auto;
+    width:900px;
+}
+.instrument{    
+    padding: 20px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.broken{
+    color: #Af2828;
+}
+.size-instrument{
+    font-size: 3em !important;
+}
+.bigger-instrument{
+    font-size: 5em !important;
+    display: table !important;
+    margin: auto;
+}
