@@ -1,5 +1,6 @@
 var reports = [];
 var onOpen = false;
+var reportSelected;
 var codigo = localStorage.getItem("codigo");
 console.log("codigo ", codigo);
 if (codigo) {
@@ -102,167 +103,213 @@ function loadReports(codigo, pass) {
                     "instrumentoNombre": "pc gomelito",
                     "tipoDescripcion": "pc"
                 })
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 15:30:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 21, 2017 14:20:00 pM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "noValidado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "pc"});
-                reports.push({ "id_reporte": 2,
-                "clase": 23,
-                "estado": "validado",
-                "fecha": "Sep 20, 2017 12:00:00 AM",
-                "instrumento": "123",
-                "instrumentoNombre": "pc gomelito",
-                "tipoDescripcion": "Videobeam"});
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 15:30:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 21, 2017 14:20:00 pM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "noValidado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "pc"
+                });
+                reports.push({
+                    "id_reporte": 2,
+                    "clase": 23,
+                    "estado": "validado",
+                    "fecha": "Sep 20, 2017 12:00:00 AM",
+                    "instrumento": "123",
+                    "instrumentoNombre": "pc gomelito",
+                    "tipoDescripcion": "Videobeam"
+                });
                 let videoBeam = "";
                 let audio = "";
                 let i = 0;
@@ -321,6 +368,8 @@ function loadReports(codigo, pass) {
  * @param {* indice} i 
  */
 function showModal(i) {
+
+    reportSelected = i;
     let model = {
         title: null,
         body: null
@@ -364,4 +413,30 @@ function showModal(i) {
 
     $(".modal-title").html(model.title);
     $(".modal-body").html(model.body);
+}
+
+function resolve() {
+    let report = reports[reportSelected];
+    report.estado = "Solucionado";
+    $.ajax({
+        url: `http://gidis.ufps.edu.co:8088/servicios_arch/reporte/updateEstado?id_reporte=${report.id_reporte}&estado=Solucionado`,
+        type: "GET",
+        success: function (res) {
+            $(".msg").html(`<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-check"></i> Reporte solucionado!</h4>
+            El reporte ha sido solucionado con exito.
+          </div>
+            `)
+
+        },
+        error: function (err) {
+            $(".msg").html(`
+            <div class="alert alert-error alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-check"></i> Reporte solucionado!</h4>
+            El reporte ha sido solucionado con exito.
+          </div>`)
+        }
+    })
 }
