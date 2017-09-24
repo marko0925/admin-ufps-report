@@ -96,7 +96,7 @@ desired effect
             <img src="dist/img/administrator.png" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Administrador</p>
+            <p id="tipo"></p>
             <!-- Status -->
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
@@ -111,10 +111,10 @@ desired effect
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-            <ul class="treeview-menu">
-              <li><a href="#">Sala 4-10</a></li>
+            <ul class="treeview-menu upper">
+              <!--<li><a href="#">Sala 4-10</a></li>
               <li><a href="#">Sala 4-11</a></li>
-              <li><a href="#">Sala 4-14</a></li>
+              <li><a href="#">Sala 4-14</a></li>-->
             </ul>
           </li>
         </ul>
@@ -127,20 +127,21 @@ desired effect
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1>
-          Instrumentos
-          <small>Instrumentos de la sala SA 4-11</small>
-        </h1>
-        
+          
+
+        <!--
+          <h1>
+            Instrumentos
+            <small>Instrumentos de la sala <strong id="sala"></strong></small>
+          </h1>-->
+
       </section>
-      <div class="msg">
-        
-      </div>
+
       <!-- Main content -->
       <section class="content">
-          
+
         <!-- Your Page Content Here -->
-        <div class="section-instrument">
+        <div class="section-instrument" style="padding:50px 0px;">
           <div class="section-pcs-left">
 
           </div>
@@ -148,13 +149,13 @@ desired effect
 
           </div>
           <div class="section-audio">
-            
+
           </div>
           <div class="section-pcs-right">
 
           </div>
 
-         
+
 
 
         </div>
@@ -171,12 +172,7 @@ desired effect
                 <p>One fine body…</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar
                 
-                </button>
-                <button type="button" onclick="resolve()" class="btn btn-outline">Revisado
-                    <i class="fa fa-check"></i>
-                </button>
               </div>
             </div>
             <!-- /.modal-content -->

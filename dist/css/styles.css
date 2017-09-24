@@ -9,17 +9,17 @@
     overflow: scroll;
 } */
 .section-pcs-left,.section-pcs-right{
-    width: 40%;
+    width: 35%;
     float: left;
 }
 .section-videobeam{
     float: left;
-    width: 10%;
+    width: 15%;
     line-height: 30;
 }
 .section-audio{
     float: left;
-    width: 10%;
+    width: 15%;
     line-height: 5;
 }
 /* 
@@ -53,11 +53,27 @@
 .broken{
     color: #Af2828;
 }
-.size-instrument{
+.reparation{
+    color: rgba(235, 138, 59, 0.88);
+}
+.working{
+    color: #1E921E;
+}
+.upper{
+    text-transform: uppercase;
+}
+.size-instrument-3{
     font-size: 3em !important;
+}
+.size-instrument-4{
+    font-size: 2.5em !important;
 }
 .bigger-instrument{
     font-size: 5em !important;
     display: table !important;
     margin: auto;
+}
+
+.big-first-letter{
+    text-transform: uppercase;
 }

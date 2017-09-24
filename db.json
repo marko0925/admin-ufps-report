@@ -1,0 +1,353 @@
+{
+    "salones": [
+        {
+            "id": 1,
+            "nombre": "404",
+            "edificio": "as",
+            "mesa": "3"
+        },
+        {
+            "id": 2,
+            "nombre": "414",
+            "edificio": "as",
+            "mesa": "4"
+        }
+    ],
+    "login": [
+        {
+            "pass": "12345",
+            "codigo": "1151010",
+            "nombre": "estudiante de prueba",
+            "tipoRol": "estudiante"
+        },
+        {
+            "pass": "9999",
+            "codigo": "1152345",
+            "nombre": "estudiante de prueba",
+            "tipoRol": "estudiante"
+        }
+    ],
+    "instrumentos": [
+        {
+            "id": 1,
+            "instrumentos": [
+                {
+                    "id": 5,
+                    "estadoId": "1",
+                    "estadoNombre": "dañado",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 6,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 7,
+                    "estadoId": "1",
+                    "estadoNombre": "dañado",
+                    "tipoNombre": "video beam"
+                },
+                {
+                    "id": 1,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 33,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 52,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 51,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 42,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 22,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "minicomponente"
+                },
+                {
+                    "id": 46,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 57,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 21,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 100,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 101,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 102,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 103,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 104,
+                    "estadoId": "3",
+                    "estadoNombre": "reparacion",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 105,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 106,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 107,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 108,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "instrumentos": [
+                {
+                    "id": 5,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 6,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 7,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "video beam"
+                },
+                {
+                    "id": 1,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 33,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 52,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 51,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 42,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 22,
+                    "estadoId": "1",
+                    "estadoNombre": "dañado",
+                    "tipoNombre": "minicomponente"
+                },
+                {
+                    "id": 46,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 57,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 21,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 100,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 101,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 102,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 103,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 104,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 105,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 106,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 107,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                },
+                {
+                    "id": 108,
+                    "estadoId": "2",
+                    "estadoNombre": "correcto",
+                    "tipoNombre": "pc"
+                }
+            ]
+        }
+    ],
+    "reporte": [
+        {
+            "id": 5, //id del instrumento
+            "reporte": [
+                {
+                    "id": 4,
+                    "fecha": "Sep 19, 2017 12:00:00 AM",
+                    "estadoIdReporte": 2,
+                    "estadoNombreReporte": "validado",
+                    "dispositivoId": 5,
+                    "dispositivoParteId": 1, //1 es mouse
+                    "dispositivoNombre": "pc",
+                    "descripcion": "se daño el mouse ojo luis, sirva pa algo",
+                    "estadoIdDispositivo": 2,
+                    "estadoNombreDispositivo": "dañado",
+                    "denuncianteId": 1151234,
+                    "denuncianteNombre": "Marlon Coronel",
+                    "profesorId": 1154321,
+                    "profesorNombre": "Profesor Profesor"
+                },
+                {
+                    "id": 2,
+                    "fecha": "Sep 18, 2017 12:00:00 AM",
+                    "estadoIdReporte": 2,
+                    "estadoNombreReporte": "validado",
+                    "dispositivoId": 5,
+                    "dispositivoParteId": 2, //2 es teclado, el 3 es pantalla y el 4 torre
+                    "dispositivoNombre": "pc",
+                    "descripcion": "las teclas no funcionan correctamente",
+                    "estadoIdDispositivo": 2,
+                    "estadoNombreDispositivo": "correcto",
+                    "denuncianteId": 1154321,
+                    "denuncianteNombre": "profesor de prueba 1",
+                    "profesorId": 1154321,
+                    "profesorNombre": "profesor de prueba 1"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "reporte": [
+                {
+                    "id": 3,
+                    "fecha": "Sep 12, 2017 12:00:00 AM",
+                    "estadoIdReporte": 2,
+                    "estadoNombreReporte": "validado",
+                    "dispositivoId": 7,
+                    "dispositivoNombre": "video beam",
+                    "descripcion": "el vb no enciende",
+                    "estadoIdDispositivo": 2,
+                    "estadoNombreDispositivo": "dañado",
+                    "denuncianteId": 1151234,
+                    "denuncianteNombre": "Marlon Coronel",
+                    "profesorId": 1154321,
+                    "profesorNombre": "Profesor Profesor"
+                }
+            ]
+        }
+    ]
+}
