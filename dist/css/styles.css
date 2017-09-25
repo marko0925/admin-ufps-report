@@ -75,5 +75,38 @@
 }
 
 .big-first-letter{
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
+
+.loading{
+    content: '';
+    box-sizing: border-box;
+    /* position: absolute;
+    top: 240%;
+    left: 40%; */
+    display: table;
+    margin: 20% 40%;
+    width: 109px;
+    height: 110px;
+    /* margin-top: -10px;
+    margin-left: -10px; */
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    animation: spinner .6s linear infinite;
+
+}
+
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+
+  .ufps-report{
+    position: absolute;
+    top: 210%;
+    left: 20%;
+    font-size: 90px;
+    opacity: 0.2;
+    font-family: inherit;
+  }
+   

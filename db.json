@@ -293,7 +293,7 @@
     ],
     "reporte": [
         {
-            "id": 5, //id del instrumento
+            "id": 5, 
             "reporte": [
                 {
                     "id": 4,
@@ -301,7 +301,7 @@
                     "estadoIdReporte": 2,
                     "estadoNombreReporte": "validado",
                     "dispositivoId": 5,
-                    "dispositivoParteId": 1, //1 es mouse
+                    "dispositivoParteId": 1, 
                     "dispositivoNombre": "pc",
                     "descripcion": "se daño el mouse ojo luis, sirva pa algo",
                     "estadoIdDispositivo": 2,
@@ -317,7 +317,7 @@
                     "estadoIdReporte": 2,
                     "estadoNombreReporte": "validado",
                     "dispositivoId": 5,
-                    "dispositivoParteId": 2, //2 es teclado, el 3 es pantalla y el 4 torre
+                    "dispositivoParteId": 2, 
                     "dispositivoNombre": "pc",
                     "descripcion": "las teclas no funcionan correctamente",
                     "estadoIdDispositivo": 2,
