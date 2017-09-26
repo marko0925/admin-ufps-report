@@ -155,9 +155,9 @@ function loading() {
     `)
 }
 
-function get_nombre_sala(id){
-    for(let item of salas){
-        if(item.id===id){
+function get_nombre_sala(id) {
+    for (let item of salas) {
+        if (item.id === id) {
             return `${item.edificio}-${item.nombre}`;
         }
     }
@@ -446,6 +446,7 @@ function showModal(id_instrumento) {
                 title: "",
                 body: ""
             }
+            console.log(reportes);
             let tipo_dispo = reportes[0].dispositivoNombre;
             let estado = reportes[0].estadoNombreDispositivo;
             if (tipo_dispo === "pc") {
@@ -471,7 +472,7 @@ function showModal(id_instrumento) {
                 let descripcion = "";
                 for (let reporte of reportes) {
                     console.log(reporte);
-                    
+
                     if (reporte.dispositivoParteId === 1) {
                         icon = "fa-hand-pointer-o";
                     }
@@ -533,8 +534,8 @@ function showModal(id_instrumento) {
                         </button>
                     </div>
                         `;
-                        console.log(model.body);
-                    
+                    console.log(model.body);
+
 
                 }
             }
@@ -655,9 +656,9 @@ function resolve(id_reporte) {
     $.ajax({
         url: `${url}/reporte/solucionado`,
         type: "POST",
-        contentType:"application/json",
-        processData:false,
-        data: JSON.stringify({id:id_reporte}),
+        contentType: "application/json",
+        processData: false,
+        data: JSON.stringify({ id: id_reporte }),
         success: function (res) {
             $('.modal').modal('toggle');
             $(".content-header").html(`<div class="alert alert-success alert-dismissible">

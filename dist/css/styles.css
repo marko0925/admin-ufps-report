@@ -109,4 +109,10 @@
     opacity: 0.2;
     font-family: inherit;
   }
-   
+   /* .input-inv{
+       position: absolute;
+       background: #f3f3f3;
+       top:80%;
+       left: 50%;
+       border:none;
+   } */
