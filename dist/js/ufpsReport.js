@@ -2,7 +2,7 @@ var reports = [];
 var instrumentos = [];
 var salas = [];
 var onOpen = false;
-var url = "http://e0bf8a55.ngrok.io/servicios_arch";
+var url = "http://gidis.ufps.edu.co:8088/servicios_arch";
 var reportSelected;
 var codigo = localStorage.getItem("codigo");
 console.log("codigo ", codigo);
@@ -38,7 +38,7 @@ function signIn() {
             success: function (success) {
                 console.log(success);
                 if (success.msgTitle) {
-                    $(".content-header").html(`<div class="alert alert-danger alert-dismissible">
+                    $("#msg").html(`<div class="alert alert-danger alert-dismissible" style="margin-top:40px;">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <h4><i class="icon fa fa-ban"></i>Datos incorrectos</h4>
                     El codigo o la contraseña son incorrectos.
@@ -499,7 +499,7 @@ function showModal(id_instrumento) {
                 
                     <div class="big-first-letter">
                         <label>Estado</label>
-                        ${estadoParte}
+                        <span class="label label-danger">${estadoParte}</span>
                     </div>
                 
                 
@@ -510,7 +510,7 @@ function showModal(id_instrumento) {
                     </div>
                     
                     <div>
-                        <label>Reporte hecho por el estudiante:</label> 
+                        <label>Denunciante:</label> 
                         <small>${denunciante}</small>
                     </div>
                     
@@ -552,7 +552,7 @@ function showModal(id_instrumento) {
             
                 <div class="big-first-letter">
                     <label>Estado</label>
-                    ${reportes[0].estadoNombreReporte}
+                    <span class="label label-danger">${reportes[0].estadoNombreReporte}</span>
                 </div>
             
 
@@ -562,7 +562,7 @@ function showModal(id_instrumento) {
                 </div>
                 
                 <div>
-                    <label>Reporte hecho por el estudiante</label>
+                    <label>Denunciante</label>
                     <small>${reportes[0].denuncianteNombre}</small>
                 </div>
                 
@@ -603,7 +603,7 @@ function showModal(id_instrumento) {
             
                 <div class="big-first-letter">
                     <label>Estado</label>
-                    ${reportes[0].estadoNombreReporte}
+                    <span class="label label-danger">${reportes[0].estadoNombreReporte}</span>
                 </div>
             
             
@@ -637,12 +637,9 @@ function showModal(id_instrumento) {
                             <button type="button" onclick="resolve(${reportes[0].id})" class="btn btn-outline">Solucionar
                                 <i class="fa fa-thumbs-up"></i>
                             </button>`);
-
             }
-            console.log(model.body);
             $(".modal-title").html(model.title);
             $(".modal-body").html(model.body);
-          
         },
         error: function (err) {
 
