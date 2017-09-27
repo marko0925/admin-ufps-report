@@ -96,6 +96,13 @@ function resetInputs() {
     $("input[name='contrasena']").val("")
 }
 
+function ufpsReportMsg(){
+    $(".section-instrument").html(`
+        <div class="ufps-report">
+        <span><b>UFPS</b> REPORT</span>
+        </div>
+    `);
+}
 function loadSalas() {
     loading();
     $.ajax({
@@ -103,11 +110,7 @@ function loadSalas() {
         type: "POST",
         contentType: "application/json",
         success: function (res) {
-            $(".section-instrument").html(`
-            <div class="ufps-report">
-            <span><b>UFPS</b> REPORT</span>
-            </div>
-        `);
+            ufpsReportMsg();
             if (res) {
                 let salasFormat = [];
                 salas = res;
@@ -169,6 +172,23 @@ function get_nombre_sala(id) {
     }
 }
 
+function ponerSections(){
+    $(".section-instrument").html(`
+    <div class="section-pcs-left">
+    
+              </div>
+              <div class="section-videobeam">
+    
+              </div>
+              <div class="section-audio">
+    
+              </div>
+              <div class="section-pcs-right">
+    
+              </div>
+    `)
+}
+
 function loadInstrumentos(idSala) {
     $(".content-header").html(`
         <h1>
@@ -183,20 +203,7 @@ function loadInstrumentos(idSala) {
         processData: false,
         data: JSON.stringify({ "id": idSala }),
         success: function (res) {
-            $(".section-instrument").html(`
-           <div class="section-pcs-left">
-           
-                     </div>
-                     <div class="section-videobeam">
-           
-                     </div>
-                     <div class="section-audio">
-           
-                     </div>
-                     <div class="section-pcs-right">
-           
-                     </div>
-           `)
+           ponerSections();
 
             instrumentos = res;
             let pcs = [];
@@ -522,8 +529,8 @@ function resolve(id_reporte) {
             <h4><i class="icon fa fa-check"></i> Reporte solucionado!</h4>
             El reporte ha sido solucionado con exito.
           </div>
-            `)
-
+            `);
+            ufpsReportMsg();
         },
         error: function (err) {
             $(".content-header").html(`
