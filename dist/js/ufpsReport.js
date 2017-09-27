@@ -20,7 +20,7 @@ function signIn() {
     let codigo = $("input[name='codigo']").val();
     let contrasena = $("input[name='contrasena']").val();
     if (!codigo || !contrasena) {
-        $(".content-header").html(`<div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
+        $("#msg").html(`<div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                  <h4><i class="icon fa fa-ban"></i>Datos vacios</h4>
                  Asegurate de digitar todos los datos.
@@ -45,6 +45,7 @@ function signIn() {
                   </div>`);
                 }
                 else if (success.nombre) {
+                    $("#msg").html("");
                     for (let item in success) {
                         localStorage.setItem(item, success[item]);
                     }
@@ -69,6 +70,11 @@ function signIn() {
 
     }
 
+}
+
+function salir(){
+    localStorage.clear();
+    ctrlPages($("#pageReport"),$("#pageLogin"));
 }
 
 /**
@@ -275,156 +281,6 @@ function loadInstrumentos(idSala) {
         }
     })
 }
-/**
- * Cargamos los instrumentos
- */
-// function loadInstrumentos(idSala) {
-//     $.ajax({
-//         url: `${url}/servicios_arch/reporte/selectAll`,
-//         type: "GET",
-//         data: { id_sala: idSala },
-//         success: function (res) {
-//             if (res.success) {
-//                 instrumentos = res.success;
-//                 let pcs = [];
-//                 for (let instrumento of instrumentos) {
-//                     if (instrumento.tipo_instrumento === "PC") {
-//                         let indiceReporte = hasReport(instrumento.id);
-//                         let reporte;
-//                         if (indiceReporte !== -1) {
-//                             reporte = reports[indiceReporte];
-//                             if (reporte.estado === "dañado") {
-//                                 pcs.push(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                                      <i class="fa fa-desktop broken size-instrument" aria-hidden="true"></i>
-//                                    </div>
-//                                    `)
-//                             } else if (reporte.estado === "reparacion") {
-//                                 pcs.push(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                                  <i class="fa fa-desktop reparation size-instrument" aria-hidden="true"></i>
-//                                </div>
-//                                `)
-//                             }
-//                         } else {
-//                             pcs.push(`<div class="instrument" data-toggle="modal" data-target=".modal" >
-//                             <i class="fa fa-desktop reparation size-instrument" aria-hidden="true"></i>
-//                           </div>`)
-//                         }
-
-
-//                     }
-//                     else if (report.tipo_instrumento === "videobeam") {
-//                         if (report.estado === "dañado") {
-//                             videoBeam = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                             <i class="fa fa-video-camera broken size-instrument" aria-hidden="true"></i>
-//                           </div>`;
-//                         } else if (report.estado === "reparacion") {
-//                             videoBeam = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                             <i class="fa fa-video-camera reparation size-instrument" aria-hidden="true"></i>
-//                           </div>`;
-//                         }
-
-//                     }
-//                     else if (report.tipo_instrumento === "minicomponente") {
-//                         if (report.estado === "dañado") {
-//                             audio = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                             <i class="fa fa-music broken size-instrument" aria-hidden="true"></i>
-//                           </div>`;
-//                         } else if (report.estado === "reparacion") {
-//                             audio = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                             <i class="fa fa-music reparation size-instrument" aria-hidden="true"></i>
-//                           </div>`;
-//                         }
-
-//                     }
-//                     i += 1;
-//                 }
-//             }
-//             else if (res.error) {
-//                 console.log(res.error);
-//             }
-//         },
-//         error: function (err) {
-//             console.log(res.error);
-//         }
-//     });
-// }
-/**
- * Carga todos los reportes
- */
-// function loadReports(idSala) {
-
-
-//     $.ajax({
-//         url: `${url}/servicios_arch/reporte/selectAll`,
-//         type: "GET",
-//         data: { id_sala: idSala },
-//         success: function (res) {
-//             if (res, success) {
-//                 console.log(res);
-//                 reports = res.success;
-//                 let pcs = [];
-//                 let videoBeam = "";
-//                 let audio = "";
-//                 let i = 0;
-//                 for (let report of reports) {
-//                     if (report.tipo_instrumento === "PC") {
-//                         if (report.estado === "dañado") {
-//                             pcs.push(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                                  <i class="fa fa-desktop broken size-instrument" aria-hidden="true"></i>
-//                                </div>
-//                                `)
-//                         } else if (report.estado === "reparacion") {
-//                             pcs.push(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                              <i class="fa fa-desktop reparation size-instrument" aria-hidden="true"></i>
-//                            </div>
-//                            `)
-//                         }
-
-//                     }
-//                     else if (report.tipo_instrumento === "videobeam") {
-//                         if (report.estado === "dañado") {
-//                             videoBeam = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                             <i class="fa fa-video-camera broken size-instrument" aria-hidden="true"></i>
-//                           </div>`;
-//                         } else if (report.estado === "reparacion") {
-//                             videoBeam = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                             <i class="fa fa-video-camera reparation size-instrument" aria-hidden="true"></i>
-//                           </div>`;
-//                         }
-
-//                     }
-//                     else if (report.tipo_instrumento === "minicomponente") {
-//                         if (report.estado === "dañado") {
-//                             audio = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                             <i class="fa fa-music broken size-instrument" aria-hidden="true"></i>
-//                           </div>`;
-//                         } else if (report.estado === "reparacion") {
-//                             audio = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${i})">
-//                             <i class="fa fa-music reparation size-instrument" aria-hidden="true"></i>
-//                           </div>`;
-//                         }
-
-//                     }
-//                     i += 1;
-//                 }
-//                 let pcsRight = pcs.slice(Math.ceil(pcs.length / 2));
-//                 let pcsLeft = pcs.slice(0, Math.ceil(pcs.length / 2));
-//                 $(".section-instrument .section-pcs-left").html(pcsLeft.join(""));
-//                 $(".section-instrument .section-pcs-right").html(pcsRight.join(""));
-//                 $(".section-instrument .section-audio").html(audio);
-//                 $(".section-instrument .section-videobeam").html(videoBeam);
-//             }
-//         },
-//         error: function (err) {
-//             console.log("ERORRORR");
-//             console.log(err);
-
-//         }
-//     })
-
-
-// }
-
 /**
  * Muestra el card correspondiente
  * @param {* indice} i 
