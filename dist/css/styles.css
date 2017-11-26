@@ -37,13 +37,14 @@
 .card::after{
     content: "";
 
-} */
+} 
 .section-instrument{
     position: relative;
     display: table;
     margin:auto;
     width:900px;
 }
+*/
 .instrument{    
     padding: 20px;
     display: inline-block;
