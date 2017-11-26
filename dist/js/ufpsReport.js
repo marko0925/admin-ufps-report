@@ -120,7 +120,7 @@ function loadSalas() {
                         ${sala.edificio} - ${sala.nombre}
                     </a></li>`);
                 }
-                $(".treeview-menu").html(salasFormat.join(""));
+                $("#ul-salas").html(salasFormat.join(""));
 
             } else if (res.error) {
 
