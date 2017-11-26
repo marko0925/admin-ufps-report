@@ -173,7 +173,6 @@ function get_nombre_sala(id) {
 }
 
 function ponerSections(){
-    
     $(".section-instrument").html(`
     <div class="section-pcs-left">
     
