@@ -1,80 +1,88 @@
 var reports = [];
 var instrumentos = [];
 var salas = [];
-var onOpen = false;
-var url = "http://gidis.ufps.edu.co:8088/servicios_arch";
-var reportSelected;
-var codigo = localStorage.getItem("codigo");
-console.log("codigo ", codigo);
+var onOpen = false; // se quita
+var url = "http://d1a27c44.ngrok.io";
+var reportSelected; //se quita
+var correo = localStorage.getItem("correo");
+console.log("correo ", correo);
+
 $(".logo").attr("href", "/")
-if (codigo) {
-    $("#tipo").html(localStorage.getItem("tipoRol")).addClass("big-first-letter");
+if (correo) {
+    $("#tipo").html(localStorage.getItem("nombre")).addClass("big-first-letter");
     ctrlPages($("#pageLogin"), $("#pageReport"));
-    loadSalas();
+    loadEdificios();
 }
+
 /**
  * Funcion asincrona para soclitiar el inicio de sesion
  */
 function signIn() {
+    event.preventDefault();
     console.log("entro");
-    let codigo = $("input[name='codigo']").val();
+    let correo = $("input[name='correo']").val();
     let contrasena = $("input[name='contrasena']").val();
-    if (!codigo || !contrasena) {
+    let tipo = $("select[name='tipo']").val();
+    if (!correo || !contrasena || !tipo) {
         $("#msg").html(`<div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                  <h4><i class="icon fa fa-ban"></i>Datos vacios</h4>
                  Asegurate de digitar todos los datos.
                </div>`);
         resetInputs();
-    }
-    else {
-        console.log(codigo, contrasena);
-        $.ajax({
-            url: `${url}/usuario/select`,
-            type: "POST",
-            contentType: "application/json",
-            processData: false,
-            data: JSON.stringify({ codigo: codigo, pass: contrasena }),
-            success: function (success) {
-                console.log(success);
-                if (success.msgTitle) {
-                    $("#msg").html(`<div class="alert alert-danger alert-dismissible" style="margin-top:40px;">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4><i class="icon fa fa-ban"></i>Datos incorrectos</h4>
-                    El codigo o la contraseña son incorrectos.
-                  </div>`);
-                }
-                else if (success.nombre) {
-                    $("#msg").html("");
-                    for (let item in success) {
-                        localStorage.setItem(item, success[item]);
-                    }
-                    $("#tipo").html(localStorage.getItem("tipoRol")).addClass("big-first-letter");
+        return false;
+    } else {
+        // $.ajax({
+        //     url: `${url}/validar`,
+        //     type: "GET",
+        //     contentType: "application/json",
+        //     processData: false,
+        //     data: JSON.stringify({
+        //         correo: correo,
+        //         contrasena: contrasena,
+        //         tipo: tipo
+        //     }),
+        //     success: function (res) {
+        //         if (res.msg === "success") {
+        //             $("#msg").html("");
+        let obj = {
+            "id": 1,
+            "nombre": "Luis",
+            "correo": "luisponches@ufps.udu.co",
+            "codigo": null,
+            "created_at": null,
+            "updated_at": null
 
-                    loadSalas();
-                    ctrlPages($("#pageLogin"), $("#pageReport"));
-                } else {
-                    $(".content-header").html(`<div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
-                    Intentalo de nuevo mas tarde.
-                  </div>`);
-                }
+        };
+        for (let item in obj) {
+            localStorage.setItem(item, obj[item]);
+        }
+        $("#tipo").html(localStorage.getItem("nombre")).addClass("big-first-letter");
 
-            },
-            error: function (err) {
-                console.log("ERR,", err);
-
-            }
-        })
+        loadEdificios();
+        ctrlPages($("#pageLogin"), $("#pageReport"));
+        //         } else {
+        //             $(".content-header").html(`<div class="alert alert-danger alert-dismissible">
+        //             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        //             <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
+        //             ${res.err}.
+        //           </div>`);
+        //         }
+        //         return false;
+        //     },
+        //     error: function (err) {
+        //         console.log("ERR,", err);
+        //         return false;
+        //     }
+        // })
 
     }
 
 }
 
-function salir(){
+function salir() {
     localStorage.clear();
-    ctrlPages($("#pageReport"),$("#pageLogin"));
+    ctrlPages($("#pageReport"), $("#pageLogin"));
 }
 
 /**
@@ -96,42 +104,123 @@ function resetInputs() {
     $("input[name='contrasena']").val("")
 }
 
-function ufpsReportMsg(){
+function ufpsReportMsg() {
     $(".section-instrument").html(`
         <div class="ufps-report">
         <span><b>UFPS</b> REPORT</span>
         </div>
     `);
 }
-function loadSalas() {
+
+function loadEdificios() {
     loading();
-    $.ajax({
-        url: `${url}/salon/selectAll`,
-        type: "POST",
-        contentType: "application/json",
-        success: function (res) {
-            ufpsReportMsg();
-            if (res) {
-                let salasFormat = [];
-                salas = res;
-                for (let sala of salas) {
-                    salasFormat.push(`<li><a href="#" id="${sala.id}" onclick="loadInstrumentos(${sala.id})">
-                        <i class="fa fa-circle"></i>
-                        ${sala.edificio} - ${sala.nombre}
-                    </a></li>`);
-                }
-                $("#ul-salas").html(salasFormat.join(""));
+    // $.ajax({
+    //     url: `${url}/salon/selectAll`,
+    //     type: "POST",
+    //     contentType: "application/json",
+    //     success: function (res) {
+    ufpsReportMsg();
+    // if (res) {
+    let edificiosListado = [];
+    let edificiosTree = [{
+        "id": 1,
+        "nombre": "Aula sur",
+        "created_at": null,
+        "updated_at": null
+    }, {
+        "id": 2,
+        "nombre": "Aula sur D",
+        "created_at": null,
+        "updated_at": null
+    }];
+    for (let edificio of edificiosTree) {
+        edificiosListado.push(`
+        <li class="treeview" >
+            <a href="#">
+                <i class="fa fa-circle"></i>
+                <span>${edificio.nombre}</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu upper" id="edificio-${edificio.id}">
 
-            } else if (res.error) {
+            </ul>
+        </li>`);
+    }
+    $("#ul-edificios").html(edificiosListado.join(""));
+    loadSalas();
+    //         } else if (res.error) {
 
-            }
-        },
-        error: function (err) {
+    //         }
+    //     },
+    //     error: function (err) {
 
-        }
-    });
+    //     }
+    // });
 }
 
+
+function loadSalas() {
+    // $.ajax({
+    //     url: `${url}/salon/selectAll`,
+    //     type: "POST",
+    //     contentType: "application/json",
+    //     success: function (res) {
+    // if (res) {
+
+    let salasListado = [];
+    let salasTree = [{
+        "id": 1,
+        "nombre": "AS411",
+        "edificio": 1,
+        "fila": 4,
+        "columna": 6,
+        "created_at": null,
+        "updated_at": null
+    }, {
+        "id": 2,
+        "nombre": "AS410",
+        "edificio": 1,
+        "fila": 4,
+        "columna": 6,
+        "created_at": null,
+        "updated_at": null
+    }, {
+        "id": 3,
+        "nombre": "AS401",
+        "edificio": 1,
+        "fila": 4,
+        "columna": 6,
+        "created_at": null,
+        "updated_at": null
+    }];
+    salas = salasTree;
+    for (let sala of salasTree) {
+        let salaFormat = `
+        <li class="treeview">
+            <a href="#" onclick="loadDispositivos('${sala.id}','${sala.fila}','${sala.columna}')">
+                <i class="fa fa-circle"></i>
+                <span>${sala.nombre}</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+        </li>`;
+        $("#edificio-" + sala.edificio).html(
+            $("#edificio-" + sala.edificio).html() + salaFormat
+        );
+
+    }
+    //         } else if (res.error) {
+
+    //         }
+    //     },
+    //     error: function (err) {
+
+    //     }
+    // });
+}
 
 function hasReport(id_instrumento) {
     for (let report of reports) {
@@ -142,18 +231,7 @@ function hasReport(id_instrumento) {
     return -1;
 }
 
-/**
- * Devuelve la cantidad de columnas por bloque de un salon
- * @param {*} id_sala 
- */
-function getTipoSalon(id_sala) {
-    for (let item of salas) {
-        if (item.id === id_sala) {
-            return item.mesa;
-        }
-    }
-    return null;
-}
+
 
 function loading() {
     $(".section-instrument").html(``);
@@ -166,127 +244,376 @@ function loading() {
 
 function get_nombre_sala(id) {
     for (let item of salas) {
-        if (item.id === id) {
-            return `${item.edificio}-${item.nombre}`;
+        if (item.id == id) {
+            return item.nombre;
+        }
+    }
+    return "none";
+}
+
+
+
+function loadDispositivos(idSala, filas, columnas) {
+    console.log(filas, columnas);
+    $(".content-header").html(`
+        <h1>
+            Dispositivos
+            <small>Dispositivos de la sala <strong id="sala" class="upper">${get_nombre_sala(idSala)}</strong></small>
+        </h1>`)
+    // loading();
+    // $.ajax({
+    //     url: `${url}/dispositivo/selectBySalon`,
+    //     type: "POST",
+    //     contentType: "application/json",
+    //     processData: false,
+    //     data: JSON.stringify({
+    //         "id": idSala
+    //     }),
+    //     success: function (res) {
+    let res = [{
+        "id": 1,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 0,
+        "columna": 0,
+        "estado": false
+    }, {
+        "id": 2,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 0,
+        "columna": 1,
+        "estado": false
+    }, {
+        "id": 3,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 0,
+        "columna": 2,
+        "estado": false
+    }, {
+        "id": 4,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 0,
+        "columna": 3,
+        "estado": false
+    }, {
+        "id": 5,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 0,
+        "columna": 4,
+        "estado": false
+    }, {
+        "id": 6,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 0,
+        "columna": 5,
+        "estado": false
+    }, {
+        "id": 7,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 1,
+        "columna": 0,
+        "estado": false
+    }, {
+        "id": 8,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 1,
+        "columna": 1,
+        "estado": false
+    }, {
+        "id": 9,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 1,
+        "columna": 2,
+        "estado": false
+    }, {
+        "id": 10,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 1,
+        "columna": 3,
+        "estado": false
+    }, {
+        "id": 11,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 1,
+        "columna": 4,
+        "estado": false
+    }, {
+        "id": 12,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 1,
+        "columna": 5,
+        "estado": false
+    }, {
+        "id": 13,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 2,
+        "columna": 0,
+        "estado": false
+    }, {
+        "id": 14,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 2,
+        "columna": 1,
+        "estado": false
+    }, {
+        "id": 15,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 2,
+        "columna": 2,
+        "estado": false
+    }, {
+        "id": 16,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 2,
+        "columna": 3,
+        "estado": false
+    }, {
+        "id": 17,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 2,
+        "columna": 4,
+        "estado": false
+    }, {
+        "id": 18,
+        "numero_reportes": 0,
+        "tipo": 1,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": 2,
+        "columna": 5,
+        "estado": false
+    }, {
+        "id": 19,
+        "numero_reportes": 0,
+        "tipo": 3,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": -1,
+        "columna": -1,
+        "estado": false
+    }, {
+        "id": 20,
+        "numero_reportes": 0,
+        "tipo": 2,
+        "salon": 1,
+        "created_at": null,
+        "updated_at": null,
+        "fila": -2,
+        "columna": -2,
+        "estado": false
+    }]
+    instrumentos = res;
+    let contentFormat = [];
+
+    $(".section-dispositivos").html(`
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 devices-left">
+    
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 devices-right">
+            
+            </div>
+            <div class="otros-devices">
+                <div class="audio">
+                
+                </div>
+                <div class="beam">
+                
+                </div>
+            </div>
+        `);
+
+    let devicesLeftArray = [];
+    let devicesRightArray = [];
+    for (let i = 0; i < filas; i++) {
+        devicesLeftArray.push(`<div class="row left-${i}">`);
+        devicesRightArray.push(`<div class="row right-${i}">`);
+        for (let j = 0; j < columnas; j++) {
+            if (j >= columnas / 2) {
+                devicesRightArray.push(`
+                        <div class="col-lg-${12/(columnas/2)} col-md-${12/(columnas/2)} col-sm-${12/(columnas/2)} col-xs-${12/(columnas/2)} ${i}-${j}">
+                        ${i}-${j}
+                        ${loadDispositivoIndividual(i,j)}
+                        </div>
+                    `);
+            } else {
+                devicesLeftArray.push(`
+                        <div class="col-lg-${12/(columnas/2)} col-md-${12/(columnas/2)} col-sm-${12/(columnas/2)} col-xs-${12/(columnas/2)} ${i}-${j}">
+                        ${i}-${j}
+                        ${loadDispositivoIndividual(i,j)}
+                        </div>
+                    `);
+            }
+        }
+        devicesRightArray.push(`</div>`);
+        devicesLeftArray.push(`</div>`);
+        $(".devices-right").html(devicesRightArray.join(""));
+        $(".devices-left").html(devicesLeftArray.join(""));
+    }
+    loadOtrosDevices();
+
+    // },
+    //     error: function (err) {
+
+    //     }
+    // })
+}
+
+function loadOtrosDevices() {
+    for (let instrumento of instrumentos) {
+        if (instrumento.fila == -2 && instrumento.columna == -2) {
+            console.log("otros ",instrumento.fila,instrumento.columna);
+            
+            if (instrumento.tipo == 2) {
+                if (!instrumento.estado) {
+                    estado = "broken";
+                    $(`.beam`).html(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id})">
+                                                            <i class="fa fa-video-camera ${estado}" aria-hidden="true"></i>
+                                                        </div>`);
+                } else {
+                    estado = "working";
+                    $(`.beam`).html(`<div class="instrument">
+                                                            <i class="fa fa-video-camera ${estado}" aria-hidden="true"></i>
+                                                        </div>`);
+                }
+            }
+        } else if (instrumento.fila == -1 && instrumento.columna == -1) {
+            if (instrumento.tipo == 3) {
+                if (!instrumento.estado) {
+                    estado = "broken";
+                    $(`.audio`).html(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id})">
+                                                            <i class="fa fa-music ${estado}" aria-hidden="true"></i>
+                                                        </div>`);
+                } else {
+                    estado = "working";
+                    $(`.audio`).html(`<div class="instrument" >
+                                                            <i class="fa fa-music ${estado}" aria-hidden="true"></i>
+                                                        </div>`);
+                }
+
+            }
         }
     }
 }
 
-function ponerSections(){
-    $(".section-instrument").html(`
-    <div class="section-pcs-left">
-    
-              </div>
-              <div class="section-videobeam">
-    
-              </div>
-              <div class="section-audio">
-    
-              </div>
-              <div class="section-pcs-right">
-    
-              </div>
-    `)
-}
+function loadDispositivoIndividual(i, j) {
+    for (let instrumento of instrumentos) {
 
-function loadInstrumentos(idSala) {
-    $(".content-header").html(`
-        <h1>
-            Instrumentos
-            <small>Instrumentos de la sala <strong id="sala" class="upper">${get_nombre_sala(idSala)}</strong></small>
-        </h1>`)
-    loading();
-    $.ajax({
-        url: `${url}/dispositivo/selectBySalon`,
-        type: "POST",
-        contentType: "application/json",
-        processData: false,
-        data: JSON.stringify({ "id": idSala }),
-        success: function (res) {
-           ponerSections();
+        if (instrumento.fila == i && instrumento.columna == j) {
+            let estado = "";
+            if (instrumento.tipo == 1) {
+                if (!instrumento.estado) {
+                    estado = "broken";
+                    return `<div class="instrument" data-toggle="modal"  data-target=".modal" onclick="showModal(${instrumento.id})">
+                                                <i class="fa fa-desktop ${estado}" aria-hidden="true"></i>
+                                            </div>`;
+                }
+                estado = "working";
+                return `<div class="instrument" >
+                                                <i class="fa fa-desktop ${estado}" aria-hidden="true"></i>
+                                            </div>`;
 
-            instrumentos = res;
-            let pcs = [];
-            let videobeam = "";
-            let mini = "";
-            let tipo_salon = getTipoSalon(idSala);
-            if (tipo_salon === "3") {
-                tipo_salon = "size-instrument-3";
-            } else if (tipo_salon === "4") {
-                tipo_salon = "size-instrument-4";
             }
-            for (let instrumento of instrumentos) {
-
-                let estado = "";
-                if (instrumento.tipoNombre === "pc") {
-                    if (instrumento.estadoNombre === "dañado") {
-                        estado = "broken";
-                        pcs.push(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id})">
-                                    <i class="fa fa-desktop ${estado} ${tipo_salon}" aria-hidden="true"></i>
-                                </div>`);
-                    }
-                    // else if (instrumento.estadoNombre === "reparacion") {
-                    //     estado = "reparation";
-                    // }
-                    else if (instrumento.estadoNombre === "correcto") {
-                        estado = "working";
-                        pcs.push(`<div class="instrument" >
-                                    <i class="fa fa-desktop ${estado} ${tipo_salon}" aria-hidden="true"></i>
-                                </div>`);
-                    }
+            //  else if (instrumento.tipo == 2) {
+            //     if (!instrumento.estado) {
+            //         estado = "broken";
+            //         $(`.beam`).html(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id})">
+            //                                             <i class="fa fa-video-camera ${estado}" aria-hidden="true"></i>
+            //                                         </div>`);
+            //     } else {
+            //         estado = "working";
+            //         $(`.beam`).html(`<div class="instrument">
+            //                                             <i class="fa fa-video-camera ${estado}" aria-hidden="true"></i>
+            //                                         </div>`);
+            //     }
 
 
+            // } else if (instrumento.tipo == 3) {
+            //     if (!instrumento.estado) {
+            //         estado = "broken";
+            //         $(`.audio`).html(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id})">
+            //                                         <i class="fa fa-music ${estado}" aria-hidden="true"></i>
+            //                                     </div>`);
+            //     } else {
+            //         estado = "working";
+            //         $(`.audio`).html(`<div class="instrument" >
+            //                                         <i class="fa fa-music ${estado}" aria-hidden="true"></i>
+            //                                     </div>`);
+            //     }
 
-                }
-                else if (instrumento.tipoNombre === "video beam") {
-                    if (instrumento.estadoNombre === "dañado") {
-                        estado = "broken";
-                        videobeam = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id})">
-                                        <i class="fa fa-video-camera ${estado} ${tipo_salon}" aria-hidden="true"></i>
-                                    </div>`;
-                    }
-                    // else if (instrumento.estadoNombre === "reparacion") {
-                    //     estado = "reparation";
-                    // }
-                    else if (instrumento.estadoNombre === "correcto") {
-                        estado = "working";
-                        videobeam = `<div class="instrument">
-                                        <i class="fa fa-video-camera ${estado} ${tipo_salon}" aria-hidden="true"></i>
-                                    </div>`;
-                    }
-
-
-                }
-                else if (instrumento.tipoNombre === "minicomponente") {
-                    if (instrumento.estadoNombre === "dañado") {
-                        estado = "broken";
-                        mini = `<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id})">
-                                    <i class="fa fa-music ${estado} ${tipo_salon}" aria-hidden="true"></i>
-                                </div>`;
-                    }
-                    // else if (instrumento.estadoNombre === "reparacion") {
-                    //     estado = "reparation";
-                    // }
-                    else if (instrumento.estadoNombre === "correcto") {
-                        estado = "working";
-                        mini = `<div class="instrument" >
-                                    <i class="fa fa-music ${estado} ${tipo_salon}" aria-hidden="true"></i>
-                                </div>`;
-                    }
-
-                }
-            }
-            let pcsRight = pcs.slice(Math.ceil(pcs.length / 2));
-            let pcsLeft = pcs.slice(0, Math.ceil(pcs.length / 2));
-            $(".section-instrument .section-pcs-left").html(pcsLeft.join(""));
-            $(".section-instrument .section-pcs-right").html(pcsRight.join(""));
-            $(".section-instrument .section-audio").html(mini);
-            $(".section-instrument .section-videobeam").html(videobeam);
-        },
-        error: function (err) {
-
+            // }
         }
-    })
+
+    }
+    return `<strong>Not Found</strong>`
 }
 /**
  * Muestra el card correspondiente
@@ -302,7 +629,9 @@ function showModal(id_instrumento) {
         type: "POST",
         contentType: "applicacion/json",
         processData: false,
-        data: JSON.stringify({ id: id_instrumento }),
+        data: JSON.stringify({
+            id: id_instrumento
+        }),
         success: function (res) {
             let reportes = res;
             let model = {
@@ -338,14 +667,11 @@ function showModal(id_instrumento) {
 
                     if (reporte.dispositivoParteId === 1) {
                         icon = "fa-hand-pointer-o";
-                    }
-                    else if (reporte.dispositivoParteId === 2) {
+                    } else if (reporte.dispositivoParteId === 2) {
                         icon = "fa-keyboard-o"
-                    }
-                    else if (reporte.dispositivoParteId === 3) {
+                    } else if (reporte.dispositivoParteId === 3) {
                         icon = "fa-television";
-                    }
-                    else if (reporte.dispositivoParteId === 4) {
+                    } else if (reporte.dispositivoParteId === 4) {
                         icon = "fa-building";
                     }
                     estadoParte = reporte.estadoNombreReporte;
@@ -401,8 +727,7 @@ function showModal(id_instrumento) {
 
 
                 }
-            }
-            else if (tipo_dispo === "video beam") {
+            } else if (tipo_dispo === "video beam") {
                 model.title = "VideoBeam";
                 model.body = ` 
                 <div>
@@ -452,8 +777,7 @@ function showModal(id_instrumento) {
                                 <i class="fa fa-thumbs-up"></i>
                             </button>`);
 
-            }
-            else if (tipo_dispo === "minicomponente") {
+            } else if (tipo_dispo === "minicomponente") {
                 model.title = "Minicomponente";
                 model.body = `
                 <div>
@@ -521,7 +845,9 @@ function resolve(id_reporte) {
         type: "POST",
         contentType: "application/json",
         processData: false,
-        data: JSON.stringify({ id: id_reporte }),
+        data: JSON.stringify({
+            id: id_reporte
+        }),
         success: function (res) {
             $('.modal').modal('toggle');
             $(".content-header").html(`<div class="alert alert-success alert-dismissible">
