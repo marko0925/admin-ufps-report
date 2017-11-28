@@ -76,6 +76,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="#" data-toggle="control-sidebar" onclick="salir()">
                                 <i class="fa fa-power-off"></i>
                             </a>
+                            <ul id="ul-salas" class="treeview-menu upper">
+                                <!--<li><a href="#">Sala 4-10</a></li>
+                                <li><a href="#">Sala 4-11</a></li>
+                                <li><a href="#">Sala 4-14</a></li>-->
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-link"></i> <span>Dispositivos</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" id="ul-dispositivos">
+                                <li><a href="#" onclick="registrarDispositivo()"><i class="fa fa-circle-o"></i>Registrar</a></li>
+                                <li><a href="#" onclick="consultarDispositivo()"><i class="fa fa-circle-o"></i>Consultar</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-link"></i> <span>Materias</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" id="ul-materias">
+                                <li><a href="#" onclick="registrarMateria()"><i class="fa fa-circle-o"></i>Registrar</a></li>
+                                <li><a href="#" onclick="consultarMateria()"><i class="fa fa-circle-o"></i>Consultar</a></li>
+
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -514,8 +544,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <div class="text-center">
 
 
-                                                            <form align="center" class="login" method="post" name="formeliminar" onSubmit="eliminarActividadQuery('<%=a.getId()%>', '<%=cod%>');
-                                                                        return false">
+                                                                <form class="login" method="post" name="formeliminar" onSubmit="eliminarActividadQuery('<%=a.getId()%>', '<%=cod%>');
+                                                                        return false" >
 
 
 
@@ -732,8 +762,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <div class="text-center">
 
 
-                                                            <form align="center" class="login" method="post" name="formeliminar" onSubmit="eliminarActividadQuery('<%=a.getId()%>', '<%=cod%>');
-                                                                        return false">
+                                                                <form  class="login" method="post" name="formeliminar" onSubmit="eliminarActividadQuery('<%=a.getId()%>', '<%=cod%>');
+                                                                        return false" >
 
 
 
@@ -943,8 +973,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <div class="text-center">
 
 
-                                                            <form align="center" class="login" method="post" name="formeliminar" onSubmit="eliminarActividadQuery('<%=a.getId()%>', '<%=cod%>');
-                                                                        return false">
+                                                                <form  class="login" method="post" name="formeliminar" onSubmit="eliminarActividadQuery('<%=a.getId()%>', '<%=cod%>');
+                                                                        return false" >
 
 
 
@@ -981,11 +1011,98 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- ...........................CODIGO DANIEL:.............. -->
 
 
-                <div class="row" style="display: none">
-                    <div class="col-md-12">
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Informacion Daniel</h3>
+                    <!-- CRUD MATETRIAS -->
+
+
+                    <div id="registrar-materia" class="row seccioninfo" style="display: none">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Registrar Materias</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+
+                                <div class="row" style="height: 20px"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <form class="form-horizontal">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label">Profesor:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control select2" style="width: 100%;">
+                                                            <option selected="selected">Alabama</option>
+                                                            <option>Alaska</option>
+                                                            <option>California</option>
+                                                            <option>Delaware</option>
+                                                            <option>Tennessee</option>
+                                                            <option>Texas</option>
+                                                            <option>Washington</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label">Codigo:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputPassword3" placeholder="404">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label">Nombre:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputPassword3" placeholder="404">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label">Grupo:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputPassword3" placeholder="404">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-primary pull-right">Registrar</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+
+                                        <!-- /.chart-responsive -->
+                                    </div>
+
+                                </div>
+                                <!-- /.row -->
+
+                                <!-- ./box-body -->
+
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+
+
+
+
+                    <div id="consultar-materia" class="row seccioninfo" style="display: none">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Consultar Materias</h3>
 
                                 <div class="box-tools pull-right">
                                     <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -993,17 +1110,89 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </button>
 
                                 </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p class="text-center">
-                                            <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
-                                        </p>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="row" style="height: 20px"></div>
+
+                                            <div class="table-responsive">
+                                                <table id="table2" class="table table-bordered table-hover">
+                                                    <thead style="background: #f7f7f7">
+                                                        <tr id="encabezado">
+                                                            <th class="text-center">ID</th>
+                                                            <th class="text-center">Nombre</th>
+                                                            <th class="text-center">Tipo</th>
+                                                            <th class="text-center">Fecha</th>
+                                                            <th class="text-center">Opciones</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <tr id="fila1">
+
+                                                            <td>Hola</td>
+                                                            <td>que paso </td>
+                                                            <td>chao bebe</td>
+                                                            <td>hola de nuevo</td>
+                                                            <td class="text-center"> 
+
+                                                                <button type="button" class="btn btn-success btn-xs " data-toggle="tooltip" data-placement="top" title="Actualizar"><i class="fa fa-edit"></i> </button>
+
+                                                                <span id="tooltipEliminar" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                                                    <button type="button" class="btn btn-warning btn-xs " data-toggle="modal" data-target="#myModalEliminarMateria" ><i class="fa fa-remove"></i> </button>
+                                                                </span>
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
 
 
-                                        <!-- /.chart-responsive -->
+
+
+                                            <!-- /.modal -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="myModalEliminarMateria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body" style="background: #f7f7f7">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                                            <h4 class="modal-title"  id="myModalLabel"><b>¿Estas seguro de eliminar la Materia con ID </b></h4>
+
+                                                            <div class="row" style="height: 20px"></div>
+                                                            <div class="text-center">
+
+
+                                                                <form  class="login" method="post" name="formeliminar" onSubmit="eliminarActividadQuery('<%=a.getId()%>', '<%=cod%>');
+                                                                        return false" >
+
+
+
+                                                                    <button type="submit" class="btn btn-danger" >Eliminar</button>
+
+                                                                    <div id="mensaje1"></div>
+
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.modal -->
+
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -1019,10 +1208,212 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
+
+
+
+
+
+                    <!-- CRUD DISPOSITIVO -->
+
+
+                    <div id="registrar-dispositivo" class="row seccioninfo" style="display: none">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Registrar Dispositivo</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+
+                                <div class="row" style="height: 20px"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <form class="form-horizontal">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label">Tipo</label>
+
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control select2" style="width: 100%;">
+                                                            <option selected="selected">Pc</option>
+                                                            <option>Minicomponente</option>
+                                                            <option>VideoBeam</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label">Codigo:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputPassword3" placeholder="codigo del dispositivo">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label">Referencia:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputPassword3" placeholder="referencia del dispositivo">
+                                                    </div>
+                                                </div>
+                                
+                                                 <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label">Sala</label>
+
+                                                    <div class="col-sm-8">
+                                                        <select class="form-control select2" style="width: 100%;">
+                                                            <option selected="selected">404</option>
+                                                            <option>403</option>
+                                                            <option>402</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-primary pull-right">Registrar</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+
+                                        <!-- /.chart-responsive -->
+                                    </div>
+
+                                </div>
+                                <!-- /.row -->
+
+                                <!-- ./box-body -->
+
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+
+
+
+
+                    <div id="consultar-dispositivo" class="row seccioninfo" style="display: none">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Consultar dispositivo</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="row" style="height: 20px"></div>
+
+                                            <div class="table-responsive">
+                                                <table id="table2" class="table table-bordered table-hover">
+                                                    <thead style="background: #f7f7f7">
+                                                        <tr id="encabezado">
+                                                            <th class="text-center">ID</th>
+                                                            <th class="text-center">Nombre</th>
+                                                            <th class="text-center">Tipo</th>
+                                                            <th class="text-center">Fecha</th>
+                                                            <th class="text-center">Opciones</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <tr id="fila1">
+
+                                                            <td>Hola</td>
+                                                            <td>que paso </td>
+                                                            <td>chao bebe</td>
+                                                            <td>hola de nuevo</td>
+                                                            <td class="text-center"> 
+
+                                                                <button type="button" class="btn btn-success btn-xs " data-toggle="tooltip" data-placement="top" title="Actualizar"><i class="fa fa-edit"></i> </button>
+
+                                                                <span id="tooltipEliminar" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                                                                    <button type="button" class="btn btn-warning btn-xs " data-toggle="modal" data-target="#myModalEliminarDispositivo" ><i class="fa fa-remove"></i> </button>
+                                                                </span>
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+
+
+
+
+                                            <!-- /.modal -->
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="myModalEliminarDispositivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body" style="background: #f7f7f7">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                                                            <h4 class="modal-title"  id="myModalLabel"><b>¿Estas seguro de eliminar el Dispositivo con ID </b></h4>
+
+                                                            <div class="row" style="height: 20px"></div>
+                                                            <div class="text-center">
+
+
+                                                                <form  class="login" method="post" name="formeliminar" onSubmit="eliminarActividadQuery('<%=a.getId()%>', '<%=cod%>');
+                                                                        return false" >
+
+
+
+                                                                    <button type="submit" class="btn btn-danger" >Eliminar</button>
+
+                                                                    <div id="mensaje1"></div>
+
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.modal -->
+
+                                        </div>
+
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- ./box-body -->
+
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+
+
+
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
 
         <!-- Main Footer -->
         <footer class="main-footer">

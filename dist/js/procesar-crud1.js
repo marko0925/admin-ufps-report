@@ -17,6 +17,12 @@ function registrarHorario() {
 
 }
 
+function registrarHorario() {
+    $(".seccioninfo").hide();
+    $("#registrar-horario").show();
+
+}
+
 function consultarHorario() {
     $(".seccioninfo").hide();
     $("#consultar-horario").show();
@@ -34,3 +40,29 @@ function consultarBeca() {
     $("#consultar-beca").show();
 
 }
+
+function registrarMateria() {
+    $(".seccioninfo").hide();
+    $("#registrar-materia").show();
+
+}
+
+function consultarMateria() {
+    $(".seccioninfo").hide();
+    $("#consultar-materia").show();
+
+}
+
+
+function registrarDispositivo() {
+    $(".seccioninfo").hide();
+    $("#registrar-dispositivo").show();
+
+}
+
+function consultarDispositivo() {
+    $(".seccioninfo").hide();
+    $("#consultar-dispositivo").show();
+
+}
+
