@@ -46,23 +46,32 @@ function registrarSala() {
     let columna = $("#idsalacolumna").val();
 
 
-
     $.ajax({
         url: `${url}/salas/registrar`,
         type: "GET",
         contentType: "application/json",
         processData: false,
         data: JSON.stringify({
-            id: bloque
+            nombre: salon,
+            torre: bloque,
+            fila: fila,
+            columna: columna
         }),
         success: function (res) {
+            if (res.success) {
+
+                swal("Salon registrado", "Haga click en el boton para regresar", "success");
+
+            } else if (res.err) {
+                swal("Problemas encontrados", res.err, "error");
+            }
 
         },
         error: function (err) {
 
+            swal("Problemas encontrados", err, "error");
         }
-    })
-
+    });
 
 }
 
