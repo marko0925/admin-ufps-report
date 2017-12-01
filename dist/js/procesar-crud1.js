@@ -17,9 +17,12 @@ function registrarSala(bloque, salon) {
             salon: salon
         }),
         success: function (res) {
+            $("#idsalabloque").html(res);
 
         },
         error: function (err) {
+
+            $("#idsalabloque").html(err);
 
         }
     });
@@ -41,6 +44,7 @@ function cargarBloque() {
         },
         error: function (err) {
 
+            $("#idsalabloque").html(err);
         }
     });
 
