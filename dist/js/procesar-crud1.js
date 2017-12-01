@@ -37,6 +37,35 @@ function cargarEdificio() {
     });
 }
 
+function registrarSala() {
+
+
+    let bloque = $("#idsalabloque").val();
+    let salon = $("#idsalasalon").val();
+    let fila = $("#idsalafila").val();
+    let columna = $("#idsalacolumna").val();
+
+
+
+    $.ajax({
+        url: `${url}/salas/registrar`,
+        type: "GET",
+        contentType: "application/json",
+        processData: false,
+        data: JSON.stringify({
+            id: bloque
+        }),
+        success: function (res) {
+
+        },
+        error: function (err) {
+
+        }
+    })
+
+
+}
+
 function cargarSeccionConsultarSala() {
     $(".seccioninfo").hide();
     $("#consultar-salas").show();

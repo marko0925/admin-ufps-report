@@ -361,7 +361,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <label for="inputEmail3" class="col-sm-2 control-label">Bloque:</label>
 
                                                     <div class="col-sm-8">
-                                                        <select class="form-control" id="idsalabloque" >
+                                                        <select class="form-control" id="idsalabloque" required autofocus >
 
                                                         </select>
                                                     </div>
@@ -371,14 +371,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <label for="inputPassword3" class="col-sm-2 control-label">Salon:</label>
 
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="inputPassword3" placeholder="404">
+                                                        <input type="text" class="form-control" id="idsalasalon" placeholder="404" required autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label">Cantidad de filas:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="number" class="form-control" id="idsalafila" placeholder="3" required autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label">Cantidad de columnas:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="number" class="form-control" id="idsalacolumna" placeholder="2" required autofocus>
                                                     </div>
                                                 </div>
 
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                <button type="submit" class="btn btn-primary pull-right">Registrar</button>
+                                                <button type="button" onclick="registrarSala()" class="btn btn-primary pull-right">Registrar</button>
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
