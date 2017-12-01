@@ -9,6 +9,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>UFPS Report</title>
+
+        <link rel="icon" type="image/png" sizes="96x96" href="dist/img/administrator.png">
         <!--ESTILOS PROPIOS-->
         <link rel="stylesheet" href="dist/css/styles.css">
         <!-- Tell the browser to be responsive to screen width -->
@@ -83,30 +85,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </ul>
                             </li>
 
-                            <li class="treeview">
-                                <a href="#"><i class="fa fa-link"></i> <span>Dispositivos</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu" id="ul-dispositivos">
-                                    <li><a href="#" onclick="registrarDispositivo()"><i class="fa fa-circle-o"></i>Registrar</a></li>
-                                    <li><a href="#" onclick="consultarDispositivo()"><i class="fa fa-circle-o"></i>Consultar</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="treeview">
-                                <a href="#"><i class="fa fa-link"></i> <span>Materias</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu" id="ul-materias">
-                                    <li><a href="#" onclick="registrarMateria()"><i class="fa fa-circle-o"></i>Registrar</a></li>
-                                    <li><a href="#" onclick="consultarMateria()"><i class="fa fa-circle-o"></i>Consultar</a></li>
-
-                                </ul>
-                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -147,43 +125,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
 
+
                         <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-link"></i>
-                                <span>Dispositivos</span>
+                            <a href="#"><i class="fa fa-link"></i> <span>Dispositivos</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu" id="ul-dispositivos">
-                                <li>
-                                    <a href="">
-                                        <i class="fa fa-circle-o"></i>Registrar</a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="fa fa-circle-o"></i>Consultar</a>
-                                </li>
+                                <li><a href="#" onclick="cargarSeccionRegistrarDispositivo()"><i class="fa fa-circle-o"></i>Registrar</a></li>
+                                <li><a href="#" onclick="cargarSeccionConsultarDispositivo()"><i class="fa fa-circle-o"></i>Consultar</a></li>
                             </ul>
                         </li>
 
                         <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-link"></i>
-                                <span>Materias</span>
+                            <a href="#"><i class="fa fa-link"></i> <span>Materias</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu" id="ul-materias">
-                                <li>
-                                    <a href="">
-                                        <i class="fa fa-circle-o"></i>Registrar</a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="fa fa-circle-o"></i>Consultar</a>
-                                </li>
+                                <li><a href="#" onclick="cargarSeccionRegistrarMateria()"><i class="fa fa-circle-o"></i>Registrar</a></li>
+                                <li><a href="#" onclick="cargarSeccionConsultarMateria()"><i class="fa fa-circle-o"></i>Consultar</a></li>
 
                             </ul>
                         </li>
@@ -198,11 +161,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="treeview-menu" id="ul-horarios">
                                 <li>
-                                    <a href="#" onclick="registrarHorario()">
+                                    <a href="#" onclick="cargarSeccionRegistrarHorario()">
                                         <i class="fa fa-circle-o"></i>Registrar</a>
                                 </li>
                                 <li>
-                                    <a href="#" onclick="consultarHorario()">
+                                    <a href="#" onclick="cargarSeccionConsultarHorario()">
                                         <i class="fa fa-circle-o"></i>Consultar</a>
                                 </li>
 
@@ -219,11 +182,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="treeview-menu" id="ul-salascrud">
                                 <li>
-                                    <a href="#" onclick="registrarSala()">
+                                    <a href="#" onclick="cargarSeccionRegistrarSala()">
                                         <i class="fa fa-circle-o"></i>Registrar</a>
                                 </li>
                                 <li>
-                                    <a href="#" onclick="consultarSala()">
+                                    <a href="#" onclick="cargarSeccionConsultarSala()">
                                         <i class="fa fa-circle-o"></i>Consultar</a>
                                 </li>
 
@@ -240,11 +203,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="treeview-menu" id="ul-becas">
                                 <li>
-                                    <a href="#" onclick="registrarBeca()">
+                                    <a href="#" onclick="cargarSeccionRegistrarBeca()">
                                         <i class="fa fa-circle-o"></i>Registrar</a>
                                 </li>
                                 <li>
-                                    <a href="#" onclick="consultarBeca()">
+                                    <a href="#" onclick="cargarSeccionConsultarBeca()">
                                         <i class="fa fa-circle-o"></i>Consultar</a>
                                 </li>
 
@@ -398,9 +361,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <label for="inputEmail3" class="col-sm-2 control-label">Bloque:</label>
 
                                                     <div class="col-sm-8">
-                                                        <div class="form-control" id="idsalabloque" >
-                                                         
-                                                        </div>
+                                                        <select class="form-control" id="idsalabloque" >
+
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -415,7 +378,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                <button type="submit" class="btn btn-default">Cancel</button>
                                                 <button type="submit" class="btn btn-primary pull-right">Registrar</button>
                                             </div>
                                             <!-- /.box-footer -->
@@ -1100,7 +1062,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-
                     <div id="consultar-materia" class="row seccioninfo" style="display: none">
                         <div class="col-md-12">
                             <div class="box">
@@ -1211,11 +1172,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-
-
-
-
-
                     <!-- CRUD DISPOSITIVO -->
 
 
@@ -1299,8 +1255,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <!-- /.col -->
                     </div>
-
-
 
 
 
@@ -1409,8 +1363,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <!-- /.col -->
                     </div>
-
-
 
 
                 </section>
@@ -1525,11 +1477,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                user experience. Slimscroll is required when using the
                fixed layout. -->
 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="dist/js/jquery.dataTables.min.js"></script>
         <script src="dist/js/dataTables.bootstrap.min.js"></script>
-        <script>
-                            $("#table2").DataTable();
-        </script>
+        <script>$("#table2").DataTable();</script>
     </body>
 
 </html>

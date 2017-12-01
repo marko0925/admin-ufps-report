@@ -1,17 +1,16 @@
 
 var url = "https://d44bbd90.ngrok.io";
+function cargarSeccionRegistrarSala() {
 
-function registrarSala(bloque, salon) {
+
     $(".seccioninfo").hide();
     $("#registrar-salas").show();
 
-    cargarBloque();
-
+    cargarEdificio();
 
 }
 
-function cargarBloque() {
-
+function cargarEdificio() {
 
     $.ajax({
         url: `${url}/edificio/listar`,
@@ -19,74 +18,76 @@ function cargarBloque() {
         contentType: "application/json",
         processData: false,
         data: null,
+
         success: function (res) {
 
-            $("#idsalabloque").html(res);
+            if (res.success) {
+                for (let a of res.success) {
+                    $("#idsalabloque").append('<option value=' + a.id + '>' + a.nombre + '</option>');
+                }
+
+            } else if (res.err) {
+                swal("Problemas encontrados", res.err, "error");
+            }
         },
         error: function (err) {
 
-            $("#idsalabloque").html(err);
+            swal("Problemas encontrados", err, "error");
         }
     });
-
 }
 
-function consultarSala() {
+function cargarSeccionConsultarSala() {
     $(".seccioninfo").hide();
     $("#consultar-salas").show();
 
 }
 
-function registrarHorario() {
+function cargarSeccionRegistrarHorario() {
     $(".seccioninfo").hide();
     $("#registrar-horario").show();
 
 }
 
-function registrarHorario() {
-    $(".seccioninfo").hide();
-    $("#registrar-horario").show();
 
-}
-
-function consultarHorario() {
+function cargarSeccionConsultarHorario() {
     $(".seccioninfo").hide();
     $("#consultar-horario").show();
 
 }
 
-function registrarBeca() {
+function cargarSeccionRegistrarBeca() {
     $(".seccioninfo").hide();
     $("#registrar-beca").show();
 
 }
 
-function consultarBeca() {
+function cargarSeccionConsultarBeca() {
     $(".seccioninfo").hide();
     $("#consultar-beca").show();
 
 }
 
-function registrarMateria() {
+function cargarSeccionRegistrarMateria() {
     $(".seccioninfo").hide();
     $("#registrar-materia").show();
 
 }
 
-function consultarMateria() {
+function cargarSeccionConsultarMateria() {
     $(".seccioninfo").hide();
     $("#consultar-materia").show();
 
 }
 
 
-function registrarDispositivo() {
+function cargarSeccionRegistrarDispositivo() {
     $(".seccioninfo").hide();
     $("#registrar-dispositivo").show();
 
 }
 
-function consultarDispositivo() {
+function cargarSeccionConsultarDispositivo() {
     $(".seccioninfo").hide();
     $("#consultar-dispositivo").show();
 
