@@ -7,25 +7,6 @@ function registrarSala(bloque, salon) {
 
     cargarBloque();
 
-    $.ajax({
-        url: `${url}/salas/registrar`,
-        type: "GET",
-        contentType: "application/json",
-        processData: false,
-        data: JSON.stringify({
-            bloque: bloque,
-            salon: salon
-        }),
-        success: function (res) {
-            $("#idsalabloque").html(res);
-
-        },
-        error: function (err) {
-
-            $("#idsalabloque").html(err);
-
-        }
-    });
 
 }
 
