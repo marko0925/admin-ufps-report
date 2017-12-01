@@ -1,7 +1,48 @@
 
-function registrarSala() {
+var url = "https://d44bbd90.ngrok.io";
+
+function registrarSala(bloque, salon) {
     $(".seccioninfo").hide();
     $("#registrar-salas").show();
+
+    cargarBloque();
+
+    $.ajax({
+        url: `${url}/salas/registrar`,
+        type: "GET",
+        contentType: "application/json",
+        processData: false,
+        data: JSON.stringify({
+            bloque: bloque,
+            salon: salon
+        }),
+        success: function (res) {
+
+        },
+        error: function (err) {
+
+        }
+    });
+
+}
+
+function cargarBloque() {
+
+
+    $.ajax({
+        url: `${url}/edificio/listar`,
+        type: "GET",
+        contentType: "application/json",
+        processData: false,
+        data: null,
+        success: function (res) {
+
+            $("#idsalabloque").html(res);
+        },
+        error: function (err) {
+
+        }
+    });
 
 }
 
