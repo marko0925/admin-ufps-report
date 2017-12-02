@@ -137,7 +137,7 @@ function cargarSala() {
 
 
 function actualizarSala(id) {
-    alert("aaa´" + id);
+    console.log("noooooooooooooooooo" +id);
     $('#myModalActualizarSala').modal('show');
 }
 
