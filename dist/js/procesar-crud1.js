@@ -44,14 +44,14 @@ function registrarSala() {
     let fila = $("#idsalafila").val();
     let columna = $("#idsalacolumna").val();
 
-    alert(edificio + salon +fila+columna);
+    alert(edificio + salon + fila + columna);
     $.ajax({
         url: `${url}/salas/registrar`,
         type: "GET",
         contentType: "application/json",
         processData: false,
         data: JSON.stringify({
-           
+
             nombre: salon,
             edificio: edificio,
             fila: fila,
@@ -80,6 +80,8 @@ function registrarSala() {
 function cargarSeccionConsultarSala() {
     $(".seccioninfo").hide();
     $("#consultar-salas").show();
+    $("#bodytablaconsultarsala").empty();
+
 
     cargarSala();
 
@@ -104,7 +106,7 @@ function cargarSala() {
                     console.log("sdsd");
                     console.log(a);
 
-                    $("#bodytablaconsultarsala").append('<tr>\n\
+                    $("#bodytablaconsultarsala").append('<tr id="filaconsultarsala1">\n\
                         <td>' + a.id + '</td>\n\
                         <td>' + a.nombre + '</td>\n\
                         <td>' + a.edificio + '</td>\n\
@@ -137,12 +139,15 @@ function cargarSala() {
 
 
 function actualizarSala(id) {
-    console.log("noooooooooooooooooo" +id);
+    console.log("noooooooooooooooooo" + id);
     $('#myModalActualizarSala').modal('show');
+
+    //titulomodalactualizarsala
 }
 
 function eliminarSala(id) {
     alert("asd´" + id);
+    cargarSeccionConsultarSala();
 }
 
 function cargarSeccionRegistrarHorario() {
