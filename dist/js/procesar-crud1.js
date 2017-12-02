@@ -27,7 +27,8 @@ function cargarEdificio() {
                 }
 
             } else if (res.err) {
-                swal("Problemas encontrados", res.err, "error");
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
             }
         },
         error: function (err) {
@@ -63,15 +64,13 @@ function registrarSala() {
                 swal("Salon registrado", "Haga click en el boton para regresar", "success");
 
             } else if (res.err) {
-                console.log(res.err);
                 let error = res.err;
                 swal("Problemas encontrados", error, "error");
             }
 
         },
         error: function (err) {
-            console.log(err);
-            swal("Problemas encontrados", "err", "error");
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
 
@@ -80,14 +79,18 @@ function registrarSala() {
 function cargarSeccionConsultarSala() {
     $(".seccioninfo").hide();
     $("#consultar-salas").show();
-    $("#bodytablaconsultarsala").empty();
 
+    $('#table2').DataTable().destroy();
+    $("#bodytablaconsultarsala").empty();
 
     cargarSala();
 
 }
 
 function cargarSala() {
+
+
+    swal("Cargando información.", "la ventana se cerrara automáticamente.", "info");
 
     $.ajax({
         url: `${url}/salas/listar`,
@@ -98,13 +101,11 @@ function cargarSala() {
 
         success: function (res) {
 
-            console.log("entro");
-            console.log(res);
+            $(".swal-overlay").remove();
+
+
             if (res.sussess) {
-                console.log("entro 2");
                 for (let a of res.sussess) {
-                    console.log("sdsd");
-                    console.log(a);
 
                     $("#bodytablaconsultarsala").append('<tr id="filaconsultarsala1">\n\
                         <td>' + a.id + '</td>\n\
@@ -126,27 +127,30 @@ function cargarSala() {
                         </tr>');
                 }
 
+                $("#table2").DataTable();
+
             } else if (res.err) {
-                swal("Problemas encontrados", res.err, "error");
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
             }
         },
         error: function (err) {
 
-            swal("Problemas encontrados", err, "error");
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
 }
 
 
 function actualizarSala(id) {
-    console.log("noooooooooooooooooo" + id);
+    console.log("actualizandoooo" + id);
     $('#myModalActualizarSala').modal('show');
 
     //titulomodalactualizarsala
 }
 
 function eliminarSala(id) {
-    alert("asd´" + id);
+    alert("elimnar queeeeeeee´" + id);
     cargarSeccionConsultarSala();
 }
 
