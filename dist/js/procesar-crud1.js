@@ -1,5 +1,5 @@
 
-var url = "https://d44bbd90.ngrok.io";
+var url = "https://3888f885.ngrok.io";
 function cargarSeccionRegistrarSala() {
 
 
@@ -32,28 +32,28 @@ function cargarEdificio() {
         },
         error: function (err) {
 
-            swal("Problemas encontrados", err, "error");
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
 }
 
 function registrarSala() {
 
-
-    let bloque = $("#idsalabloque").val();
+    let edificio = $("#idsalabloque").val();
     let salon = $("#idsalasalon").val();
     let fila = $("#idsalafila").val();
     let columna = $("#idsalacolumna").val();
 
-
+    alert(edificio + salon +fila+columna);
     $.ajax({
         url: `${url}/salas/registrar`,
         type: "GET",
         contentType: "application/json",
         processData: false,
         data: JSON.stringify({
+           
             nombre: salon,
-            torre: bloque,
+            edificio: edificio,
             fila: fila,
             columna: columna
         }),
@@ -63,13 +63,15 @@ function registrarSala() {
                 swal("Salon registrado", "Haga click en el boton para regresar", "success");
 
             } else if (res.err) {
-                swal("Problemas encontrados", res.err, "error");
+                console.log(res.err);
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
             }
 
         },
         error: function (err) {
-
-            swal("Problemas encontrados", err, "error");
+            console.log(err);
+            swal("Problemas encontrados", "err", "error");
         }
     });
 
@@ -79,6 +81,68 @@ function cargarSeccionConsultarSala() {
     $(".seccioninfo").hide();
     $("#consultar-salas").show();
 
+    cargarSala();
+
+}
+
+function cargarSala() {
+
+    $.ajax({
+        url: `${url}/salas/listar`,
+        type: "GET",
+        contentType: "application/json",
+        processData: false,
+        data: null,
+
+        success: function (res) {
+
+            console.log("entro");
+            console.log(res);
+            if (res.sussess) {
+                console.log("entro 2");
+                for (let a of res.sussess) {
+                    console.log("sdsd");
+                    console.log(a);
+
+                    $("#bodytablaconsultarsala").append('<tr>\n\
+                        <td>' + a.id + '</td>\n\
+                        <td>' + a.nombre + '</td>\n\
+                        <td>' + a.edificio + '</td>\n\
+                        <td>' + a.fila + ' x ' + a.columna + '</td>\n\
+                        <td class="text-center">\n\
+                            <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="return actualizarSala(' + a.id + ');">\n\
+                                    <i class="fa fa-edit"></i>\n\
+                                </button>\n\
+                            </span>\n\
+                            <span id="tooltipEliminar" data-toggle="tooltip" data-placement="top" title="Eliminar">\n\
+                                <button type="submit" class="btn btn-warning btn-xs" onclick="return eliminarSala(' + a.id + ');">\n\
+                                    <i class="fa fa-remove"></i>\n\
+                                </button>\n\
+                            </span>\n\
+                        </td>\n\
+                        </tr>');
+                }
+
+            } else if (res.err) {
+                swal("Problemas encontrados", res.err, "error");
+            }
+        },
+        error: function (err) {
+
+            swal("Problemas encontrados", err, "error");
+        }
+    });
+}
+
+
+function actualizarSala(id) {
+    alert("aaa´" + id);
+    $('#myModalActualizarSala').modal('show');
+}
+
+function eliminarSala(id) {
+    alert("asd´" + id);
 }
 
 function cargarSeccionRegistrarHorario() {
