@@ -118,7 +118,7 @@ function cargarTablaSala() {
                     $("#bodytablaconsultarsala").append('<tr id="filaconsultarsala1">\n\
                         <td>' + a.id + '</td>\n\
                         <td>' + a.nombre + '</td>\n\
-                        <td>' + a.edificio + '</td>\n\
+                        <td>' + a.nombre_edificio + '</td>\n\
                         <td>' + a.fila + ' x ' + a.columna + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
@@ -231,7 +231,6 @@ function eliminarSala(id) {
                     id: id
                 },
                 success: function (res) {
-                    console.log(res);
                     if (res.success) {
 
                         swal("Salon eliminado", "Haga click en el boton para regresar", "success").then((value) => {
