@@ -467,7 +467,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="myModalActualizarSala" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div id="myModalActualizarSala" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header" style="background: #f7f7f7">
@@ -476,9 +476,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         </div>
 
 
-                                                        <form class="form-horizontal" id="formactualizarusuario" method="post" onsubmit="return actualizarSala();">
+                                                        <form class="form-horizontal" id="formactualizarusuario">
 
                                                             <div class="modal-body">
+                                                                <div class="row" style="display: none">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label  class="col-sm-3 control-label">Bloque:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
+                                                                                <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+
+                                                                                <input type="text" class="form-control" id="actidsalaidentificador" placeholder="404" required autofocus>
+
+
+                                                                            </div> 
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
@@ -539,7 +554,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="submit" class="btn btn-primary" >Actualizar</button>                                                           
+                                                                <button type="button" class="btn btn-primary" onclick="actualizarSala()">Actualizar</button>                                                           
                                                             </div>
 
                                                         </form>
