@@ -228,28 +228,5 @@ function cargarSeccionConsultarBeca() {
 
 }
 
-function cargarSeccionRegistrarMateria() {
-    $(".seccioninfo").hide();
-    $("#registrar-materia").show();
 
-}
-
-function cargarSeccionConsultarMateria() {
-    $(".seccioninfo").hide();
-    $("#consultar-materia").show();
-
-}
-
-
-function cargarSeccionRegistrarDispositivo() {
-    $(".seccioninfo").hide();
-    $("#registrar-dispositivo").show();
-
-}
-
-function cargarSeccionConsultarDispositivo() {
-    $(".seccioninfo").hide();
-    $("#consultar-dispositivo").show();
-
-}
 
