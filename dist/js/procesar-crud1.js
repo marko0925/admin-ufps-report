@@ -1,6 +1,6 @@
 
 
-var url = "https://3888f885.ngrok.io";
+var url = "http://35.227.122.71/servicioApp/index.php";
 function cargarSeccionRegistrarSala() {
 
 
@@ -103,7 +103,6 @@ function cargarSala() {
         success: function (res) {
 
             $(".swal-overlay").remove();
-
 
             if (res.sussess) {
                 for (let a of res.sussess) {
