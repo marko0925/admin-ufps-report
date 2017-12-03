@@ -1,5 +1,7 @@
 
 
+/* global swal */
+
 var url = "http://35.227.122.71/servicioApp/index.php";
 function cargarSeccionRegistrarSala() {
 
@@ -158,8 +160,47 @@ function actualizarSala(idsala, edificio, nombre, fila, columna) {
 }
 
 function eliminarSala(id) {
-    alert("elimnar queeeeeeee´" + id);
-    cargarSeccionConsultarSala();
+
+    swal({
+        title: "Deseas  eliminar la sala " + id + "?",
+        text: "Una vez la sala eliminada no podra ser recuperada",
+        icon: "error",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+
+            $.ajax({
+                url: `${url}/salas/eliminar`,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                data: {
+                    id: id
+                },
+                success: function (res) {
+                    console.log(res);
+                    if (res.success) {
+
+                        swal("Salon eliminado", "Haga click en el boton para regresar", "success").then((value) => {
+                            cargarSeccionConsultarSala();
+
+                        });
+
+                    } else if (res.err) {
+                        let error = res.err;
+                        swal("Problemas encontrados", error, "error");
+                    }
+
+                },
+                error: function (err) {
+                    swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+                }
+            });
+
+        }
+    });
+
 }
 
 function cargarSeccionRegistrarHorario() {
