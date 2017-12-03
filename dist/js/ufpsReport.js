@@ -2,10 +2,9 @@ var reports = [];
 var instrumentos = [];
 var salas = [];
 var onOpen = false; // se quita
-var url = "http://d1a27c44.ngrok.io";
+var url = "http://localhost:8000";
 var reportSelected; //se quita
 var correo = localStorage.getItem("correo");
-console.log("correo ", correo);
 
 $(".logo").attr("href", "/")
 if (correo) {
@@ -19,10 +18,10 @@ if (correo) {
  */
 function signIn() {
     event.preventDefault();
-    console.log("entro");
     let correo = $("input[name='correo']").val();
     let contrasena = $("input[name='contrasena']").val();
     let tipo = $("select[name='tipo']").val();
+    console.log(correo, contrasena, tipo)
     if (!correo || !contrasena || !tipo) {
         $("#msg").html(`<div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -32,49 +31,40 @@ function signIn() {
         resetInputs();
         return false;
     } else {
-        // $.ajax({
-        //     url: `${url}/validar`,
-        //     type: "GET",
-        //     contentType: "application/json",
-        //     processData: false,
-        //     data: JSON.stringify({
-        //         correo: correo,
-        //         contrasena: contrasena,
-        //         tipo: tipo
-        //     }),
-        //     success: function (res) {
-        //         if (res.msg === "success") {
-        //             $("#msg").html("");
-        let obj = {
-            "id": 1,
-            "nombre": "Luis",
-            "correo": "luisponches@ufps.udu.co",
-            "codigo": null,
-            "created_at": null,
-            "updated_at": null
+        $.ajax({
+            url: `${url}/validar`,
+            type: "GET",
+            contentType: "application/json",
+            data: {
+                correo: correo,
+                contrasena: contrasena,
+                tipo: tipo
+            },
+            success: function (res) {
+                if (res.success) {
+                    $("#msg").html("");
+                    console.log(res);
+                    for (let item in res.success) {
+                        localStorage.setItem(item, res.success[item]);
+                    }
+                    $("#tipo").html(localStorage.getItem("nombre")).addClass("big-first-letter");
 
-        };
-        for (let item in obj) {
-            localStorage.setItem(item, obj[item]);
-        }
-        $("#tipo").html(localStorage.getItem("nombre")).addClass("big-first-letter");
-
-        loadEdificios();
-        ctrlPages($("#pageLogin"), $("#pageReport"));
-        //         } else {
-        //             $(".content-header").html(`<div class="alert alert-danger alert-dismissible">
-        //             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        //             <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
-        //             ${res.err}.
-        //           </div>`);
-        //         }
-        //         return false;
-        //     },
-        //     error: function (err) {
-        //         console.log("ERR,", err);
-        //         return false;
-        //     }
-        // })
+                    loadEdificios();
+                    ctrlPages($("#pageLogin"), $("#pageReport"));
+                } else {
+                    $(".content-header").html(`<div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
+                    ${res.err}.
+                  </div>`);
+                }
+                return false;
+            },
+            error: function (err) {
+                console.log("ERR,", err);
+                return false;
+            }
+        })
 
     }
 
@@ -254,7 +244,6 @@ function get_nombre_sala(id) {
 
 
 function loadDispositivos(idSala, filas, columnas) {
-    console.log(filas, columnas);
     $(".content-header").html(`
         <h1>
             Dispositivos
@@ -530,8 +519,7 @@ function loadDispositivos(idSala, filas, columnas) {
 function loadOtrosDevices() {
     for (let instrumento of instrumentos) {
         if (instrumento.fila == -2 && instrumento.columna == -2) {
-            console.log("otros ",instrumento.fila,instrumento.columna);
-            
+
             if (instrumento.tipo == 2) {
                 if (!instrumento.estado) {
                     estado = "broken";
@@ -638,7 +626,6 @@ function showModal(id_instrumento) {
                 title: "",
                 body: ""
             }
-            console.log(reportes);
             let tipo_dispo = reportes[0].dispositivoNombre;
             let estado = reportes[0].estadoNombreDispositivo;
             if (tipo_dispo === "pc") {
@@ -663,7 +650,6 @@ function showModal(id_instrumento) {
                 let profesor = "";
                 let descripcion = "";
                 for (let reporte of reportes) {
-                    console.log(reporte);
 
                     if (reporte.dispositivoParteId === 1) {
                         icon = "fa-hand-pointer-o";
@@ -723,7 +709,6 @@ function showModal(id_instrumento) {
                         </button>
                     </div>
                         `;
-                    console.log(model.body);
 
 
                 }
