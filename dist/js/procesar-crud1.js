@@ -1,4 +1,5 @@
 
+
 var url = "https://3888f885.ngrok.io";
 function cargarSeccionRegistrarSala() {
 
@@ -15,6 +16,7 @@ function cargarEdificio() {
     $.ajax({
         url: `${url}/edificio/listar`,
         type: "GET",
+        dataType: "json",
         contentType: "application/json",
         processData: false,
         data: null,
@@ -45,23 +47,22 @@ function registrarSala() {
     let fila = $("#idsalafila").val();
     let columna = $("#idsalacolumna").val();
 
-    alert(edificio + salon + fila + columna);
     $.ajax({
         url: `${url}/salas/registrar`,
         type: "GET",
+        dataType: "json",
         contentType: "application/json",
-        processData: false,
-        data: JSON.stringify({
-
+        data: {
             nombre: salon,
-            edificio: edificio,
+            torre: edificio,
             fila: fila,
             columna: columna
-        }),
+        },
         success: function (res) {
             if (res.success) {
 
                 swal("Salon registrado", "Haga click en el boton para regresar", "success");
+                $("#formagregarsala")[0].reset();
 
             } else if (res.err) {
                 let error = res.err;
@@ -90,7 +91,7 @@ function cargarSeccionConsultarSala() {
 function cargarSala() {
 
 
-    swal("Cargando información.", "la ventana se cerrara automáticamente.", "info");
+    swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
 
     $.ajax({
         url: `${url}/salas/listar`,
@@ -114,7 +115,7 @@ function cargarSala() {
                         <td>' + a.fila + ' x ' + a.columna + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
-                                <button type="submit" class="btn btn-primary btn-xs" onclick="return actualizarSala(' + a.id + ');">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="actualizarSala(' + a.id + ',' + a.edificio + ',`' + a.nombre + '`,' + a.fila + ',' + a.columna + ')">\n\
                                     <i class="fa fa-edit"></i>\n\
                                 </button>\n\
                             </span>\n\
@@ -142,11 +143,19 @@ function cargarSala() {
 }
 
 
-function actualizarSala(id) {
-    console.log("actualizandoooo" + id);
+function actualizarSala(idsala, edificio, nombre, fila, columna) {
+
     $('#myModalActualizarSala').modal('show');
 
-    //titulomodalactualizarsala
+
+    $("#titulomodalactualizarsala").html("Actualizando sala con ID " + idsala);
+
+    $('#actidsalabloque').val(edificio);
+    $('#actidsalasalon').val(nombre);
+    $('#actidsalafila').val(fila);
+    $('#actidsalacolumna').val(columna);
+
+
 }
 
 function eliminarSala(id) {

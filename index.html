@@ -446,7 +446,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </thead>
                                                     <tbody id="bodytablaconsultarsala">
 
-                                   
+
                                                     </tbody>
 
                                                 </table>
@@ -460,7 +460,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <div class="modal-content">
                                                         <div class="modal-header" style="background: #f7f7f7">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title text-center"  id="titulomodalactualizarsala"><b></b></h4>
+                                                            <h4 class="modal-title text-center"><b id="titulomodalactualizarsala"> </b></h4>
                                                         </div>
 
 
@@ -470,10 +470,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label  class="col-sm-3 control-label">Nombres:<b><span style="color: red">*</span></b></label>
-                                                                            <div class="input-group col-sm-9">
+                                                                            <label  class="col-sm-3 control-label">Bloque:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
                                                                                 <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
-                                                                                <input type="text" class="form-control" placeholder="Nombres" name="actnombressala>" id="actnombressala"  required autofocus >
+                                                                                <select class="form-control" id="actidsalabloque" required autofocus >
+
+                                                                                </select>
+
                                                                             </div> 
                                                                         </div>
 
@@ -484,10 +487,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                                     <div class="col-md-12 ">
                                                                         <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">UserName:<b><span style="color: red">*</span></b></label>
-                                                                            <div class="input-group col-sm-9">
+                                                                            <label class="col-sm-3 control-label">Salon:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
                                                                                 <span class="input-group-addon"><i class="fa fa-child"></i></span>
-                                                                                <input type="text" class="form-control" placeholder="username" name="actusername<%=a.getId()%>" id="actusername<%=a.getId()%>" value="<%=a.getUsuario()%>" required autofocus >
+
+                                                                                <input type="text" class="form-control" id="actidsalasalon" placeholder="404" required autofocus>
                                                                             </div> 
                                                                         </div>
 
@@ -497,10 +501,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Correo:<b><span style="color: red">*</span></b></label>
-                                                                            <div class="input-group col-sm-9">
+                                                                            <label class="col-sm-3 control-label">Cantidad de filas:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
                                                                                 <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
-                                                                                <input type="email" class="form-control" placeholder="Correo" name="actcorreo<%=a.getId()%>" id="actcorreo<%=a.getId()%>" value="<%=a.getCorreo()%>" required autofocus >
+
+                                                                                <input type="number" class="form-control" id="actidsalafila" placeholder="3" required autofocus>
                                                                             </div> 
                                                                         </div>
 
@@ -510,9 +515,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <label class="col-sm-3 control-label">Telefono:<b><span style="color: red">*</span></b></label>
-                                                                            <div class="input-group col-sm-9">
+                                                                            <div class="input-group col-sm-8">
                                                                                 <span class="input-group-addon"><i class="fa fa-child"></i></span>
-                                                                                <input type="number" class="form-control" placeholder="Telefono" name="acttelefono" id="acttelefono" value="" required autofocus >
+                                                                                <input type="number" class="form-control" id="actidsalacolumna" placeholder="2" required autofocus>
+
                                                                             </div> 
                                                                         </div>
 
