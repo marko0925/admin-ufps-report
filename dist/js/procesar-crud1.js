@@ -297,10 +297,17 @@ function generarCodigoQR() {
         text: mensaje,
         height: 250,
         width: 250
-      // src: "logo.jpg",//Aquí puede configurar el logotipo de la dirección. 
+                // src: "logo.jpg",//Aquí puede configurar el logotipo de la dirección. 
     });
 
+
+}
+
+function descargarCodigoQR() {
+
     var canvas = $("canvas");
+    
+    let mensaje = $("#idqrmensaje").val();
 
     var filename = mensaje;
     if (canvas.msToBlob) { //para internet explorer
@@ -313,5 +320,4 @@ function generarCodigoQR() {
 
         link.download = filename;
     }
-
 }
