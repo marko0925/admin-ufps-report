@@ -294,19 +294,35 @@ function generarCodigoQR() {
 
     $('#impresionCodigoQr').qrcode({
         render: 'canvas',
+        minVersion: 6,
+        maxVersion: 40,
+        ecLevel: 'H',
+        left: 0,
+        top: 0,
+        size: 200,
+        fill: '#000',
+        background: null,
         text: mensaje,
-        height: 250,
-        width: 250
-                // src: "logo.jpg",//Aquí puede configurar el logotipo de la dirección. 
+        radius: 0,
+        quiet: 0,
+        mode: 2,
+        mSize: 0.1,
+        mPosX: 0.5,
+        mPosY: 0.5,
+        label: 'MUXBIRD',
+        fontname: 'sans',
+        fontcolor: '#3c8dbc',
+        image: null
     });
 
 
 }
 
-function descargarCodigoQR() {
 
+
+function descargarCodigoQR() {
     var canvas = $("canvas");
-    
+
     let mensaje = $("#idqrmensaje").val();
 
     var filename = mensaje;
