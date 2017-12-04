@@ -296,7 +296,7 @@ function generarCodigoQR() {
         render: 'canvas',
         text: mensaje,
         height: 250,
-        width: 250,
+        width: 250
       // src: "logo.jpg",//Aquí puede configurar el logotipo de la dirección. 
     });
 
