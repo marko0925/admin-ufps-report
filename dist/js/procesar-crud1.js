@@ -1,5 +1,7 @@
 
 
+/* global swal */
+
 var url = "http://35.227.122.71/servicioApp/index.php";
 function cargarSeccionRegistrarSala() {
 
@@ -7,11 +9,14 @@ function cargarSeccionRegistrarSala() {
     $(".seccioninfo").hide();
     $("#registrar-salas").show();
 
-    cargarEdificio();
+    cargarSelectEdificio();
 
 }
 
-function cargarEdificio() {
+function cargarSelectEdificio() {
+
+    $("#idsalabloque").empty();
+    $("#actidsalabloque").empty();
 
     $.ajax({
         url: `${url}/edificio/listar`,
@@ -26,6 +31,8 @@ function cargarEdificio() {
             if (res.success) {
                 for (let a of res.success) {
                     $("#idsalabloque").append('<option value=' + a.id + '>' + a.nombre + '</option>');
+                    $("#actidsalabloque").append('<option value=' + a.id + '>' + a.nombre + '</option>');
+
                 }
 
             } else if (res.err) {
@@ -84,11 +91,12 @@ function cargarSeccionConsultarSala() {
     $('#table2').DataTable().destroy();
     $("#bodytablaconsultarsala").empty();
 
-    cargarSala();
+    cargarTablaSala();
+    cargarSelectEdificio();
 
 }
 
-function cargarSala() {
+function cargarTablaSala() {
 
 
     swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
@@ -110,11 +118,11 @@ function cargarSala() {
                     $("#bodytablaconsultarsala").append('<tr id="filaconsultarsala1">\n\
                         <td>' + a.id + '</td>\n\
                         <td>' + a.nombre + '</td>\n\
-                        <td>' + a.edificio + '</td>\n\
+                        <td>' + a.nombre_edificio + '</td>\n\
                         <td>' + a.fila + ' x ' + a.columna + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
-                                <button type="submit" class="btn btn-primary btn-xs" onclick="actualizarSala(' + a.id + ',' + a.edificio + ',`' + a.nombre + '`,' + a.fila + ',' + a.columna + ')">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarSala(' + a.id + ',' + a.edificio + ',`' + a.nombre + '`,' + a.fila + ',' + a.columna + ')">\n\
                                     <i class="fa fa-edit"></i>\n\
                                 </button>\n\
                             </span>\n\
@@ -142,24 +150,108 @@ function cargarSala() {
 }
 
 
-function actualizarSala(idsala, edificio, nombre, fila, columna) {
+function cargarInformacionActualizarSala(idsala, edificio, nombre, fila, columna) {
 
     $('#myModalActualizarSala').modal('show');
 
-
     $("#titulomodalactualizarsala").html("Actualizando sala con ID " + idsala);
 
+    $('#actidsalaidentificador').val(idsala);
     $('#actidsalabloque').val(edificio);
     $('#actidsalasalon').val(nombre);
     $('#actidsalafila').val(fila);
     $('#actidsalacolumna').val(columna);
 
+    $('#actidsalabloque > option[value="' + edificio + '"]').attr('selected', 'selected');
+
 
 }
 
+function actualizarSala() {
+
+
+    let identificador = $("#actidsalaidentificador").val();
+    let edificio = $("#actidsalabloque").val();
+    let salon = $("#actidsalasalon").val();
+    let fila = $("#actidsalafila").val();
+    let columna = $("#actidsalacolumna").val();
+
+    $.ajax({
+        url: `${url}/salas/modificar`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: {
+            id: identificador,
+            nombre: salon,
+            torre: edificio,
+            fila: fila,
+            columna: columna
+        },
+        success: function (res) {
+            if (res.success) {
+
+                swal("Salon actualizado", "Haga click en el boton para regresar", "success").then((value) => {
+                    $("#formactualizarusuario")[0].reset();
+                    $("#myModalActualizarSala").modal('hide');
+                    cargarSeccionConsultarSala();
+
+                });
+
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+
+        },
+        error: function (err) {
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+
+}
 function eliminarSala(id) {
-    alert("elimnar queeeeeeee´" + id);
-    cargarSeccionConsultarSala();
+
+    swal({
+        title: "Deseas  eliminar la sala " + id + "?",
+        text: "Una vez la sala eliminada no podra ser recuperada",
+        icon: "error",
+        buttons: true,
+        dangerMode: true
+    }).then((willDelete) => {
+        if (willDelete) {
+
+            $.ajax({
+                url: `${url}/salas/eliminar`,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                data: {
+                    id: id
+                },
+                success: function (res) {
+                    if (res.success) {
+
+                        swal("Salon eliminado", "Haga click en el boton para regresar", "success").then((value) => {
+                            cargarSeccionConsultarSala();
+
+                        });
+
+                    } else if (res.err) {
+                        let error = res.err;
+                        swal("Problemas encontrados", error, "error");
+                    }
+
+                },
+                error: function (err) {
+                    swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+                }
+            });
+
+        }
+    });
+
 }
 
 function cargarSeccionRegistrarHorario() {
@@ -187,28 +279,61 @@ function cargarSeccionConsultarBeca() {
 
 }
 
-function cargarSeccionRegistrarMateria() {
+function cargarSeccionCodigoQR() {
     $(".seccioninfo").hide();
-    $("#registrar-materia").show();
-
-}
-
-function cargarSeccionConsultarMateria() {
-    $(".seccioninfo").hide();
-    $("#consultar-materia").show();
-
+    $("#generar-qr").show();
 }
 
 
-function cargarSeccionRegistrarDispositivo() {
-    $(".seccioninfo").hide();
-    $("#registrar-dispositivo").show();
+
+function generarCodigoQR() {
+
+
+    let mensaje = $("#idqrmensaje").val();
+    $("#divbotoncodigo").show();
+
+    $('#impresionCodigoQr').qrcode({
+        render: 'canvas',
+        minVersion: 6,
+        maxVersion: 40,
+        ecLevel: 'H',
+        left: 0,
+        top: 0,
+        size: 200,
+        fill: '#000',
+        background: null,
+        text: mensaje,
+        radius: 0,
+        quiet: 0,
+        mode: 2,
+        mSize: 0.1,
+        mPosX: 0.5,
+        mPosY: 0.5,
+        label: 'MUXBIRD',
+        fontname: 'sans',
+        fontcolor: '#3c8dbc',
+        image: null
+    });
+
 
 }
 
-function cargarSeccionConsultarDispositivo() {
-    $(".seccioninfo").hide();
-    $("#consultar-dispositivo").show();
 
+
+function descargarCodigoQR() {
+    var canvas = $("canvas");
+
+    let mensaje = $("#idqrmensaje").val();
+
+    var filename = mensaje;
+    if (canvas.msToBlob) { //para internet explorer
+        var blob = canvas.msToBlob();
+        window.navigator.msSaveBlob(blob, filename + ".png");// la extensión de preferencia pon jpg o png
+    } else {
+        link = document.getElementById("botondescargarqr");
+        //Otros navegadores: Google chrome, Firefox etc...        
+        link.href = (canvas[0]).toDataURL("image/png");// Extensión .png ("image/png") --- Extension .jpg ("image/jpeg")
+
+        link.download = filename;
+    }
 }
-
