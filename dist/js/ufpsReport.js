@@ -2,7 +2,7 @@ var reports = [];
 var instrumentos = [];
 var salas = [];
 var onOpen = false; // se quita
-var url = "http://localhost:8000";
+var url = "http:127.0.0.1:8000";
 var reportSelected; //se quita
 var correo = localStorage.getItem("correo");
 
@@ -104,27 +104,18 @@ function ufpsReportMsg() {
 
 function loadEdificios() {
     loading();
-    // $.ajax({
-    //     url: `${url}/salon/selectAll`,
-    //     type: "POST",
-    //     contentType: "application/json",
-    //     success: function (res) {
-    ufpsReportMsg();
-    // if (res) {
-    let edificiosListado = [];
-    let edificiosTree = [{
-        "id": 1,
-        "nombre": "Aula sur",
-        "created_at": null,
-        "updated_at": null
-    }, {
-        "id": 2,
-        "nombre": "Aula sur D",
-        "created_at": null,
-        "updated_at": null
-    }];
-    for (let edificio of edificiosTree) {
-        edificiosListado.push(`
+    $.ajax({
+        url: `${url}/edificio/listar`,
+        type: "GET",
+        contentType: "application/json",
+        success: function (res) {
+            ufpsReportMsg();
+            console.log(res);
+            let edificiosListado = [];
+            if (res.success) {
+
+                for (let edificio of res.success) {
+                    edificiosListado.push(`
         <li class="treeview" >
             <a href="#">
                 <i class="fa fa-circle"></i>
@@ -137,57 +128,31 @@ function loadEdificios() {
 
             </ul>
         </li>`);
-    }
-    $("#ul-edificios").html(edificiosListado.join(""));
-    loadSalas();
-    //         } else if (res.error) {
+                }
+                $("#ul-edificios").html(edificiosListado.join(""));
+                loadSalas();
+            } else if (res.error) {
 
-    //         }
-    //     },
-    //     error: function (err) {
+            }
+        },
+        error: function (err) {
 
-    //     }
-    // });
+        }
+    });
 }
 
 
 function loadSalas() {
-    // $.ajax({
-    //     url: `${url}/salon/selectAll`,
-    //     type: "POST",
-    //     contentType: "application/json",
-    //     success: function (res) {
-    // if (res) {
-
-    let salasListado = [];
-    let salasTree = [{
-        "id": 1,
-        "nombre": "AS411",
-        "edificio": 1,
-        "fila": 4,
-        "columna": 6,
-        "created_at": null,
-        "updated_at": null
-    }, {
-        "id": 2,
-        "nombre": "AS410",
-        "edificio": 1,
-        "fila": 4,
-        "columna": 6,
-        "created_at": null,
-        "updated_at": null
-    }, {
-        "id": 3,
-        "nombre": "AS401",
-        "edificio": 1,
-        "fila": 4,
-        "columna": 6,
-        "created_at": null,
-        "updated_at": null
-    }];
-    salas = salasTree;
-    for (let sala of salasTree) {
-        let salaFormat = `
+    $.ajax({
+        url: `${url}/salas/listar`,
+        type: "POST",
+        contentType: "application/json",
+        success: function (res) {
+            console.log(res);
+            if (res) {
+                salas = res.success;
+                for (let sala of salas) {
+                    let salaFormat = `
         <li class="treeview">
             <a href="#" onclick="loadDispositivos('${sala.id}','${sala.fila}','${sala.columna}')">
                 <i class="fa fa-circle"></i>
@@ -197,19 +162,19 @@ function loadSalas() {
                 </span>
             </a>
         </li>`;
-        $("#edificio-" + sala.edificio).html(
-            $("#edificio-" + sala.edificio).html() + salaFormat
-        );
+                    $("#edificio-" + sala.edificio).html(
+                        $("#edificio-" + sala.edificio).html() + salaFormat
+                    );
 
-    }
-    //         } else if (res.error) {
+                }
+            } else if (res.error) {
 
-    //         }
-    //     },
-    //     error: function (err) {
+            }
+        },
+        error: function (err) {
 
-    //     }
-    // });
+        }
+    });
 }
 
 function hasReport(id_instrumento) {
