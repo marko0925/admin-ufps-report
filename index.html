@@ -701,11 +701,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="box-body">
 
                                                 <div class="form-group">
-                                                    <label  class="col-sm-3 control-label">Bloque:<b><span style="color: red">*</span></b></label>
+                                                    <label  class="col-sm-3 control-label">Dia de la semana:<b><span style="color: red">*</span></b></label>
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
-                                                        <select class="form-control" id="idsalabloque" required autofocus >
-
+                                                        <select class="form-control" id="idhorariodia" required autofocus >
+                                                            <option value="1">Lunes</option>
+                                                            <option value="2">Martes</option>
+                                                            <option value="3">Miercoles</option>
+                                                            <option value="4">Jueves</option>
+                                                            <option value="5">Viernes</option>
+                                                            <option value="6">Sabado</option>
+                                                            <option value="7">Domingo</option>
                                                         </select>
 
                                                     </div> 
@@ -713,33 +719,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Salon:<b><span style="color: red">*</span></b></label>
+                                                    <label class="col-sm-3 control-label">Hora inicio:<b><span style="color: red">*</span></b></label>
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-child"></i></span>
-
-                                                        <input type="text" class="form-control" id="idsalasalon" placeholder="404" required autofocus>
+                                                        <select class="form-control" id="idhorariohorainicio" required autofocus >
+                                                            <option value="1">6AM</option>
+                                                            <option value="2">Martes</option>
+                                                            <option value="3">Miercoles</option>
+                                                            <option value="4">Jueves</option>
+                                                            <option value="5">Viernes</option>
+                                                            <option value="6">Sabado</option>
+                                                            <option value="7">Domingo</option>
+                                                        </select>
                                                     </div> 
                                                 </div>
 
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Cantidad de filas:<b><span style="color: red">*</span></b></label>
+                                                    <label class="col-sm-3 control-label">Hora fin:<b><span style="color: red">*</span></b></label>
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
-
-                                                        <input type="number" class="form-control" id="idsalafila" placeholder="3" required autofocus>
+                                                        <select class="form-control" id="idhorariohorafin" required autofocus >
+                                                            <option value="1">9AM</option>
+                                                            <option value="2">Martes</option>
+                                                            <option value="3">Miercoles</option>
+                                                            <option value="4">Jueves</option>
+                                                            <option value="5">Viernes</option>
+                                                            <option value="6">Sabado</option>
+                                                            <option value="7">Domingo</option>
+                                                        </select>
                                                     </div> 
                                                 </div>
 
 
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Cantidad de columnas:<b><span style="color: red">*</span></b></label>
-                                                    <div class="input-group col-sm-8">
-                                                        <span class="input-group-addon"><i class="fa fa-child"></i></span>
-                                                        <input type="number" class="form-control" id="idsalacolumna" placeholder="2" required autofocus>
-
-                                                    </div> 
-                                                </div>
+                                               
 
 
 
@@ -927,7 +940,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <!-- CRUD BECAS -->
 
-
+                    
                     <div id="registrar-beca" class="row seccioninfo" style="display: none">
                         <div class="col-md-12">
                             <div class="box">
@@ -947,28 +960,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row">
                                     <div class="col-md-12">
 
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" id="formagregarbeca">
                                             <div class="box-body">
-                                                <div class="form-group">
-                                                    <label for="inputEmail3" class="col-sm-2 control-label">Bloque:</label>
 
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="inputEmail3" placeholder="SA">
-                                                    </div>
-                                                </div>
                                                 <div class="form-group">
-                                                    <label for="inputPassword3" class="col-sm-2 control-label">Salon:</label>
+                                                    <label  class="col-sm-3 control-label">Correo<b><span style="color: red">*</span></b></label>
+                                                    <div class="input-group col-sm-8">
+                                                        <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+                                                        
+                                                        <input type="text" class="form-control" id="idbecacorreo" placeholder="404" required autofocus>
 
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="inputPassword3" placeholder="404">
-                                                    </div>
+                                                    </div> 
                                                 </div>
+
+
+
+
 
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                <button type="submit" class="btn btn-default">Cancel</button>
-                                                <button type="submit" class="btn btn-primary pull-right">Registrar</button>
+                                                <button type="button" onclick="registrarBeca()" class="btn btn-primary pull-right">Registrar</button>
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
@@ -988,12 +1000,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
 
 
-
                     <div id="consultar-beca" class="row seccioninfo" style="display: none">
                         <div class="col-md-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Consultar becas</h3>
+                                    <h3 class="box-title">Consulta de becas</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -1015,40 +1026,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <tr id="encabezado">
                                                             <th class="text-center">ID</th>
                                                             <th class="text-center">Nombre</th>
-                                                            <th class="text-center">Tipo</th>
-                                                            <th class="text-center">Fecha</th>
+                                                            <th class="text-center">Correo</th>
+                                                            <th class="text-center">Codigo</th>
                                                             <th class="text-center">Opciones</th>
 
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="bodytablaconsultarbeca">
 
-                                                        <tr id="fila1">
 
-                                                            <td>Hola</td>
-                                                            <td>que paso </td>
-                                                            <td>chao bebe</td>
-                                                            <td>hola de nuevo</td>
-                                                            <td class="text-center">
-
-                                                                <span id="tooltipMas" data-toggle="tooltip" data-placement="top" title="Ver mas">
-                                                                    <button type="button" class="btn btn-primary btn-xs " data-toggle="modal" data-target="#myModalVerMas1">
-                                                                        <i class="fa fa-folder-open-o"></i>
-                                                                    </button>
-                                                                </span>
-
-                                                                <button type="button" class="btn btn-success btn-xs " data-toggle="tooltip" data-placement="top" title="Actualizar">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </button>
-
-                                                                <span id="tooltipEliminar" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                                                                    <button type="button" class="btn btn-warning btn-xs " data-toggle="modal" data-target="#myModalEliminar1">
-                                                                        <i class="fa fa-remove"></i>
-                                                                    </button>
-                                                                </span>
-
-                                                            </td>
-                                                        </tr>
                                                     </tbody>
 
                                                 </table>
@@ -1057,68 +1043,105 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="myModalVerMas1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div id="myModalActualizarbeca" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header" style="background: #f7f7f7">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                            <h4 class="modal-title" id="myModalLabel">
-                                                                <b>Información adicional de la actividad con ID
-                                                                    <%=a.getId()%>
-                                                                </b>
-                                                            </h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title text-center"><b id="titulomodalactualizarbeca"> </b></h4>
                                                         </div>
-                                                        <div class="modal-body text-left">
 
 
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal -->
+                                                        <form class="form-horizontal" id="formactualizarbeca">
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myModalEliminar1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                            <div class="modal-body">
+                                                                <div class="row" style="display: none">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label  class="col-sm-3 control-label">Bloque:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
+                                                                                <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
 
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body" style="background: #f7f7f7">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-
-                                                            <h4 class="modal-title" id="myModalLabel">
-                                                                <b>¿Estas seguro de eliminar la actividad con ID </b>
-                                                            </h4>
-
-                                                            <div class="row" style="height: 20px"></div>
-                                                            <div class="text-center">
+                                                                                <input type="text" class="form-control" id="actidsalaidentificador" placeholder="404" required autofocus>
 
 
-                                                                <form  class="login" method="post" name="formeliminar" onSubmit="eliminarActividadQuery('<%=a.getId()%>', '<%=cod%>');
-                                                                        return false" >
+                                                                            </div> 
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label  class="col-sm-3 control-label">Bloque:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
+                                                                                <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+                                                                                <select class="form-control" id="actidsalabloque" required autofocus >
+
+                                                                                </select>
+
+                                                                            </div> 
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">  
+
+                                                                    <div class="col-md-12 ">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Salon:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
+                                                                                <span class="input-group-addon"><i class="fa fa-child"></i></span>
+
+                                                                                <input type="text" class="form-control" id="actidsalasalon" placeholder="404" required autofocus>
+                                                                            </div> 
+                                                                        </div>
 
 
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Cantidad de filas:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
+                                                                                <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
 
-                                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                                                <input type="number" class="form-control" id="actidsalafila" placeholder="3" required autofocus>
+                                                                            </div> 
+                                                                        </div>
 
-                                                                    <div id="mensaje1"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Cantidad de columnas:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
+                                                                                <span class="input-group-addon"><i class="fa fa-child"></i></span>
+                                                                                <input type="number" class="form-control" id="actidsalacolumna" placeholder="2" required autofocus>
 
-                                                                </form>
+                                                                            </div> 
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
 
                                                             </div>
-                                                        </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary" onclick="actualizarSala()">Actualizar</button>                                                           
+                                                            </div>
+
+                                                        </form>
+
+
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                             <!-- /.modal -->
+
+
 
                                         </div>
 
@@ -1132,6 +1155,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <!-- /.col -->
                     </div>
+
 
                     <!-- .................  -->
 
@@ -1452,7 +1476,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
                                                         <select class="form-control" id="idsaladispositivos" required autofocus >
-                                                      
+
                                                         </select>
 
                                                     </div> 

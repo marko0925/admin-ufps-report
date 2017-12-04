@@ -211,6 +211,7 @@ function actualizarSala() {
     });
 
 }
+
 function eliminarSala(id) {
 
     swal({
@@ -270,6 +271,38 @@ function cargarSeccionConsultarHorario() {
 function cargarSeccionRegistrarBeca() {
     $(".seccioninfo").hide();
     $("#registrar-beca").show();
+
+}
+
+
+function registrarBeca() {
+
+    let correo = $("#idbecacorreo").val();
+
+    $.ajax({
+        url: `${url}/usuario/registrar_beca`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: {
+            correo: correo
+        },
+        success: function (res) {
+            if (res.success) {
+
+                swal("Beca registrado", "Haga click en el boton para regresar", "success");
+                $("#formagregarbeca")[0].reset();
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+
+        },
+        error: function (err) {
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
 
 }
 
