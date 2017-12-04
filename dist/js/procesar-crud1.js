@@ -212,6 +212,12 @@ function actualizarSala() {
 
 }
 
+
+function cargarSeccionRegistrarHorario() {
+    $(".seccioninfo").hide();
+    $("#registrar-horario").show();
+
+}
 function eliminarSala(id) {
 
     swal({
@@ -255,12 +261,6 @@ function eliminarSala(id) {
 
 }
 
-function cargarSeccionRegistrarHorario() {
-    $(".seccioninfo").hide();
-    $("#registrar-horario").show();
-
-}
-
 
 function cargarSeccionConsultarHorario() {
     $(".seccioninfo").hide();
@@ -273,7 +273,6 @@ function cargarSeccionRegistrarBeca() {
     $("#registrar-beca").show();
 
 }
-
 
 function registrarBeca() {
 
@@ -310,13 +309,109 @@ function cargarSeccionConsultarBeca() {
     $(".seccioninfo").hide();
     $("#consultar-beca").show();
 
+    $('#table2').DataTable().destroy();
+    $("#bodytablaconsultarbeca").empty();
+
+    cargarTablaBeca();
+}
+
+
+function cargarTablaBeca() {
+
+
+    swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
+
+    $.ajax({
+        url: `${url}/usuario/listar_becas`,
+        type: "GET",
+        contentType: "application/json",
+        data: null,
+
+        success: function (res) {
+
+            $(".swal-overlay").remove();
+
+            if (res.success) {
+                for (let a of res.success) {
+
+                    $("#bodytablaconsultarbeca").append('<tr id="filaconsultarbeca1">\n\
+                        <td>' + a.id + '</td>\n\
+                        <td>' + a.nombre + '</td>\n\
+                        <td>' + a.correo + '</td>\n\
+                        <td>' + a.codigo + '</td>\n\
+                        <td class="text-center">\n\
+                            \n\
+                            <span id="tooltipEliminar" data-toggle="tooltip" data-placement="top" title="Eliminar">\n\
+                                <button type="submit" class="btn btn-warning btn-xs" onclick="return eliminarBeca(' + a.id + ');">\n\
+                                    <i class="fa fa-remove"></i>\n\
+                                </button>\n\
+                            </span>\n\
+                        </td>\n\
+                        </tr>');
+                }
+
+                $("#table2").DataTable();
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+        },
+        error: function (err) {
+
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+}
+
+
+function eliminarBeca(id) {
+
+    swal({
+        title: "Deseas  eliminar el beca " + id + "?",
+        text: "Una vez el beca eliminado no podra ser recuperado",
+        icon: "error",
+        buttons: true,
+        dangerMode: true
+    }).then((willDelete) => {
+        if (willDelete) {
+
+            $.ajax({
+                url: `${url}/usuario/eliminar_beca`,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                data: {
+                    id: id
+                },
+                success: function (res) {
+                    if (res.success) {
+
+                        swal("Beca eliminado", "Haga click en el boton para regresar", "success").then((value) => {
+                            cargarSeccionConsultarBeca();
+
+                        });
+
+                    } else if (res.err) {
+                        let error = res.err;
+                        swal("Problemas encontrados", error, "error");
+                    }
+
+                },
+                error: function (err) {
+                    swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+                }
+            });
+
+        }
+    });
+
 }
 
 function cargarSeccionCodigoQR() {
     $(".seccioninfo").hide();
     $("#generar-qr").show();
 }
-
 
 
 function generarCodigoQR() {
@@ -350,7 +445,6 @@ function generarCodigoQR() {
 
 
 }
-
 
 
 function descargarCodigoQR() {
