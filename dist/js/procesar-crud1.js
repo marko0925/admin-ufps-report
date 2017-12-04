@@ -279,5 +279,39 @@ function cargarSeccionConsultarBeca() {
 
 }
 
+function cargarSeccionCodigoQR() {
+    $(".seccioninfo").hide();
+    $("#generar-qr").show();
+}
 
 
+
+function generarCodigoQR() {
+
+
+    let mensaje = $("#idqrmensaje").val();
+    $("#divbotoncodigo").show();
+
+    $('#impresionCodigoQr').qrcode({
+        render: 'canvas',
+        text: mensaje,
+        height: 250,
+        width: 250,
+      // src: "logo.jpg",//Aquí puede configurar el logotipo de la dirección. 
+    });
+
+    var canvas = $("canvas");
+
+    var filename = mensaje;
+    if (canvas.msToBlob) { //para internet explorer
+        var blob = canvas.msToBlob();
+        window.navigator.msSaveBlob(blob, filename + ".png");// la extensión de preferencia pon jpg o png
+    } else {
+        link = document.getElementById("botondescargarqr");
+        //Otros navegadores: Google chrome, Firefox etc...        
+        link.href = (canvas[0]).toDataURL("image/png");// Extensión .png ("image/png") --- Extension .jpg ("image/jpeg")
+
+        link.download = filename;
+    }
+
+}
