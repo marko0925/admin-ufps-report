@@ -2,7 +2,7 @@ var reports = [];
 var instrumentos = [];
 var salas = [];
 var onOpen = false; // se quita
-var url = "http:127.0.0.1:8000";
+var url = "http://35.227.122.71/servicioApp/index.php";
 var reportSelected; //se quita
 var correo = localStorage.getItem("correo");
 
@@ -33,7 +33,7 @@ function signIn() {
     } else {
         $.ajax({
             url: `${url}/validar`,
-            type: "GET",
+            type: "POST",
             contentType: "application/json",
             data: {
                 correo: correo,
@@ -95,7 +95,7 @@ function resetInputs() {
 }
 
 function ufpsReportMsg() {
-    $(".section-instrument").html(`
+    $(".section-dispositivos").html(`
         <div class="ufps-report">
         <span><b>UFPS</b> REPORT</span>
         </div>
@@ -145,12 +145,12 @@ function loadEdificios() {
 function loadSalas() {
     $.ajax({
         url: `${url}/salas/listar`,
-        type: "POST",
+        type: "GET",
         contentType: "application/json",
         success: function (res) {
-            console.log(res);
             if (res) {
-                salas = res.success;
+                salas = res.sussess;
+
                 for (let sala of salas) {
                     let salaFormat = `
         <li class="treeview">
@@ -189,8 +189,8 @@ function hasReport(id_instrumento) {
 
 
 function loading() {
-    $(".section-instrument").html(``);
-    $(".section-instrument").html(`
+    $(".section-dispositivos").html(``);
+    $(".section-dispositivos").html(`
         <div class="loading">
             
         </div>
@@ -214,221 +214,20 @@ function loadDispositivos(idSala, filas, columnas) {
             Dispositivos
             <small>Dispositivos de la sala <strong id="sala" class="upper">${get_nombre_sala(idSala)}</strong></small>
         </h1>`)
-    // loading();
-    // $.ajax({
-    //     url: `${url}/dispositivo/selectBySalon`,
-    //     type: "POST",
-    //     contentType: "application/json",
-    //     processData: false,
-    //     data: JSON.stringify({
-    //         "id": idSala
-    //     }),
-    //     success: function (res) {
-    let res = [{
-        "id": 1,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 0,
-        "columna": 0,
-        "estado": false
-    }, {
-        "id": 2,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 0,
-        "columna": 1,
-        "estado": false
-    }, {
-        "id": 3,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 0,
-        "columna": 2,
-        "estado": false
-    }, {
-        "id": 4,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 0,
-        "columna": 3,
-        "estado": false
-    }, {
-        "id": 5,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 0,
-        "columna": 4,
-        "estado": false
-    }, {
-        "id": 6,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 0,
-        "columna": 5,
-        "estado": false
-    }, {
-        "id": 7,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 1,
-        "columna": 0,
-        "estado": false
-    }, {
-        "id": 8,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 1,
-        "columna": 1,
-        "estado": false
-    }, {
-        "id": 9,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 1,
-        "columna": 2,
-        "estado": false
-    }, {
-        "id": 10,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 1,
-        "columna": 3,
-        "estado": false
-    }, {
-        "id": 11,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 1,
-        "columna": 4,
-        "estado": false
-    }, {
-        "id": 12,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 1,
-        "columna": 5,
-        "estado": false
-    }, {
-        "id": 13,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 2,
-        "columna": 0,
-        "estado": false
-    }, {
-        "id": 14,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 2,
-        "columna": 1,
-        "estado": false
-    }, {
-        "id": 15,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 2,
-        "columna": 2,
-        "estado": false
-    }, {
-        "id": 16,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 2,
-        "columna": 3,
-        "estado": false
-    }, {
-        "id": 17,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 2,
-        "columna": 4,
-        "estado": false
-    }, {
-        "id": 18,
-        "numero_reportes": 0,
-        "tipo": 1,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": 2,
-        "columna": 5,
-        "estado": false
-    }, {
-        "id": 19,
-        "numero_reportes": 0,
-        "tipo": 3,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": -1,
-        "columna": -1,
-        "estado": false
-    }, {
-        "id": 20,
-        "numero_reportes": 0,
-        "tipo": 2,
-        "salon": 1,
-        "created_at": null,
-        "updated_at": null,
-        "fila": -2,
-        "columna": -2,
-        "estado": false
-    }]
-    instrumentos = res;
-    let contentFormat = [];
+    loading();
+    $.ajax({
+        url: `${url}/dispositivo/listar`,
+        type: "GET",
+        contentType: "application/json",
+        data: {
+            "sala": idSala
+        },
+        success: function (res) {
 
-    $(".section-dispositivos").html(`
+            instrumentos = res.sussess;
+            let contentFormat = [];
+
+            $(".section-dispositivos").html(`
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 devices-left">
     
             </div>
@@ -445,40 +244,40 @@ function loadDispositivos(idSala, filas, columnas) {
             </div>
         `);
 
-    let devicesLeftArray = [];
-    let devicesRightArray = [];
-    for (let i = 0; i < filas; i++) {
-        devicesLeftArray.push(`<div class="row left-${i}">`);
-        devicesRightArray.push(`<div class="row right-${i}">`);
-        for (let j = 0; j < columnas; j++) {
-            if (j >= columnas / 2) {
-                devicesRightArray.push(`
+            let devicesLeftArray = [];
+            let devicesRightArray = [];
+            for (let i = 0; i < filas; i++) {
+                devicesLeftArray.push(`<div class="row left-${i}">`);
+                devicesRightArray.push(`<div class="row right-${i}">`);
+                for (let j = 0; j < columnas; j++) {
+                    if (j >= columnas / 2) {
+                        devicesRightArray.push(`
                         <div class="col-lg-${12/(columnas/2)} col-md-${12/(columnas/2)} col-sm-${12/(columnas/2)} col-xs-${12/(columnas/2)} ${i}-${j}">
                         ${i}-${j}
                         ${loadDispositivoIndividual(i,j)}
                         </div>
                     `);
-            } else {
-                devicesLeftArray.push(`
+                    } else {
+                        devicesLeftArray.push(`
                         <div class="col-lg-${12/(columnas/2)} col-md-${12/(columnas/2)} col-sm-${12/(columnas/2)} col-xs-${12/(columnas/2)} ${i}-${j}">
                         ${i}-${j}
                         ${loadDispositivoIndividual(i,j)}
                         </div>
                     `);
+                    }
+                }
+                devicesRightArray.push(`</div>`);
+                devicesLeftArray.push(`</div>`);
+                $(".devices-right").html(devicesRightArray.join(""));
+                $(".devices-left").html(devicesLeftArray.join(""));
             }
+            loadOtrosDevices();
+
+        },
+        error: function (err) {
+
         }
-        devicesRightArray.push(`</div>`);
-        devicesLeftArray.push(`</div>`);
-        $(".devices-right").html(devicesRightArray.join(""));
-        $(".devices-left").html(devicesLeftArray.join(""));
-    }
-    loadOtrosDevices();
-
-    // },
-    //     error: function (err) {
-
-    //     }
-    // })
+    })
 }
 
 function loadOtrosDevices() {
@@ -533,7 +332,7 @@ function loadDispositivoIndividual(i, j) {
                 return `<div class="instrument" >
                                                 <i class="fa fa-desktop ${estado}" aria-hidden="true"></i>
                                             </div>`;
-
+                                            
             }
             //  else if (instrumento.tipo == 2) {
             //     if (!instrumento.estado) {
@@ -566,7 +365,9 @@ function loadDispositivoIndividual(i, j) {
         }
 
     }
-    return `<strong>Not Found</strong>`
+    return `<div class="instrument">
+        <i class="fa fa-question-circle" aria-hidden="true"></i>
+        </div>`;
 }
 /**
  * Muestra el card correspondiente
@@ -578,13 +379,12 @@ function showModal(id_instrumento) {
                         <div style="display:table;margin:auto;font-size:120px" class="loading">
                         </div>`);
     $.ajax({
-        url: `${url}/reporte/selectByDispositivo`,
-        type: "POST",
+        url: `${url}/reporte/visualizar`,
+        type: "GET",
         contentType: "applicacion/json",
-        processData: false,
-        data: JSON.stringify({
+        data: {
             id: id_instrumento
-        }),
+        },
         success: function (res) {
             let reportes = res;
             let model = {

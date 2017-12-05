@@ -107,7 +107,7 @@
   }
 
   .ufps-report{
-    position: absolute;
+    position: relative;
     top: 210%;
     left: 20%;
     font-size: 90px;
