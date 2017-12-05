@@ -11,8 +11,8 @@ if (correo) {
     $("#tipo").html(localStorage.getItem("nombre")).addClass("big-first-letter");
     ctrlPages($("#pageLogin"), $("#pageReport"));
     loadEdificios();
-}else{
-   $("#pageLogin").removeClass("hide-section");
+} else {
+    $("#pageLogin").removeClass("hide-section");
 }
 
 /**
@@ -84,7 +84,7 @@ function salir() {
 /**
  * Function encargada de vaciar el header **cristian**
  */
-function vaciar_header(){
+function vaciar_header() {
     $(".content-header").html(``);
 }
 
@@ -177,8 +177,8 @@ function loadSalas() {
             </a>
         </li>`;
                     $("#edificio-" + sala.edificio).html(
-                        $("#edificio-" + sala.edificio).html() + salaFormat
-                    );
+                            $("#edificio-" + sala.edificio).html() + salaFormat
+                            );
 
                 }
             } else if (res.error) {
@@ -223,6 +223,9 @@ function get_nombre_sala(id) {
 
 
 function loadDispositivos(idSala, filas, columnas) {
+    $(".seccioninfo").hide();
+    $("#consultar-reportefallo").show();
+
     $(".content-header").html(`
         <h1>
             Dispositivos
@@ -266,14 +269,14 @@ function loadDispositivos(idSala, filas, columnas) {
                 for (let j = 0; j < columnas; j++) {
                     if (j >= columnas / 2) {
                         devicesRightArray.push(`
-                        <div class="col-lg-${12/(columnas/2)} col-md-${12/(columnas/2)} col-sm-${12/(columnas/2)} col-xs-${12/(columnas/2)} ${i}-${j}">
-                        ${loadDispositivoIndividual(i,j)}
+                        <div class="col-lg-${12 / (columnas / 2)} col-md-${12 / (columnas / 2)} col-sm-${12 / (columnas / 2)} col-xs-${12 / (columnas / 2)} ${i}-${j}">
+                        ${loadDispositivoIndividual(i, j)}
                         </div>
                     `);
                     } else {
                         devicesLeftArray.push(`
-                        <div class="col-lg-${12/(columnas/2)} col-md-${12/(columnas/2)} col-sm-${12/(columnas/2)} col-xs-${12/(columnas/2)} ${i}-${j}">
-                        ${loadDispositivoIndividual(i,j)}
+                        <div class="col-lg-${12 / (columnas / 2)} col-md-${12 / (columnas / 2)} col-sm-${12 / (columnas / 2)} col-xs-${12 / (columnas / 2)} ${i}-${j}">
+                        ${loadDispositivoIndividual(i, j)}
                         </div>
                     `);
                     }
@@ -498,7 +501,7 @@ function showModal(id_instrumento, tipo) {
                 }
             } else if (tipo === 2) {
                 let fecha = new Date(reportes[0].fecha);
-                let estado =  "Dañado" ;
+                let estado = "Dañado";
                 model.title = "VideoBeam";
                 model.body = ` 
                 <div>

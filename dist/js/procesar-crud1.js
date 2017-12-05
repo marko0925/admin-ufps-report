@@ -419,9 +419,9 @@ function cargarTablaHorario() {
 
                     $("#bodytablaconsultarhorario").append('<tr id="filaconsultarhorario1">\n\
                         <td>' + a.id + '</td>\n\
-                        <td>' + a.dia + '</td>\n\
+                        <td>' + a.nombre_dia + '</td>\n\
                         <td>' + a.hora + '</td>\n\
-                        <td>' + a.salon + '</td>\n\
+                        <td>' + a.nombre_salon + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
                                 <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarHorario(' + a.id + ',' + a.dia + ',`' + a.hora + '`,' + a.fila + ',' + a.salon + ')">\n\
