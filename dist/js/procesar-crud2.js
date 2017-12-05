@@ -1,5 +1,4 @@
 
-
 /* global swal */
 
 var url = "http://35.227.122.71/servicioApp/index.php";
@@ -57,7 +56,6 @@ function cargarProfesor() {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        processData: false,
         data: null,
 
         success: function (res) {
@@ -88,7 +86,6 @@ function cargarTablaMateria() {
         url: `${url}/materia/listar`,
         type: "GET",
         contentType: "application/json",
-        processData: false,
         data: null,
 
         success: function (res) {
@@ -111,7 +108,7 @@ function cargarTablaMateria() {
                                 for (let p of res.success) {
                                     if (p.id == a.docente) {
 //----------------------------------------------------------------
-                     $("#bodytablaconsultarmateria").append('<tr id="filaconsultarmateria1">\n\
+                                        $("#bodytablaconsultarmateria").append('<tr id="filaconsultarmateria1">\n\
                         <td>' + a.id + '</td>\n\
                         <td>' + a.nombre + '</td>\n\
                         <td>' + a.grupo + '</td>\n\
@@ -130,8 +127,7 @@ function cargarTablaMateria() {
                             </span>\n\
                         </td>\n\
                         </tr>');
-                                        
-      //cerrar el codigo de la consulta ajax para obtener el nombre del profesor
+                                        //cerrar el codigo de la consulta ajax para obtener el nombre del profesor
                                     }
                                 }
 
@@ -305,6 +301,8 @@ function cargarSeccionRegistrarDispositivo() {
 function cargarSeccionConsultarDispositivo() {
     $(".seccioninfo").hide();
     $("#consultar-dispositivo").show();
+    $("#table3").show();
+    $(".s2").hide();
     $("#table2").DataTable().destroy();
     $("#bodytablaconsultardispositivo").empty();
     $("#bodytablaconsultarsala2").empty();
@@ -324,7 +322,6 @@ function cargarSalasDispositivo() {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        processData: false,
         data: null,
 
         success: function (res) {
@@ -354,6 +351,8 @@ function registrarDispositivo() {
     let tipo = $("#idtipodispositivo").val();
     let codigo = $("#idcodigodispositivo").val();
     let referencia = $("#idreferenciadispositivo").val();
+    let fila = $("#idfiladispositivo").val();
+    let columna = $("#idcolumnadispositivo").val();
     let sala = $("#idsaladispositivos").val();
 
     $.ajax({
@@ -366,13 +365,12 @@ function registrarDispositivo() {
             referencia: referencia,
             salon: sala,
             tipo: tipo,
-            fila: null,
-            columna: null
+            fila: fila,
+            columna: columna
         },
         success: function (res) {
-            console.log(res);
-            if (res.success) {
-                swal("Dispositivo registrado", "Haga click en el boton para regresar", "success");
+            if (res.succes) {
+                swal("Dispositivo registrado", "Haga click en el boton para regresar", "succes");
                 $("#formagregardispositivo")[0].reset();
 
             } else if (res.err) {
@@ -387,58 +385,108 @@ function registrarDispositivo() {
 }
 
 
-function cargarTablaDispositivo() {
+function cargarTablaDispositivo(idsala) {
+    $("#table2").DataTable().destroy();
+    $("#bodytablaconsultardispositivo").empty();
+    $("#table3").hide();
+    $("#nombresala").html("Sala: " + idsala);
+
     $(".s2").show();
     swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
 
+
+    //Consulta ajax para obtener el nombre de la sala
     $.ajax({
-        url: `${url}/dispositivos/listar`,
+        url: `${url}/salas/visualizar`,
         type: "GET",
+        dataType: "json",
         contentType: "application/json",
-        processData: false,
         data: {
-            id: 1
+            id:idsala
         },
+
         success: function (res) {
 
-            $(".swal-overlay").remove();
+            console.log(res);
+            if (res.success) {
+                let p = res.success
+//                                  
+//----------------------------------------------------------------
 
-            if (res.sussess) {
-                for (let a of res.sussess) {
 
-                    $("#bodytablaconsultardispositivo").append('<tr id="filaconsultardispositivo1">\n\
+                $.ajax({
+                    url: `${url}/dispositivo/listar`,
+                    type: "GET",
+                    contentType: "application/json",
+                    data: {
+                        sala: idsala
+                    },
+                    success: function (res) {
+                        console.log('dis:'+res);
+                        let tipo = '';
+                        $(".swal-overlay").remove();
+
+                        if (res.sussess) {
+                            for (let a of res.sussess) {
+                                if (a.tipo == 1) {
+                                    tipo = 'Computador';
+                                } else if (a.tipo == 2) {
+                                    tipo = 'Video Beam';
+                                } else
+                                if (a.tipo == 1) {
+                                    tipo = 'Minicomponente';
+                                }
+
+                        $("#bodytablaconsultardispositivo").append('<tr id="filaconsultardispositivo1">\n\
                         <td>' + a.id + '</td>\n\
-                        <td>' + a.tipo_dispositivo + '</td>\n\
+                        <td>' + a.numero + '</td>\n\
+                        <td>' + a.numero_reportes + '</td>\n\
+                        <td>' + tipo + '</td>\n\
+                        <td>' + p.nombre + '</td>\n\
                         <td>' + a.fila + '</td>\n\
                         <td>' + a.columna + '</td>\n\
+                        <td>' + a.estado + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
-                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarDispositivo(' + a.id + ',`' + a.nombre + '`,' + a.docente + ')">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarDispositivo(' + a.id + ',' + a.numero + ',' + a.salon + ',' + a.id + ',' + a.id + ')">\n\
                                     <i class="fa fa-edit"></i>\n\
                                 </button>\n\
                             </span>\n\
                             <span id="tooltipEliminar" data-toggle="tooltip" data-placement="top" title="Eliminar">\n\
-                                <button type="submit" class="btn btn-warning btn-xs" onclick="return eliminarMateria(' + a.id + ');">\n\
+                                <button type="submit" class="btn btn-warning btn-xs" onclick="return eliminarDispositivo(' + a.id + ');">\n\
                                     <i class="fa fa-remove"></i>\n\
                                 </button>\n\
                             </span>\n\
                         </td>\n\
                         </tr>');
-                }
 
-                $("#table2").DataTable();
+                            }
 
-            } else if (res.err) {
-                let error = res.err;
-                swal("Problemas encontrados", error, "error");
+                            $("#table2").DataTable();
+
+                        } else if (res.err) {
+                            let error = res.err;
+                            swal("Problemas encontrados", error, "error");
+                        }
+                    },
+                    error: function (err) {
+
+                        swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+                    }
+                });
+
+
+
+//cerrar el codigo de la consulta ajax para obtener el nombre de la sala
+
+
             }
-        },
-        error: function (err) {
-
-            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
+//-----------------------------------------------------------------------------------
 }
+
+
 
 
 function cargarTablaSala2() {
@@ -450,7 +498,6 @@ function cargarTablaSala2() {
         url: `${url}/salas/listar`,
         type: "GET",
         contentType: "application/json",
-        processData: false,
         data: null,
 
         success: function (res) {
@@ -465,7 +512,7 @@ function cargarTablaSala2() {
                         <td>' + a.nombre + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Ver Dispositivos">\n\
-                                <button type="submit" class="btn btn-success btn-xs" onclick="cargarTablaDispositivo()">\n\
+                                <button type="submit" class="btn btn-success btn-xs" onclick="cargarTablaDispositivo(' + a.id + ')">\n\
                                     <i class="fa fa-desktop"></i>\n\
                                 </button>\n\
                             </span>\n\
@@ -488,18 +535,112 @@ function cargarTablaSala2() {
 }
 
 
-function cargarInformacionActualizarDispositivo(idmateria, nombre, docente) {
-    $('#myModalActualizarMateria').modal('show');
+function cargarInformacionActualizarDispositivo(idDispositivo, numero, salon, fila, columna) {
+    $('#myModalActualizarDispositivo').modal('show');
 
-    $("#titulomodalactualizarMateria").html("Actualizando Materia con ID " + idmateria);
+    $("#titulomodalactualizarDispositivo").html("Actualizando Dispositivo con ID " + idDispositivo);
 
-    $('#actidmateriaidentificador').val(idmateria);
-    $('#actidprofesormateria').val(docente);
-    $('#actidcodigomateria').val(docente);
-    $('#actidnombremateria').val(nombre);
-    $('#actidgrupomateria').val(docente);
+    $('#actiddispositivoidentificador').val(idDispositivo);
 
-    $('#actidprofesormateria > option[value="' + docente + '"]').attr('selected', 'selected');
+    $('#actidnumerodispositivo').val(numero);
+
+    $('#actidsaladispositivo').val(salon);
+
+    $('#actidfiladispositivo').val(fila);
+
+    $('#actidcolumnadispositivo').val(columna);
+
+    $('#actidsaladispositivo > option[value="' + salon + '"]').attr('selected', 'selected');
+}
+
+
+
+function actualizarDispositivo() {
+
+
+    let identificador = $("#actiddispositivoidentificador").val();
+    let sala = $("#actidsaladispositivo").val();
+    let numero = $("#actidnumerodispositivo").val();
+    let fila = $("#actidfiladispositivo").val();
+    let columna = $("#actidcolumnadispositivo").val();
+
+    $.ajax({
+        url: `${url}/dispositivo/modificar`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: {
+            id: identificador,
+            numero: numero,
+            salon: sala,
+            fila: fila,
+            columna: columna
+        },
+        success: function (res) {
+            if (res.success) {
+
+                swal("Dispositivo actualizado", "Haga click en el boton para regresar", "success").then((value) => {
+                    $("#formactualizarusuario")[0].reset();
+                    $("#myModalActualizarDispositivo").modal('hide');
+                    cargarSeccionConsultarDispositivo();
+
+                });
+
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+
+        },
+        error: function (err) {
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+}
+
+
+function eliminarDispositivo(id) {
+
+    swal({
+        title: "Deseas  eliminar el dispositivo " + id + "?",
+        text: "Una vez eliminado no podra ser recuperada",
+        icon: "error",
+        buttons: true,
+        dangerMode: true
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: `${url}/dispositivo/eliminar`,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                data: {
+                    id: id
+                },
+                success: function (res) {
+                    console.log(res);
+                    if (res.success) {
+
+                        swal("Dispositivo eliminado", "Haga click en el boton para regresar", "success").then((value) => {
+                            cargarSeccionConsultarDispositivo();
+
+                        });
+
+                    } else if (res.err) {
+                        let error = res.err;
+                        swal("Problemas encontrados", error, "error");
+                    }
+
+                },
+                error: function (err) {
+                    swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+                }
+            });
+
+        }
+    });
+
 }
 
 
@@ -555,7 +696,6 @@ function cargarTablaEdificio() {
         url: `${url}/edificio/listar`,
         type: "GET",
         contentType: "application/json",
-        processData: false,
         data: null,
 
         success: function (res) {

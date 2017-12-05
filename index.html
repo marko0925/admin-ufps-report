@@ -1115,8 +1115,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <!-- ...........................CODIGO DANIEL:.............. -->
 
-
-                    <!-- CRUD MATETRIAS -->
+  <!-- CRUD MATETRIAS -->
 
                     <div id="registrar-materias" class="row seccioninfo" style="display: none">
                         <div class="col-md-12">
@@ -1425,6 +1424,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </div> 
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Fila:<b><span style="color: red">*</span></b></label>
+                                                    <div class="input-group col-sm-8">
+                                                        <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+
+                                                        <input type="text" class="form-control" id="idfiladispositivo" placeholder="Ej: Pc1" required autofocus>
+                                                    </div> 
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Columna:<b><span style="color: red">*</span></b></label>
+                                                    <div class="input-group col-sm-8">
+                                                        <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+
+                                                        <input type="text" class="form-control" id="idcolumnadispositivo" placeholder="Ej: Pc1" required autofocus>
+                                                    </div> 
+                                                </div>
+
 
                                                 <div class="form-group">
                                                     <label  class="col-sm-3 control-label">Sala:<b><span style="color: red">*</span></b></label>
@@ -1467,6 +1484,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="box">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Consulta de dispositivo</h3>
+                                     <h4 class="modal-title text-center"><b id="nombresala"> </b></h4>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -1483,7 +1501,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="row" style="height: 20px"></div>
 
                                             <div class="table-responsive">
-                                                <table id="table2" class="table table-bordered table-hover">
+                                                <table id="table3" class="table table-bordered table-hover">
                                                     <thead style="background: #f7f7f7">
                                                         <tr id="encabezado">
                                                             <th class="text-center">Codigo</th>
@@ -1505,10 +1523,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <table id="table2" style="display: none;" class="table table-bordered table-hover s2">
                                                     <thead style="background: #f7f7f7">
                                                         <tr id="encabezado">
-                                                            <th class="text-center">Codigo</th>
-                                                            <th class="text-center">Nombre</th>
+                                                            <th class="text-center">Id</th>
+                                                            <th class="text-center">Referencia</th>
+                                                            <th class="text-center">No Reportes</th>
                                                             <th class="text-center">Tipo</th>
                                                             <th class="text-center">Sala</th>
+                                                            <th class="text-center">Fila</th>
+                                                            <th class="text-center">Columna</th>
+                                                            <th class="text-center">Estado</th>
                                                             <th class="text-center">Opciones</th>
 
                                                         </tr>
@@ -1521,8 +1543,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </table>
                                             </div>
 
-
-
+                                       
+                                            
+                                            <!-- /.modal -->
 
                                             <!-- Modal -->
                                             <div id="myModalActualizarDispositivo" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -1530,11 +1553,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <div class="modal-content">
                                                         <div class="modal-header" style="background: #f7f7f7">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title text-center"><b id="titulomodalactualizarDipositivo"> </b></h4>
+                                                            <h4 class="modal-title text-center"><b id="titulomodalactualizarDispositivo"> </b></h4>
                                                         </div>
 
 
-                                                        <form class="form-horizontal" id="formactualizardispositivo">
+                                                        <form class="form-horizontal" id="formactualizarDipositivo">
 
                                                             <div class="modal-body">
                                                                 <div class="row" style="display: none">
@@ -1555,10 +1578,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label  class="col-sm-3 control-label">Profesor:<b><span style="color: red">*</span></b></label>
+                                                                            <label  class="col-sm-3 control-label">Salon:<b><span style="color: red">*</span></b></label>
                                                                             <div class="input-group col-sm-8">
                                                                                 <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
-                                                                                <select class="form-control" id="actidprofesormateria" required autofocus >
+                                                                                <select class="form-control" id="actidsaladispositivo" required autofocus >
 
                                                                                 </select>
 
@@ -1572,11 +1595,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                                     <div class="col-md-12 ">
                                                                         <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Codigo:<b><span style="color: red">*</span></b></label>
+                                                                            <label class="col-sm-3 control-label">Numero:<b><span style="color: red">*</span></b></label>
                                                                             <div class="input-group col-sm-8">
                                                                                 <span class="input-group-addon"><i class="fa fa-child"></i></span>
 
-                                                                                <input type="text" class="form-control" id="actidcodigomateria" placeholder="404" required autofocus>
+                                                                                <input type="text" class="form-control" id="actidnumerodispositivo" placeholder="404" required autofocus>
                                                                             </div> 
                                                                         </div>
 
@@ -1586,11 +1609,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Nombre:<b><span style="color: red">*</span></b></label>
+                                                                            <label class="col-sm-3 control-label">Fila:<b><span style="color: red">*</span></b></label>
                                                                             <div class="input-group col-sm-8">
                                                                                 <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
 
-                                                                                <input type="text" class="form-control" id="actidnombremateria" placeholder="" required autofocus>
+                                                                                <input type="text" class="form-control" id="actidfiladispositivo" placeholder="" required autofocus>
                                                                             </div> 
                                                                         </div>
 
@@ -1599,10 +1622,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Grupo:<b><span style="color: red">*</span></b></label>
+                                                                            <label class="col-sm-3 control-label">Columna:<b><span style="color: red">*</span></b></label>
                                                                             <div class="input-group col-sm-8">
                                                                                 <span class="input-group-addon"><i class="fa fa-child"></i></span>
-                                                                                <input type="text" class="form-control" id="actidgrupomateria" placeholder="" required autofocus>
+                                                                                <input type="text" class="form-control" id="actidcolumnadispositivo" placeholder="" required autofocus>
 
                                                                             </div> 
                                                                         </div>
@@ -1612,7 +1635,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-primary" onclick="actualizarMateria()">Actualizar</button>                                                           
+                                                                <button type="button" class="btn btn-primary" onclick="actualizarDispositivo()">Actualizar</button>                                                           
                                                             </div>
 
                                                         </form>
@@ -1622,8 +1645,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </div>
                                             </div>
                                             <!-- /.modal -->
-
-
+                                            
+                                            
+                                            
 
                                         </div>
 
