@@ -149,7 +149,6 @@ function cargarTablaSala() {
     });
 }
 
-
 function cargarInformacionActualizarSala(idsala, edificio, nombre, fila, columna) {
 
     $('#myModalActualizarSala').modal('show');
@@ -212,12 +211,6 @@ function actualizarSala() {
 
 }
 
-
-function cargarSeccionRegistrarHorario() {
-    $(".seccioninfo").hide();
-    $("#registrar-horario").show();
-
-}
 function eliminarSala(id) {
 
     swal({
@@ -261,12 +254,247 @@ function eliminarSala(id) {
 
 }
 
+function cargarSeccionRegistrarHorario() {
+    $(".seccioninfo").hide();
+    $("#registrar-horario").show();
+
+    $("#idhorarioselectmateriaregistrar").empty();
+    $("#idhorarioselectsala").empty();
+
+    cargarSelectMateria();
+
+    cargarSelectSala();
+}
+
+
+function registrarHorario() {
+
+    let dia = $("#idhorariodia").val();
+    let hora = $("#idhorariohora").val();
+    let materia = $("#idhorarioselectmateria").val();
+    let sala = $("#idhorarioselectsala").val();
+    $.ajax({
+        url: `${url}/materia/asignar_horario`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: {
+            materia: materia,
+            hora: hora,
+            dia: dia,
+            salon: sala
+        },
+        success: function (res) {
+            if (res.success) {
+
+                swal("Horario registrado", "Haga click en el boton para regresar", "success");
+                $("#formagregarhorario")[0].reset();
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+
+        },
+        error: function (err) {
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+
+}
+
+
+
 
 function cargarSeccionConsultarHorario() {
     $(".seccioninfo").hide();
     $("#consultar-horario").show();
 
+
+    $('#table2').DataTable().destroy();
+
+    $("#tablaconsultarhorario").hide();
+    $("#bodytablaconsultarhorario").empty();
+
+
+    $("#idhorarioselectmateria").empty();
+
+    cargarSelectMateria();
+
 }
+
+
+function cargarSelectMateria() {
+
+    $("#idhorariomateria").empty();
+
+    $.ajax({
+        url: `${url}/materia/listar`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: null,
+
+        success: function (res) {
+
+            if (res.sussess) {
+                for (let a of res.sussess) {
+                    $("#idhorarioselectmateria").append('<option value=' + a.id + '>' + a.nombre + '</option>');
+                    $("#idhorarioselectmateriaregistrar").append('<option value=' + a.id + '>' + a.nombre + '</option>');
+
+
+                }
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+        },
+        error: function (err) {
+
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+}
+
+
+function cargarSelectSala() {
+
+    $("#idhorarioselectsala").empty();
+
+    $.ajax({
+        url: `${url}/salas/listar`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: null,
+
+        success: function (res) {
+
+            if (res.sussess) {
+                for (let a of res.sussess) {
+                    $("#idhorarioselectsala").append('<option value=' + a.id + '>' + a.nombre + '</option>');
+                }
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+        },
+        error: function (err) {
+
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+}
+
+function cargarTablaHorario() {
+
+
+    $('#table2').DataTable().destroy();
+
+    $("#tablaconsultarhorario").hide();
+    $("#bodytablaconsultarhorario").empty();
+
+
+
+    swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
+    var idmateria = $("#idhorarioselectmateria").val();
+    console.log(idmateria);
+    $.ajax({
+        url: `${url}/materia/listar_horario`,
+        type: "GET",
+        contentType: "application/json",
+        data: {
+            materia: idmateria
+        },
+
+        success: function (res) {
+
+            $(".swal-overlay").remove();
+            $("#tablaconsultarhorario").show();
+
+            if (res.sussess) {
+                for (let a of res.sussess) {
+
+                    $("#bodytablaconsultarhorario").append('<tr id="filaconsultarhorario1">\n\
+                        <td>' + a.id + '</td>\n\
+                        <td>' + a.dia + '</td>\n\
+                        <td>' + a.hora + '</td>\n\
+                        <td>' + a.salon + '</td>\n\
+                        <td class="text-center">\n\
+                            <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarHorario(' + a.id + ',' + a.dia + ',`' + a.hora + '`,' + a.fila + ',' + a.salon + ')">\n\
+                                    <i class="fa fa-edit"></i>\n\
+                                </button>\n\
+                            </span>\n\
+                            <span id="tooltipEliminar" data-toggle="tooltip" data-placement="top" title="Eliminar">\n\
+                                <button type="submit" class="btn btn-warning btn-xs" onclick="return eliminarHorario(' + a.id + ');">\n\
+                                    <i class="fa fa-remove"></i>\n\
+                                </button>\n\
+                            </span>\n\
+                        </td>\n\
+                        </tr>');
+                }
+
+                $("#table2").DataTable();
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+        },
+        error: function (err) {
+
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+}
+
+
+function eliminarHorario(id) {
+
+    swal({
+        title: "Deseas  eliminar el horario " + id + "?",
+        text: "Una vez el horario eliminado no podra ser recuperado",
+        icon: "error",
+        buttons: true,
+        dangerMode: true
+    }).then((willDelete) => {
+        if (willDelete) {
+
+            $.ajax({
+                url: `${url}/materia/eliminar_hora`,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                data: {
+                    id: id
+                },
+                success: function (res) {
+                    if (res.success) {
+
+                        swal("Horario eliminado", "Haga click en el boton para regresar", "success").then((value) => {
+                            cargarSeccionConsultarHorario();
+
+                        });
+
+                    } else if (res.err) {
+                        let error = res.err;
+                        swal("Problemas encontrados", error, "error");
+                    }
+
+                },
+                error: function (err) {
+                    swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+                }
+            });
+
+        }
+    });
+
+}
+
 
 function cargarSeccionRegistrarBeca() {
     $(".seccioninfo").hide();
