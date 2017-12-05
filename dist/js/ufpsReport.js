@@ -11,6 +11,8 @@ if (correo) {
     $("#tipo").html(localStorage.getItem("nombre")).addClass("big-first-letter");
     ctrlPages($("#pageLogin"), $("#pageReport"));
     loadEdificios();
+}else{
+   $("#pageLogin").removeClass("hide-section");
 }
 
 /**
