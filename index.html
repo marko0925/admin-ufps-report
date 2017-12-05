@@ -1420,7 +1420,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
 
-                                                        <input type="text" class="form-control" id="idreferenciadispositivo" placeholder="Ej: Pc1" required autofocus>
+                                                        <input type="text" class="form-control" id="idreferenciadispositivo" placeholder="Ej: Pc1" required="required" autofocus>
                                                     </div> 
                                                 </div>
 
@@ -1483,9 +1483,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-md-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Consulta de dispositivo</h3>
-                                     <h4 class="modal-title text-center"><b id="nombresala"> </b></h4>
-
+                                    <h3 class="box-title" id="nombresala">Consulta de dispositivo</h3>
+                                     
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                             <i class="fa fa-minus"></i>
@@ -1505,9 +1504,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <thead style="background: #f7f7f7">
                                                         <tr id="encabezado">
                                                             <th class="text-center">Codigo</th>
+                                                            <th class="text-center">Edificio</th>
                                                             <th class="text-center">Nombre</th>
 
-                                                            <th class="text-center">Opciones</th>
+                                                            <th class="text-center">Dispositivos</th>
 
                                                         </tr>
                                                     </thead>
@@ -1524,10 +1524,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <thead style="background: #f7f7f7">
                                                         <tr id="encabezado">
                                                             <th class="text-center">Id</th>
-                                                            <th class="text-center">Referencia</th>
+                                                            <th class="text-center">Numero</th>
                                                             <th class="text-center">No Reportes</th>
                                                             <th class="text-center">Tipo</th>
-                                                            <th class="text-center">Sala</th>
                                                             <th class="text-center">Fila</th>
                                                             <th class="text-center">Columna</th>
                                                             <th class="text-center">Estado</th>
@@ -1542,9 +1541,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                 </table>
                                             </div>
-
-                                       
-                                            
+              
                                             <!-- /.modal -->
 
                                             <!-- Modal -->

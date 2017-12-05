@@ -308,6 +308,7 @@ function cargarSeccionConsultarDispositivo() {
     $("#bodytablaconsultarsala2").empty();
     cargarSalasDispositivo();
     cargarTablaSala2();
+    $("#nombresala").html("Consulta de dispositivo");
 }
 
 
@@ -355,6 +356,16 @@ function registrarDispositivo() {
     let columna = $("#idcolumnadispositivo").val();
     let sala = $("#idsaladispositivos").val();
 
+    if (tipo == 2) {
+        fila = -2;
+        columna = -2;
+    }
+    if (tipo == 3) {
+        fila = -1;
+        columna = -1;
+    }
+
+
     $.ajax({
         url: `${url}/dispositivo/registrar`,
         type: "GET",
@@ -389,9 +400,7 @@ function cargarTablaDispositivo(idsala) {
     $("#table2").DataTable().destroy();
     $("#bodytablaconsultardispositivo").empty();
     $("#table3").hide();
-    $("#nombresala").html("Sala: " + idsala);
 
-    $(".s2").show();
     swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
 
 
@@ -402,14 +411,14 @@ function cargarTablaDispositivo(idsala) {
         dataType: "json",
         contentType: "application/json",
         data: {
-            id:idsala
+            id: idsala
         },
 
         success: function (res) {
 
-            console.log(res);
             if (res.success) {
                 let p = res.success
+                $("#nombresala").html("Consulta de dispositivos - Sala: " + p.nombre);
 //                                  
 //----------------------------------------------------------------
 
@@ -422,33 +431,58 @@ function cargarTablaDispositivo(idsala) {
                         sala: idsala
                     },
                     success: function (res) {
-                        console.log('dis:'+res);
+                        console.log(res);
                         let tipo = '';
+                        let estado = '';
+                        let fila = '';
+                        let columna = '';
                         $(".swal-overlay").remove();
 
                         if (res.sussess) {
-                            for (let a of res.sussess) {
-                                if (a.tipo == 1) {
-                                    tipo = 'Computador';
-                                } else if (a.tipo == 2) {
-                                    tipo = 'Video Beam';
-                                } else
-                                if (a.tipo == 1) {
-                                    tipo = 'Minicomponente';
-                                }
+                            if (res.sussess.length == 0) {
+                                swal("No existen dispositivos en esta Sala", "Haga click en el boton para regresar", "error").then((value) => {
+                                    cargarSeccionConsultarDispositivo();
 
-                        $("#bodytablaconsultardispositivo").append('<tr id="filaconsultardispositivo1">\n\
+                                });
+
+                            } else {
+                                $(".s2").show();
+                                for (let a of res.sussess) {
+                                    if (a.tipo == 1) {
+                                        tipo = 'Computador';
+                                        if (a.fila == '-1') {
+                                            a.fila = 'Null';
+                                        }
+
+                                        if (a.columna == '-1') {
+                                            a.columna = 'Null';
+                                        }
+
+
+                                    } else if (a.tipo == 2) {
+                                        tipo = 'Video Beam';
+
+                                    } else
+                                    if (a.tipo == 3) {
+                                        tipo = 'Minicomponente';
+                                    }
+                                    if (a.estado == true) {
+                                        estado = 'Al dia';
+                                    } else {
+                                        estado = 'Averiado';
+                                    }
+
+                                    $("#bodytablaconsultardispositivo").append('<tr id="filaconsultardispositivo1">\n\
                         <td>' + a.id + '</td>\n\
                         <td>' + a.numero + '</td>\n\
                         <td>' + a.numero_reportes + '</td>\n\
                         <td>' + tipo + '</td>\n\
-                        <td>' + p.nombre + '</td>\n\
                         <td>' + a.fila + '</td>\n\
                         <td>' + a.columna + '</td>\n\
-                        <td>' + a.estado + '</td>\n\
+                        <td>' + estado + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
-                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarDispositivo(' + a.id + ',' + a.numero + ',' + a.salon + ',' + a.id + ',' + a.id + ')">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarDispositivo(' + a.id + ',' + a.numero + ',' + a.salon + ',' + a.fila + ',' + a.columna + ')">\n\
                                     <i class="fa fa-edit"></i>\n\
                                 </button>\n\
                             </span>\n\
@@ -460,6 +494,7 @@ function cargarTablaDispositivo(idsala) {
                         </td>\n\
                         </tr>');
 
+                                }
                             }
 
                             $("#table2").DataTable();
@@ -505,10 +540,12 @@ function cargarTablaSala2() {
             $(".swal-overlay").remove();
 
             if (res.sussess) {
+                console.log(res);
                 for (let a of res.sussess) {
 
                     $("#bodytablaconsultarsala2").append('<tr id="filaconsultarsala12">\n\
                         <td>' + a.id + '</td>\n\
+                        <td>' + a.edificio + '</td>\n\
                         <td>' + a.nombre + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Ver Dispositivos">\n\
