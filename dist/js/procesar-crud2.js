@@ -3,6 +3,7 @@
 /* global swal */
 
 var url = "http://35.227.122.71/servicioApp/index.php";
+var profesor = '';
 function cargarSeccionRegistrarMateria() {
     $(".seccioninfo").hide();
     $("#registrar-materias").show();
@@ -18,6 +19,31 @@ function cargarSeccionConsultarMateria() {
 
     cargarTablaMateria();
     cargarProfesor();
+}
+
+function obtenerNombreProfesor(idprofesor) {
+
+    $.ajax({
+        url: `${url}/usuario/listar_docentes`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: null,
+
+        success: function (res) {
+            if (res.success) {
+                for (let a of res.success) {
+                    if (a.id == idprofesor) {
+
+                        profesor = a.nombre;
+                        alert(a.nombre);
+                        return a.nombre;
+                    }
+                }
+
+            }
+        }
+    });
 }
 
 function cargarProfesor() {
@@ -70,16 +96,30 @@ function cargarTablaMateria() {
             $(".swal-overlay").remove();
 
             if (res.sussess) {
-                for (let a of res.sussess) {
 
-                    $("#bodytablaconsultarmateria").append('<tr id="filaconsultarmateria1">\n\
+                for (let a of res.sussess) {
+//Consulta ajax para obtener el nombre del profesor
+                    $.ajax({
+                        url: `${url}/usuario/listar_docentes`,
+                        type: "GET",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: null,
+
+                        success: function (res) {
+                            if (res.success) {
+                                for (let p of res.success) {
+                                    if (p.id == a.docente) {
+//----------------------------------------------------------------
+                     $("#bodytablaconsultarmateria").append('<tr id="filaconsultarmateria1">\n\
                         <td>' + a.id + '</td>\n\
                         <td>' + a.nombre + '</td>\n\
-                        <td>' + a.docente + '</td>\n\
-                        <td>' + a.descripcion + '</td>\n\
+                        <td>' + a.grupo + '</td>\n\
+                        <td>' + a.codigo + '</td>\n\
+                        <td>' + p.nombre + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
-                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarMateria(' + a.id + ',`' + a.nombre + '`,' + a.docente + ')">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarMateria(' + a.id + ',`' + a.nombre + '`,' + a.codigo + ',`' + a.grupo + '`,' + a.docente + ')">\n\
                                     <i class="fa fa-edit"></i>\n\
                                 </button>\n\
                             </span>\n\
@@ -90,6 +130,16 @@ function cargarTablaMateria() {
                             </span>\n\
                         </td>\n\
                         </tr>');
+                                        
+      //cerrar el codigo de la consulta ajax para obtener el nombre del profesor
+                                    }
+                                }
+
+                            }
+                        }
+                    });
+
+//-----------------------------------------------------------------------------------
                 }
 
                 $("#table2").DataTable();
@@ -107,16 +157,16 @@ function cargarTablaMateria() {
 }
 
 
-function cargarInformacionActualizarMateria(idmateria, nombre, docente) {
+function cargarInformacionActualizarMateria(idmateria, nombre, codigo, grupo, docente) {
     $('#myModalActualizarMateria').modal('show');
 
     $("#titulomodalactualizarMateria").html("Actualizando Materia con ID " + idmateria);
 
     $('#actidmateriaidentificador').val(idmateria);
     $('#actidprofesormateria').val(docente);
-    $('#actidcodigomateria').val(docente);
+    $('#actidcodigomateria').val(codigo);
     $('#actidnombremateria').val(nombre);
-    $('#actidgrupomateria').val(docente);
+    $('#actidgrupomateria').val(grupo);
 
     $('#actidprofesormateria > option[value="' + docente + '"]').attr('selected', 'selected');
 }
@@ -140,7 +190,6 @@ function registrarMateria() {
             codigo: codigo
         },
         success: function (res) {
-            alert(res.success);
             if (res.success) {
                 swal("Materia registrada", "Haga click en el boton para regresar", "success");
                 $("#formagregarmateria")[0].reset();
@@ -174,8 +223,9 @@ function actualizarMateria() {
         data: {
             id: identificador,
             nombre: nombre,
-            descripcion: codigo,
+            grupo: grupo,
             docente: profesor,
+            codigo: codigo
         },
         success: function (res) {
             if (res.success) {
@@ -211,7 +261,6 @@ function eliminarMateria(id) {
         dangerMode: true
     }).then((willDelete) => {
         if (willDelete) {
-            alert('entro: ' + id);
             $.ajax({
                 url: `${url}/materia/eliminar`,
                 type: "GET",
@@ -257,10 +306,10 @@ function cargarSeccionConsultarDispositivo() {
     $(".seccioninfo").hide();
     $("#consultar-dispositivo").show();
     $("#table2").DataTable().destroy();
-    $("#bodytablaconsultardisp").empty();
-
-    cargarTablaDispositivo();
+    $("#bodytablaconsultardispositivo").empty();
+    $("#bodytablaconsultarsala2").empty();
     cargarSalasDispositivo();
+    cargarTablaSala2();
 }
 
 
@@ -306,10 +355,7 @@ function registrarDispositivo() {
     let codigo = $("#idcodigodispositivo").val();
     let referencia = $("#idreferenciadispositivo").val();
     let sala = $("#idsaladispositivos").val();
-    alert(tipo);
-    alert(codigo);
-    alert(referencia);
-    alert(sala);
+
     $.ajax({
         url: `${url}/dispositivo/registrar`,
         type: "GET",
@@ -342,6 +388,7 @@ function registrarDispositivo() {
 
 
 function cargarTablaDispositivo() {
+    $(".s2").show();
     swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
 
     $.ajax({
@@ -350,7 +397,7 @@ function cargarTablaDispositivo() {
         contentType: "application/json",
         processData: false,
         data: {
-            id: id
+            id: 1
         },
         success: function (res) {
 
@@ -394,7 +441,54 @@ function cargarTablaDispositivo() {
 }
 
 
-function cargarInformacionActualizarMateria(idmateria, nombre, docente) {
+function cargarTablaSala2() {
+
+
+    swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
+
+    $.ajax({
+        url: `${url}/salas/listar`,
+        type: "GET",
+        contentType: "application/json",
+        processData: false,
+        data: null,
+
+        success: function (res) {
+
+            $(".swal-overlay").remove();
+
+            if (res.sussess) {
+                for (let a of res.sussess) {
+
+                    $("#bodytablaconsultarsala2").append('<tr id="filaconsultarsala12">\n\
+                        <td>' + a.id + '</td>\n\
+                        <td>' + a.nombre + '</td>\n\
+                        <td class="text-center">\n\
+                            <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Ver Dispositivos">\n\
+                                <button type="submit" class="btn btn-success btn-xs" onclick="cargarTablaDispositivo()">\n\
+                                    <i class="fa fa-desktop"></i>\n\
+                                </button>\n\
+                            </span>\n\
+                          </td>\n\
+                        </tr>');
+                }
+
+                $("#table2").DataTable();
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+        },
+        error: function (err) {
+
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+}
+
+
+function cargarInformacionActualizarDispositivo(idmateria, nombre, docente) {
     $('#myModalActualizarMateria').modal('show');
 
     $("#titulomodalactualizarMateria").html("Actualizando Materia con ID " + idmateria);
@@ -406,4 +500,192 @@ function cargarInformacionActualizarMateria(idmateria, nombre, docente) {
     $('#actidgrupomateria').val(docente);
 
     $('#actidprofesormateria > option[value="' + docente + '"]').attr('selected', 'selected');
+}
+
+
+
+function cargarSeccionRegistrarEdificio() {
+    $(".seccioninfo").hide();
+    $("#registrar-edificio").show();
+}
+
+function cargarSeccionConsultarEdificio() {
+    $(".seccioninfo").hide();
+    $("#consultar-edificio").show();
+    $("#table2").DataTable().destroy();
+    $("#bodytablaconsultaredificio").empty();
+
+    cargarTablaEdificio();
+}
+
+
+function registrarEdificio() {
+
+    let nombre = $("#idnombreedificio").val();
+
+    $.ajax({
+        url: `${url}/edificio/registrar`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: {
+            nombre: nombre,
+        },
+        success: function (res) {
+            if (res.success) {
+                swal("Edificio registrado", "Haga click en el boton para regresar", "success");
+                $("#formagregarmateria")[0].reset();
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+        },
+        error: function (err) {
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+
+}
+
+
+function cargarTablaEdificio() {
+    swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
+    $.ajax({
+        url: `${url}/edificio/listar`,
+        type: "GET",
+        contentType: "application/json",
+        processData: false,
+        data: null,
+
+        success: function (res) {
+            $(".swal-overlay").remove();
+            if (res.success) {
+                for (let a of res.success) {
+                    $("#bodytablaconsultaredificio").append('<tr id="filaconsultaredificio1">\n\
+                        <td>' + a.id + '</td>\n\
+                        <td>' + a.nombre + '</td>\n\
+                        <td class="text-center">\n\
+                            <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarEdificio(' + a.id + ',`' + a.nombre + '`)">\n\
+                                    <i class="fa fa-edit"></i>\n\
+                                </button>\n\
+                            </span>\n\
+                            <span id="tooltipEliminar" data-toggle="tooltip" data-placement="top" title="Eliminar">\n\
+                                <button type="submit" class="btn btn-warning btn-xs" onclick="return eliminarEdificio(' + a.id + ');">\n\
+                                    <i class="fa fa-remove"></i>\n\
+                                </button>\n\
+                            </span>\n\
+                        </td>\n\
+                        </tr>');
+                }
+
+                $("#table2").DataTable();
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+        },
+        error: function (err) {
+
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+}
+
+function cargarInformacionActualizarEdificio(id, nombre) {
+    $('#myModalActualizarEdificio').modal('show');
+
+    $("#titulomodalactualizaredificio").html("Actualizando Edificio con ID " + id);
+
+    $('#actidedificioidentificador').val(id);
+    $('#actidnombreedificio').val(nombre);
+
+}
+
+
+
+function actualizarEdificio() {
+
+
+    let id = $("#actidedificioidentificador").val();
+    let nombre = $("#actidnombreedificio").val();
+
+
+    $.ajax({
+        url: `${url}/edificio/modificar`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: {
+            id: id,
+            nombre: nombre,
+
+        },
+        success: function (res) {
+            if (res.success) {
+
+                swal("Edificio actualizado", "Haga click en el boton para regresar", "success").then((value) => {
+                    $("#formactualizaredificio")[0].reset();
+                    $("#myModalActualizarEdificio").modal('hide');
+                    cargarSeccionConsultarEdificio();
+
+                });
+
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+
+        },
+        error: function (err) {
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+}
+
+
+function eliminarEdificio(id) {
+
+    swal({
+        title: "Deseas  eliminar el edificio " + id + "?",
+        text: "Una vez eliminado no podra ser recuperada",
+        icon: "error",
+        buttons: true,
+        dangerMode: true
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: `${url}/edificio/eliminar`,
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+                data: {
+                    id: id
+                },
+                success: function (res) {
+                    console.log(res);
+                    if (res.success) {
+
+                        swal("Edificio eliminado", "Haga click en el boton para regresar", "success").then((value) => {
+                            cargarSeccionConsultarEdificio();
+
+                        });
+
+                    } else if (res.err) {
+                        let error = res.err;
+                        swal("Problemas encontrados", error, "error");
+                    }
+
+                },
+                error: function (err) {
+                    swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+                }
+            });
+
+        }
+    });
+
 }

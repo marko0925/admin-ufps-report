@@ -113,10 +113,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header">MENU NAVEGACION</li>
 
-                        <li class="treeview">
+                       <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-link"></i>
-                                <span>Edificios</span>
+                                <span>Reportes</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
@@ -136,6 +136,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <ul class="treeview-menu" id="ul-dispositivos">
                                 <li><a href="#" onclick="cargarSeccionRegistrarDispositivo()"><i class="fa fa-circle-o"></i>Registrar</a></li>
                                 <li><a href="#" onclick="cargarSeccionConsultarDispositivo()"><i class="fa fa-circle-o"></i>Consultar</a></li>
+                            </ul>
+                        </li>
+                        
+                          <li class="treeview">
+                            <a href="#"><i class="fa fa-link"></i> <span>Edificios</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" id="ul-dispositivos">
+                                <li><a href="#" onclick="cargarSeccionRegistrarEdificio()"><i class="fa fa-circle-o"></i>Registrar</a></li>
+                                <li><a href="#" onclick="cargarSeccionConsultarEdificio()"><i class="fa fa-circle-o"></i>Consultar</a></li>
                             </ul>
                         </li>
 
@@ -1103,7 +1115,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-child"></i></span>
 
-                                                        <input type="number" class="form-control" id="idcodigomateria" placeholder="Codigo materia" required autofocus>
+                                                        <input type="number" class="form-control" id="idcodigomateria" placeholder="Ej: 1151212" required autofocus>
                                                     </div> 
                                                 </div>
 
@@ -1113,7 +1125,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
 
-                                                        <input type="text" class="form-control" id="idnombremateria" placeholder="Nombre materia" required autofocus>
+                                                        <input type="text" class="form-control" id="idnombremateria" placeholder="Ej: Fundamentos de programacion" required autofocus>
                                                     </div> 
                                                 </div>
 
@@ -1122,7 +1134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <label class="col-sm-3 control-label">Grupo:<b><span style="color: red">*</span></b></label>
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-child"></i></span>
-                                                        <input type="text" class="form-control" id="idgrupomateria" placeholder="Grupo materia" required autofocus>
+                                                        <input type="text" class="form-control" id="idgrupomateria" placeholder="Ej: A" required autofocus>
 
                                                     </div> 
                                                 </div>
@@ -1177,10 +1189,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <table id="table2" class="table table-bordered table-hover">
                                                     <thead style="background: #f7f7f7">
                                                         <tr id="encabezado">
-                                                            <th class="text-center">Codigo</th>
+                                                            <th class="text-center">Id</th>
                                                             <th class="text-center">Nombre</th>
+                                                             <th class="text-center">Grupo</th>
+                                                              <th class="text-center">Codigo</th>
                                                             <th class="text-center">profesor</th>
-                                                            <th class="text-center">Grupo</th>
                                                             <th class="text-center">Opciones</th>
 
                                                         </tr>
@@ -1356,7 +1369,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-child"></i></span>
 
-                                                        <input type="number" class="form-control" id="idcodigodispositivo" placeholder="Codigo dispositivo" required autofocus>
+                                                        <input type="number" class="form-control" id="idcodigodispositivo" placeholder="Ej: 1" required autofocus>
                                                     </div> 
                                                 </div>
 
@@ -1366,7 +1379,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <div class="input-group col-sm-8">
                                                         <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
 
-                                                        <input type="text" class="form-control" id="idreferenciadispositivo" placeholder="Referencia dispositivo" required autofocus>
+                                                        <input type="text" class="form-control" id="idreferenciadispositivo" placeholder="Ej: Pc1" required autofocus>
                                                     </div> 
                                                 </div>
 
@@ -1433,6 +1446,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <tr id="encabezado">
                                                             <th class="text-center">Codigo</th>
                                                             <th class="text-center">Nombre</th>
+
+                                                            <th class="text-center">Opciones</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="bodytablaconsultarsala2">
+
+
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+
+                                            <div class="table-responsive">
+                                                <table id="table2" style="display: none;" class="table table-bordered table-hover s2">
+                                                    <thead style="background: #f7f7f7">
+                                                        <tr id="encabezado">
+                                                            <th class="text-center">Codigo</th>
+                                                            <th class="text-center">Nombre</th>
                                                             <th class="text-center">Tipo</th>
                                                             <th class="text-center">Sala</th>
                                                             <th class="text-center">Opciones</th>
@@ -1449,17 +1481,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
+
                                             <!-- Modal -->
-                                            <div id="myModalActualizarMateria" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div id="myModalActualizarDispositivo" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header" style="background: #f7f7f7">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title text-center"><b id="titulomodalactualizarMateria"> </b></h4>
+                                                            <h4 class="modal-title text-center"><b id="titulomodalactualizarDipositivo"> </b></h4>
                                                         </div>
 
 
-                                                        <form class="form-horizontal" id="formactualizarmateria">
+                                                        <form class="form-horizontal" id="formactualizardispositivo">
 
                                                             <div class="modal-body">
                                                                 <div class="row" style="display: none">
@@ -1469,7 +1502,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                             <div class="input-group col-sm-8">
                                                                                 <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
 
-                                                                                <input type="text" class="form-control" id="actidmateriaidentificador" placeholder="404" required autofocus>
+                                                                                <input type="text" class="form-control" id="actiddispositivoidentificador" placeholder="404" required autofocus>
 
 
                                                                             </div> 
@@ -1565,8 +1598,182 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <!-- .................  -->
 
+                    <!-- CRUD EDIFICIO -->
+
+                    <div id="registrar-edificio" class="row seccioninfo" style="display: none">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Registrar Edificio</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+
+                                <div class="row" style="height: 20px"></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <form class="form-horizontal" id="formagregaredificio">
+                                            <div class="box-body">
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Nombre:<b><span style="color: red">*</span></b></label>
+                                                    <div class="input-group col-sm-8">
+                                                        <span class="input-group-addon"><i class="fa fa-child"></i></span>
+
+                                                        <input type="text" class="form-control" id="idnombreedificio" placeholder="Nombre edificio" required autofocus>
+                                                    </div> 
+                                                </div>
 
 
+
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="button" onclick="registrarEdificio()" class="btn btn-primary pull-right">Registrar</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+
+                                        <!-- /.chart-responsive -->
+                                    </div>
+
+                                </div>
+                                <!-- /.row -->
+
+                                <!-- ./box-body -->
+
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+
+
+                    <div id="consultar-edificio" class="row seccioninfo" style="display: none">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Consulta de edificio</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="row" style="height: 20px"></div>
+
+                                            <div class="table-responsive">
+                                                <table id="table2" class="table table-bordered table-hover">
+                                                    <thead style="background: #f7f7f7">
+                                                        <tr id="encabezado">
+                                                            <th class="text-center">Id</th>
+                                                            <th class="text-center">Nombre</th>
+                                                            <th class="text-center">Opciones</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="bodytablaconsultaredificio">
+
+
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+
+
+
+                                            <!-- Modal -->
+                                            <div id="myModalActualizarEdificio" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background: #f7f7f7">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title text-center"><b id="titulomodalactualizaredificio"> </b></h4>
+                                                        </div>
+
+
+                                                        <form class="form-horizontal" id="formactualizaredificio">
+
+                                                            <div class="modal-body">
+                                                                <div class="row" style="display: none">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label  class="col-sm-3 control-label">Bloque:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
+                                                                                <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+
+                                                                                <input type="text" class="form-control" id="actidedificioidentificador" placeholder="404" required autofocus>
+
+
+                                                                            </div> 
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                          
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Nombre:<b><span style="color: red">*</span></b></label>
+                                                                            <div class="input-group col-sm-8">
+                                                                                <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
+
+                                                                                <input type="text" class="form-control" id="actidnombreedificio" placeholder="" required autofocus>
+                                                                            </div> 
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                    
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary" onclick="actualizarEdificio()">Actualizar</button>                                                           
+                                                            </div>
+
+                                                        </form>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal -->
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- ./box-body -->
+
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+                    <!-- .................  -->
+
+
+                    
                 </section>
                 <!-- /.content -->
             </div>
