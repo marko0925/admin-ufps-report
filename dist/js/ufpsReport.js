@@ -52,16 +52,20 @@ function signIn() {
                     loadEdificios();
                     ctrlPages($("#pageLogin"), $("#pageReport"));
                 } else {
-                    $(".content-header").html(`<div class="alert alert-danger alert-dismissible">
+                    $("#msg").html(`<div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
-                    ${res.err}.
+                    Verifica que tus datos esten correctos.
                   </div>`);
                 }
                 return false;
             },
             error: function (err) {
-                console.log("ERR,", err);
+                $("#msg").html(`<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
+                Verifica que tus datos esten correctos.
+              </div>`);
                 return false;
             }
         })
@@ -253,14 +257,12 @@ function loadDispositivos(idSala, filas, columnas) {
                     if (j >= columnas / 2) {
                         devicesRightArray.push(`
                         <div class="col-lg-${12/(columnas/2)} col-md-${12/(columnas/2)} col-sm-${12/(columnas/2)} col-xs-${12/(columnas/2)} ${i}-${j}">
-                        ${i}-${j}
                         ${loadDispositivoIndividual(i,j)}
                         </div>
                     `);
                     } else {
                         devicesLeftArray.push(`
                         <div class="col-lg-${12/(columnas/2)} col-md-${12/(columnas/2)} col-sm-${12/(columnas/2)} col-xs-${12/(columnas/2)} ${i}-${j}">
-                        ${i}-${j}
                         ${loadDispositivoIndividual(i,j)}
                         </div>
                     `);
@@ -287,28 +289,32 @@ function loadOtrosDevices() {
             if (instrumento.tipo == 2) {
                 if (!instrumento.estado) {
                     estado = "broken";
-                    $(`.beam`).html(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id})">
+                    $(`.beam`).html(`<span data-toggle="tooltip" title="" class="fa fa-info-circle" data-original-title="Ref:${instrumento.referencia} Reportes: ${instrumento.numero_reportes}"></span>
+                    <div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id},${instrumento.tipo})">
                                                             <i class="fa fa-video-camera ${estado}" aria-hidden="true"></i>
                                                         </div>`);
                 } else {
                     estado = "working";
-                    $(`.beam`).html(`<div class="instrument">
-                                                            <i class="fa fa-video-camera ${estado}" aria-hidden="true"></i>
-                                                        </div>`);
+                    $(`.beam`).html(`<span data-toggle="tooltip" title="" class="fa fa-info-circle" data-original-title="Ref:${instrumento.referencia}"></span>
+                    <div class="instrument">
+                    <i class="fa fa-video-camera ${estado}" aria-hidden="true"></i>
+                    </div>`);
                 }
             }
         } else if (instrumento.fila == -1 && instrumento.columna == -1) {
             if (instrumento.tipo == 3) {
                 if (!instrumento.estado) {
                     estado = "broken";
-                    $(`.audio`).html(`<div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id})">
+                    $(`.audio`).html(`<span data-toggle="tooltip" title="" class="fa fa-info-circle" data-original-title="Ref:${instrumento.referencia} Reportes: ${instrumento.numero_reportes}"></span>
+                    <div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id},${instrumento.tipo})">
                                                             <i class="fa fa-music ${estado}" aria-hidden="true"></i>
                                                         </div>`);
                 } else {
                     estado = "working";
-                    $(`.audio`).html(`<div class="instrument" >
-                                                            <i class="fa fa-music ${estado}" aria-hidden="true"></i>
-                                                        </div>`);
+                    $(`.audio`).html(`<span data-toggle="tooltip" title="" class="fa fa-info-circle" data-original-title="Ref:${instrumento.referencia}"></span>
+                    <div class="instrument" >
+                    <i class="fa fa-music ${estado}" aria-hidden="true"></i>
+                    </div>`);
                 }
 
             }
@@ -324,15 +330,19 @@ function loadDispositivoIndividual(i, j) {
             if (instrumento.tipo == 1) {
                 if (!instrumento.estado) {
                     estado = "broken";
-                    return `<div class="instrument" data-toggle="modal"  data-target=".modal" onclick="showModal(${instrumento.id})">
+
+                    return `
+                    <span data-toggle="tooltip" title="" class=" fa fa-info-circle" data-original-title="Ref: ${instrumento.referencia} - Reportes: ${instrumento.numero_reportes}"></span>
+                    <div class="instrument" data-toggle="modal"  data-target=".modal" onclick="showModal(${instrumento.id},${instrumento.tipo})">
                                                 <i class="fa fa-desktop ${estado}" aria-hidden="true"></i>
                                             </div>`;
                 }
                 estado = "working";
-                return `<div class="instrument" >
+                return `<span data-toggle="tooltip" title="" class=" fa fa-info-circle" data-original-title="Ref: ${instrumento.referencia}"></span>
+                <div class="instrument" >
                                                 <i class="fa fa-desktop ${estado}" aria-hidden="true"></i>
                                             </div>`;
-                                            
+
             }
             //  else if (instrumento.tipo == 2) {
             //     if (!instrumento.estado) {
@@ -365,15 +375,15 @@ function loadDispositivoIndividual(i, j) {
         }
 
     }
-    return `<div class="instrument">
-        <i class="fa fa-question-circle" aria-hidden="true"></i>
+    return `<div class="">
+        <span data-toggle="tooltip" title="" class="instrument fa fa-question-circle" data-original-title="No existe"></span>
         </div>`;
 }
 /**
  * Muestra el card correspondiente
  * @param {* indice} i 
  */
-function showModal(id_instrumento) {
+function showModal(id_instrumento, tipo) {
     $(".modal-title").html(`Cargando...`)
     $(".modal-body").html(`
                         <div style="display:table;margin:auto;font-size:120px" class="loading">
@@ -386,14 +396,13 @@ function showModal(id_instrumento) {
             id: id_instrumento
         },
         success: function (res) {
-            let reportes = res;
+            let reportes = res.success;
             let model = {
                 title: "",
                 body: ""
             }
-            let tipo_dispo = reportes[0].dispositivoNombre;
-            let estado = reportes[0].estadoNombreDispositivo;
-            if (tipo_dispo === "pc") {
+            let estado = reportes[0].estado;
+            if (tipo === 1) {
                 model.title = "PC";
                 model.body = `
                 <div>
@@ -410,25 +419,25 @@ function showModal(id_instrumento) {
 
                 let icon = "";
                 let estadoParte = "";
-                let fecha = "";
+                let fecha = null;
                 let denunciante = "";
                 let profesor = "";
                 let descripcion = "";
                 for (let reporte of reportes) {
 
-                    if (reporte.dispositivoParteId === 1) {
+                    if (reporte.perisferico === "mouse") {
                         icon = "fa-hand-pointer-o";
-                    } else if (reporte.dispositivoParteId === 2) {
+                    } else if (reporte.perisferico === "teclado") {
                         icon = "fa-keyboard-o"
-                    } else if (reporte.dispositivoParteId === 3) {
+                    } else if (reporte.perisferico === "pantalla") {
                         icon = "fa-television";
-                    } else if (reporte.dispositivoParteId === 4) {
+                    } else if (reporte.perisferico === "cpu") {
                         icon = "fa-building";
                     }
-                    estadoParte = reporte.estadoNombreReporte;
-                    fecha = reporte.fecha;
-                    denunciante = reporte.denuncianteNombre;
-                    profesor = reporte.profesorNombre;
+                    estadoParte = "Dañado";
+                    fecha = new Date(reporte.fecha);
+                    denunciante = reporte.nombre_autor;
+                    profesor = reporte.nombre_docente;
                     descripcion = reporte.descripcion;
                     model.body += `
                     <hr>
@@ -447,7 +456,7 @@ function showModal(id_instrumento) {
                     
                     <div>
                         <label>Fecha</label>
-                        <small>${fecha}</small>
+                        <small>${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()}</small>
                     </div>
                     
                     <div>
@@ -477,7 +486,9 @@ function showModal(id_instrumento) {
 
 
                 }
-            } else if (tipo_dispo === "video beam") {
+            } else if (tipo === 2) {
+                let fecha = new Date(reportes[0].fecha);
+                let estado =  "Dañado" ;
                 model.title = "VideoBeam";
                 model.body = ` 
                 <div>
@@ -491,24 +502,24 @@ function showModal(id_instrumento) {
             
                 <div class="big-first-letter">
                     <label>Estado</label>
-                    <span class="label label-danger">${reportes[0].estadoNombreReporte}</span>
+                    <span class="label label-danger">${estado}</span>
                 </div>
             
 
                 <div>
                     <label>Fecha</label>
-                    <small>${reportes[0].fecha}</small>
+                    <small>${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()}</small>
                 </div>
                 
                 <div>
                     <label>Denunciante</label>
-                    <small>${reportes[0].denuncianteNombre}</small>
+                    <small>${reportes[0].nombre_autor}</small>
                 </div>
                 
                 
                 <div>
                     <label>Reporte validado por el profesor</label>
-                    <small>${reportes[0].profesorNombre}</small>
+                    <small>${reportes[0].nombre_docente}</small>
                 </div>
              
                 <div>
@@ -527,7 +538,9 @@ function showModal(id_instrumento) {
                                 <i class="fa fa-thumbs-up"></i>
                             </button>`);
 
-            } else if (tipo_dispo === "minicomponente") {
+            } else if (tipo === 3) {
+                let fecha = new Date(reportes[0].fecha);
+                let estado = "Dañado";
                 model.title = "Minicomponente";
                 model.body = `
                 <div>
@@ -541,25 +554,25 @@ function showModal(id_instrumento) {
             
                 <div class="big-first-letter">
                     <label>Estado</label>
-                    <span class="label label-danger">${reportes[0].estadoNombreReporte}</span>
+                    <span class="label label-danger">${estado}</span>
                 </div>
             
             
                 
                 <div>
                     <label>Fecha</label>
-                    <small>${reportes[0].fecha}</small>
+                    <small>${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()}</small>
                 </div>
                 
                 <div>
                     <label>Reporte hecho por el estudiante</label>
-                    <small>${reportes[0].denuncianteNombre}</small>
+                    <small>${reportes[0].nombre_autor}</small>
                 </div>
                 
                 
                 <div>
                     <label>Reporte validado por el profesor</label>
-                    <small>${reportes[0].profesorNombre}</small>
+                    <small>${reportes[0].nombre_docente}</small>
                 </div>
              
                 <div>
