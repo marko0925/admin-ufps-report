@@ -80,6 +80,14 @@ function salir() {
 }
 
 /**
+ * Function encargada de vaciar el header **cristian**
+ */
+function vaciar_header(){
+    $(".content-header").html(``);
+}
+
+
+/**
  * Function para mostrar y ocultar paginas
  * @param {*Pagina a ocultar} pageToHide 
  * @param {*Pagina a mostrar} pageToShow 
