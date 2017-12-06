@@ -15,7 +15,8 @@ function cargarSeccionConsultarMateria() {
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-materia").show();
-    $("#table2").DataTable().destroy();
+    
+    $('.datablepersonalizada').DataTable().destroy();
     $("#bodytablaconsultarmateria").empty();
 
     cargarTablaMateria();
@@ -140,7 +141,7 @@ function cargarTablaMateria() {
 //-----------------------------------------------------------------------------------
                 }
 
-                $("#table2").DataTable();
+               $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -307,7 +308,7 @@ function cargarSeccionConsultarDispositivo() {
     $("#consultar-dispositivo").show();
     $("#table3").show();
     $(".s2").hide();
-    $("#table2").DataTable().destroy();
+    $(".datablepersonalizada").DataTable().destroy();
     $("#bodytablaconsultardispositivo").empty();
     $("#bodytablaconsultarsala2").empty();
     cargarSalasDispositivo();
@@ -402,7 +403,7 @@ function registrarDispositivo() {
 
 
 function cargarTablaDispositivo(idsala) {
-    $("#table2").DataTable().destroy();
+    $(".datablepersonalizada").DataTable().destroy();
     $("#bodytablaconsultardispositivo").empty();
     $("#table3").hide();
 
@@ -505,7 +506,7 @@ function cargarTablaDispositivo(idsala) {
                                 $("#volver").show();
                             }
 
-                            $("#table2").DataTable();
+                            $(".datablepersonalizada").DataTable();
 
                         } else if (res.err) {
                             let error = res.err;
@@ -565,7 +566,7 @@ function cargarTablaSala2() {
                         </tr>');
                 }
                 $("#volver").hide();
-                $("#table2").DataTable();
+                $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -700,7 +701,7 @@ function cargarSeccionConsultarEdificio() {
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-edificio").show();
-    $("#table2").DataTable().destroy();
+    $(".datablepersonalizada").DataTable().destroy();
     $("#bodytablaconsultaredificio").empty();
 
     cargarTablaEdificio();
@@ -767,7 +768,7 @@ function cargarTablaEdificio() {
                         </tr>');
                 }
 
-                $("#table2").DataTable();
+                $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
