@@ -1273,7 +1273,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <!-- ...........................CODIGO DANIEL:.............. -->
 
-                    <!-- CRUD MATETRIAS -->
+                <!-- CRUD MATETRIAS -->
 
                 <div id="registrar-materias" class="row seccioninfo" style="display: none">
                     <div class="col-md-12">
@@ -1627,10 +1627,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
 
 
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Numero:<b><span style="color: red">*</span></b></label>
-                                                    <div class="input-group col-sm-8">
-                                                        <span class="input-group-addon"><i class="fa fa-child"></i></span>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Numero:
+                                                    <b>
+                                                        <span style="color: red">*</span>
+                                                    </b>
+                                                </label>
+                                                <div class="input-group col-sm-8">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-child"></i>
+                                                    </span>
 
                                                     <input type="number" class="form-control" id="idcodigodispositivo" placeholder="Ej: 1" required autofocus>
                                                 </div>
@@ -1652,29 +1658,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </div>
                                             </div>
 
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Fila:<b><span style="color: red">*</span></b></label>
-                                                    <div class="input-group col-sm-8">
-                                                        <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
-
-                                                        <input type="text" class="form-control" id="idfiladispositivo" placeholder="Ej: 1" required autofocus>
-                                                    </div> 
-                                                </div>
-                                            </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-sm-3 control-label">Columna:<b><span style="color: red">*</span></b></label>
-                                                    <div class="input-group col-sm-8">
-                                                        <span class="input-group-addon"><i class="fa fa-street-view"></i></span>
-
-                                                        <input type="text" class="form-control" id="idcolumnadispositivo" placeholder="Ej: 1" required autofocus>
-                                                    </div> 
-                                                </div>
-                                            </div>
-
-
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Sala:
+                                                <label class="col-sm-3 control-label">Fila:
                                                     <b>
                                                         <span style="color: red">*</span>
                                                     </b>
@@ -1683,48 +1668,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <span class="input-group-addon">
                                                         <i class="fa fa-street-view"></i>
                                                     </span>
-                                                    <select class="form-control" id="idsaladispositivos" required autofocus>
 
-                                                    </select>
-
+                                                    <input type="text" class="form-control" id="idfiladispositivo" placeholder="Ej: 1" required autofocus>
                                                 </div>
                                             </div>
-
-
                                         </div>
-                                        <!-- /.box-body -->
-                                        <div class="box-footer">
-                                            <button type="button" onclick="registrarDispositivo()" class="btn btn-primary pull-right">Registrar</button>
-                                        </div>
-                                        <!-- /.box-footer -->
-                                    </form>
 
-                                    <!-- /.chart-responsive -->
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Columna:
+                                                <b>
+                                                    <span style="color: red">*</span>
+                                                </b>
+                                            </label>
+                                            <div class="input-group col-sm-8">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-street-view"></i>
+                                                </span>
+
+                                                <input type="text" class="form-control" id="idcolumnadispositivo" placeholder="Ej: 1" required autofocus>
+                                            </div>
+                                        </div>
                                 </div>
 
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Sala:
+                                        <b>
+                                            <span style="color: red">*</span>
+                                        </b>
+                                    </label>
+                                    <div class="input-group col-sm-8">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-street-view"></i>
+                                        </span>
+                                        <select class="form-control" id="idsaladispositivos" required autofocus>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+
+
                             </div>
-                            <!-- /.row -->
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="button" onclick="registrarDispositivo()" class="btn btn-primary pull-right">Registrar</button>
+                            </div>
+                            <!-- /.box-footer -->
+                            </form>
 
-                            <!-- ./box-body -->
-
+                            <!-- /.chart-responsive -->
                         </div>
-                        <!-- /.box -->
+
                     </div>
-                    <!-- /.col -->
+                    <!-- /.row -->
+
+                    <!-- ./box-body -->
+
                 </div>
 
+                <div id="consultar-dispositivo" class="row seccioninfo" style="display: none">
+                    <div class="col-md-12">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title" id="nombresala">Consulta un dispositivo de alguna de las siguintes salas</h3>
 
-
-                    <div id="consultar-dispositivo" class="row seccioninfo" style="display: none">
-                        <div class="col-md-12">
-                            <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title" id="nombresala">Consulta un dispositivo de alguna de las siguintes salas</h3>
-
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
 
                                 </div>
                             </div>
@@ -1735,13 +1747,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                         <div class="row" style="height: 20px"></div>
 
-                                            <div class="table-responsive">
-                                                <table id="table3" class="table table-bordered table-hover">
-                                                    <thead style="background: #f7f7f7">
-                                                        <tr id="encabezado">
-                                                            <th class="text-center">Sala</th>
-                                                            <th class="text-center">Edificio</th>
-                                                            <th class="text-center">Nombre</th>
+                                        <div class="table-responsive">
+                                            <table id="table3" class="table table-bordered table-hover">
+                                                <thead style="background: #f7f7f7">
+                                                    <tr id="encabezado">
+                                                        <th class="text-center">Sala</th>
+                                                        <th class="text-center">Edificio</th>
+                                                        <th class="text-center">Nombre</th>
 
                                                         <th class="text-center">Dispositivos</th>
 
@@ -1775,24 +1787,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                 </tbody>
 
-                                                </table>
-                                            </div>
+                                            </table>
+                                        </div>
 
-                                            <div class="col-md-1 col-md-offset-11" id="volver" style="display: none;">
-                                                <button type="button" onclick="cargarSeccionConsultarDispositivo()" class="btn btn-instagram">Volver</button>
+                                        <div class="col-md-1 col-md-offset-11" id="volver" style="display: none;">
+                                            <button type="button" onclick="cargarSeccionConsultarDispositivo()" class="btn btn-instagram">Volver</button>
 
-                                            </div>
-
-                                            <!-- /.modal -->
-
-                                            <!-- Modal -->
-                                            <div id="myModalActualizarDispositivo" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header" style="background: #f7f7f7">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title text-center"><b id="titulomodalactualizarDispositivo"> </b></h4>
-                                                        </div>
+                                        </div>
 
                                         <!-- /.modal -->
 
@@ -1809,349 +1810,365 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         </h4>
                                                     </div>
 
+                                                    <!-- /.modal -->
 
-                                                    <form class="form-horizontal" id="formactualizarDipositivo">
-
-                                                        <div class="modal-body">
-                                                            <div class="row" style="display: none">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Bloque:
-                                                                            <b>
-                                                                                <span style="color: red">*</span>
-                                                                            </b>
-                                                                        </label>
-                                                                        <div class="input-group col-sm-8">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-street-view"></i>
-                                                                            </span>
-
-                                                                            <input type="text" class="form-control" id="actiddispositivoidentificador" placeholder="404" required autofocus>
+                                                    <!-- Modal -->
+                                                    <div id="myModalActualizarDispositivo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header" style="background: #f7f7f7">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <h4 class="modal-title text-center">
+                                                                        <b id="titulomodalactualizarDispositivo"> </b>
+                                                                    </h4>
+                                                                </div>
 
 
+                                                                <form class="form-horizontal" id="formactualizarDipositivo">
+
+                                                                    <div class="modal-body">
+                                                                        <div class="row" style="display: none">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-sm-3 control-label">Bloque:
+                                                                                        <b>
+                                                                                            <span style="color: red">*</span>
+                                                                                        </b>
+                                                                                    </label>
+                                                                                    <div class="input-group col-sm-8">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="fa fa-street-view"></i>
+                                                                                        </span>
+
+                                                                                        <input type="text" class="form-control" id="actiddispositivoidentificador" placeholder="404" required autofocus>
+
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
                                                                         </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-sm-3 control-label">Salon:
+                                                                                        <b>
+                                                                                            <span style="color: red">*</span>
+                                                                                        </b>
+                                                                                    </label>
+                                                                                    <div class="input-group col-sm-8">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="fa fa-street-view"></i>
+                                                                                        </span>
+                                                                                        <select class="form-control" id="actidsaladispositivo" required autofocus>
+
+                                                                                        </select>
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row">
+
+                                                                            <div class="col-md-12 ">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-sm-3 control-label">Numero:
+                                                                                        <b>
+                                                                                            <span style="color: red">*</span>
+                                                                                        </b>
+                                                                                    </label>
+                                                                                    <div class="input-group col-sm-8">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="fa fa-child"></i>
+                                                                                        </span>
+
+                                                                                        <input type="text" class="form-control" id="actidnumerodispositivo" placeholder="404" required autofocus>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-sm-3 control-label">Fila:
+                                                                                        <b>
+                                                                                            <span style="color: red">*</span>
+                                                                                        </b>
+                                                                                    </label>
+                                                                                    <div class="input-group col-sm-8">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="fa fa-street-view"></i>
+                                                                                        </span>
+
+                                                                                        <input type="text" class="form-control" id="actidfiladispositivo" placeholder="" required autofocus>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-sm-3 control-label">Columna:
+                                                                                        <b>
+                                                                                            <span style="color: red">*</span>
+                                                                                        </b>
+                                                                                    </label>
+                                                                                    <div class="input-group col-sm-8">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="fa fa-child"></i>
+                                                                                        </span>
+                                                                                        <input type="text" class="form-control" id="actidcolumnadispositivo" placeholder="" required autofocus>
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-primary" onclick="actualizarDispositivo()">Actualizar</button>
                                                                     </div>
 
-                                                                </div>
+                                                                </form>
+
+
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Salon:
-                                                                            <b>
-                                                                                <span style="color: red">*</span>
-                                                                            </b>
-                                                                        </label>
-                                                                        <div class="input-group col-sm-8">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-street-view"></i>
-                                                                            </span>
-                                                                            <select class="form-control" id="actidsaladispositivo" required autofocus>
-
-                                                                            </select>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-
-                                                                <div class="col-md-12 ">
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Numero:
-                                                                            <b>
-                                                                                <span style="color: red">*</span>
-                                                                            </b>
-                                                                        </label>
-                                                                        <div class="input-group col-sm-8">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-child"></i>
-                                                                            </span>
-
-                                                                            <input type="text" class="form-control" id="actidnumerodispositivo" placeholder="404" required autofocus>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Fila:
-                                                                            <b>
-                                                                                <span style="color: red">*</span>
-                                                                            </b>
-                                                                        </label>
-                                                                        <div class="input-group col-sm-8">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-street-view"></i>
-                                                                            </span>
-
-                                                                            <input type="text" class="form-control" id="actidfiladispositivo" placeholder="" required autofocus>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Columna:
-                                                                            <b>
-                                                                                <span style="color: red">*</span>
-                                                                            </b>
-                                                                        </label>
-                                                                        <div class="input-group col-sm-8">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-child"></i>
-                                                                            </span>
-                                                                            <input type="text" class="form-control" id="actidcolumnadispositivo" placeholder="" required autofocus>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-primary" onclick="actualizarDispositivo()">Actualizar</button>
-                                                        </div>
+                                                        <!-- /.modal -->
 
-                                                    </form>
+
+
+
+                                                    </div>
+                                                    <!-- /.modal -->
+
+
 
 
                                                 </div>
+
                                             </div>
-                                            <!-- /.modal -->
-
-
-
-
+                                            <!-- /.row -->
                                         </div>
-                                        <!-- /.modal -->
-
-
-
+                                        <!-- ./box-body -->
 
                                     </div>
-
+                                    <!-- /.box -->
                                 </div>
-                                <!-- /.row -->
+                                <!-- /.col -->
                             </div>
-                            <!-- ./box-body -->
 
-                        </div>
-                        <!-- /.box -->
-                    </div>
-                    <!-- /.col -->
-                </div>
+                            <!-- .................  -->
 
-                <!-- .................  -->
+                            <!-- CRUD EDIFICIO -->
 
-                <!-- CRUD EDIFICIO -->
-
-                <div id="registrar-edificio" class="row seccioninfo" style="display: none">
-                    <div class="col-md-12">
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Registrar Edificio</h3>
-
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-
-                                </div>
-                            </div>
-                            <!-- /.box-header -->
-
-                            <div class="row" style="height: 20px"></div>
-                            <div class="row">
+                            <div id="registrar-edificio" class="row seccioninfo" style="display: none">
                                 <div class="col-md-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Registrar Edificio</h3>
 
-                                    <form class="form-horizontal" id="formagregaredificio">
-                                        <div class="box-body">
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
 
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">Nombre:
-                                                    <b>
-                                                        <span style="color: red">*</span>
-                                                    </b>
-                                                </label>
-                                                <div class="input-group col-sm-8">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-child"></i>
-                                                    </span>
-
-                                                    <input type="text" class="form-control" id="idnombreedificio" placeholder="Nombre edificio" required autofocus>
-                                                </div>
                                             </div>
-
-
-
                                         </div>
-                                        <!-- /.box-body -->
-                                        <div class="box-footer">
-                                            <button type="button" onclick="registrarEdificio()" class="btn btn-primary pull-right">Registrar</button>
-                                        </div>
-                                        <!-- /.box-footer -->
-                                    </form>
-
-                                    <!-- /.chart-responsive -->
-                                </div>
-
-                            </div>
-                            <!-- /.row -->
-
-                            <!-- ./box-body -->
-
-                        </div>
-                        <!-- /.box -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-
-
-
-                <div id="consultar-edificio" class="row seccioninfo" style="display: none">
-                    <div class="col-md-12">
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Consulta de edificio</h3>
-
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-
-                                </div>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-12">
+                                        <!-- /.box-header -->
 
                                         <div class="row" style="height: 20px"></div>
+                                        <div class="row">
+                                            <div class="col-md-12">
 
-                                        <div class="table-responsive">
-                                            <table id="table2" class="table table-bordered table-hover">
-                                                <thead style="background: #f7f7f7">
-                                                    <tr id="encabezado">
-                                                        <th class="text-center">Id</th>
-                                                        <th class="text-center">Nombre</th>
-                                                        <th class="text-center">Opciones</th>
+                                                <form class="form-horizontal" id="formagregaredificio">
+                                                    <div class="box-body">
 
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="bodytablaconsultaredificio">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Nombre:
+                                                                <b>
+                                                                    <span style="color: red">*</span>
+                                                                </b>
+                                                            </label>
+                                                            <div class="input-group col-sm-8">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-child"></i>
+                                                                </span>
+
+                                                                <input type="text" class="form-control" id="idnombreedificio" placeholder="Nombre edificio" required autofocus>
+                                                            </div>
+                                                        </div>
 
 
-                                                </tbody>
 
-                                            </table>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                    <div class="box-footer">
+                                                        <button type="button" onclick="registrarEdificio()" class="btn btn-primary pull-right">Registrar</button>
+                                                    </div>
+                                                    <!-- /.box-footer -->
+                                                </form>
+
+                                                <!-- /.chart-responsive -->
+                                            </div>
+
                                         </div>
+                                        <!-- /.row -->
+
+                                        <!-- ./box-body -->
+
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
 
 
 
-                                        <!-- Modal -->
-                                        <div id="myModalActualizarEdificio" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header" style="background: #f7f7f7">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="modal-title text-center">
-                                                            <b id="titulomodalactualizaredificio"> </b>
-                                                        </h4>
+                            <div id="consultar-edificio" class="row seccioninfo" style="display: none">
+                                <div class="col-md-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Consulta de edificio</h3>
+
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+                                                    <div class="row" style="height: 20px"></div>
+
+                                                    <div class="table-responsive">
+                                                        <table id="table2" class="table table-bordered table-hover">
+                                                            <thead style="background: #f7f7f7">
+                                                                <tr id="encabezado">
+                                                                    <th class="text-center">Id</th>
+                                                                    <th class="text-center">Nombre</th>
+                                                                    <th class="text-center">Opciones</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="bodytablaconsultaredificio">
+
+
+                                                            </tbody>
+
+                                                        </table>
                                                     </div>
 
 
-                                                    <form class="form-horizontal" id="formactualizaredificio">
 
-                                                        <div class="modal-body">
-                                                            <div class="row" style="display: none">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Bloque:
-                                                                            <b>
-                                                                                <span style="color: red">*</span>
-                                                                            </b>
-                                                                        </label>
-                                                                        <div class="input-group col-sm-8">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-street-view"></i>
-                                                                            </span>
-
-                                                                            <input type="text" class="form-control" id="actidedificioidentificador" placeholder="404" required autofocus>
+                                                    <!-- Modal -->
+                                                    <div id="myModalActualizarEdificio" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header" style="background: #f7f7f7">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <h4 class="modal-title text-center">
+                                                                        <b id="titulomodalactualizaredificio"> </b>
+                                                                    </h4>
+                                                                </div>
 
 
+                                                                <form class="form-horizontal" id="formactualizaredificio">
+
+                                                                    <div class="modal-body">
+                                                                        <div class="row" style="display: none">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-sm-3 control-label">Bloque:
+                                                                                        <b>
+                                                                                            <span style="color: red">*</span>
+                                                                                        </b>
+                                                                                    </label>
+                                                                                    <div class="input-group col-sm-8">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="fa fa-street-view"></i>
+                                                                                        </span>
+
+                                                                                        <input type="text" class="form-control" id="actidedificioidentificador" placeholder="404" required autofocus>
+
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
                                                                         </div>
+
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-sm-3 control-label">Nombre:
+                                                                                        <b>
+                                                                                            <span style="color: red">*</span>
+                                                                                        </b>
+                                                                                    </label>
+                                                                                    <div class="input-group col-sm-8">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="fa fa-street-view"></i>
+                                                                                        </span>
+
+                                                                                        <input type="text" class="form-control" id="actidnombreedificio" placeholder="" required autofocus>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-primary" onclick="actualizarEdificio()">Actualizar</button>
                                                                     </div>
 
-                                                                </div>
+                                                                </form>
+
+
                                                             </div>
-
-
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label class="col-sm-3 control-label">Nombre:
-                                                                            <b>
-                                                                                <span style="color: red">*</span>
-                                                                            </b>
-                                                                        </label>
-                                                                        <div class="input-group col-sm-8">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-street-view"></i>
-                                                                            </span>
-
-                                                                            <input type="text" class="form-control" id="actidnombreedificio" placeholder="" required autofocus>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-
-
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-primary" onclick="actualizarEdificio()">Actualizar</button>
-                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal -->
 
-                                                    </form>
 
 
                                                 </div>
+
                                             </div>
+                                            <!-- /.row -->
                                         </div>
-                                        <!-- /.modal -->
-
-
+                                        <!-- ./box-body -->
 
                                     </div>
-
+                                    <!-- /.box -->
                                 </div>
-                                <!-- /.row -->
+                                <!-- /.col -->
                             </div>
-                            <!-- ./box-body -->
-
                         </div>
-                        <!-- /.box -->
+                        <!-- .................  -->
                     </div>
-                    <!-- /.col -->
                 </div>
-
-                <!-- .................  -->
-
-                </section>
-                <!-- /.content -->
-            </div>
-            <!-- /.content-wrapper -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
 
         <!-- Main Footer -->
         <footer class="main-footer">
@@ -2168,12 +2185,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
-                   immediately after the control sidebar -->
+                               immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->
+    </div>
 
 
+    <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    </div>
 
     <!-- CODIGO PARA INICIAR SESION  -->
 
@@ -2207,12 +2229,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <div class="row">
                             <!--<div class="col-xs-8">
-                                        <div class="checkbox icheck">
-                                          <label>
-                                            <input type="checkbox"> Remember Me
-                                          </label>
-                                        </div>
-                                      </div>-->
+                                                    <div class="checkbox icheck">
+                                                      <label>
+                                                        <input type="checkbox"> Remember Me
+                                                      </label>
+                                                    </div>
+                                                  </div>-->
                             <!-- /.col -->
                             <div class="col-xs-4">
                                 <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
@@ -2224,17 +2246,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     </div>
                     <!--  <div class="social-auth-links text-center">
-                                <p>- OR -</p>
-                                <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-                                  Facebook</a>
-                                <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-                                  Google+</a>
-                              </div>-->
+                                            <p>- OR -</p>
+                                            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+                                              Facebook</a>
+                                            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+                                              Google+</a>
+                                          </div>-->
                     <!-- /.social-auth-links -->
                     <!--
-                              <a href="#">I forgot my password</a><br>
-                              <a href="register.html" class="text-center">Register a new membership</a>
-                        -->
+                                          <a href="#">I forgot my password</a><br>
+                                          <a href="register.html" class="text-center">Register a new membership</a>
+                                    -->
                 </div>
                 <!-- /.login-box-body -->
             </div>
@@ -2243,6 +2265,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
     </div>
+
+
+
     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- jQuery 2.2.3 -->
