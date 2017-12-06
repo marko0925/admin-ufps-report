@@ -193,7 +193,7 @@ function actualizarSala() {
             if (res.success) {
 
                 swal("Salon actualizado", "Haga click en el boton para regresar", "success").then((value) => {
-                    $("#formactualizarusuario")[0].reset();
+                    $("#formactualizarsala")[0].reset();
                     $("#myModalActualizarSala").modal('hide');
                     cargarSeccionConsultarSala();
 
@@ -347,7 +347,7 @@ function cargarSelectMateria() {
                 for (let a of res.sussess) {
                     $("#idhorarioselectmateria").append('<option value=' + a.id + '>' + a.nombre + '</option>');
                     $("#idhorarioselectmateriaregistrar").append('<option value=' + a.id + '>' + a.nombre + '</option>');
-
+                    $("#actidhorarioselectsala").append('<option value=' + a.id + '>' + a.nombre + '</option>');
 
                 }
 
@@ -430,7 +430,7 @@ function cargarTablaHorario() {
                         <td>' + a.nombre_salon + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
-                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarHorario(' + a.id + ',' + a.dia + ',`' + a.hora + '`,' + a.fila + ',' + a.salon + ')">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarHorario(' + a.id + ',' + a.dia + ',`' + a.hora + '`,' + a.salon + ')">\n\
                                     <i class="fa fa-edit"></i>\n\
                                 </button>\n\
                             </span>\n\
@@ -457,7 +457,65 @@ function cargarTablaHorario() {
     });
 }
 
-function actualizarHorario(){
+
+function cargarInformacionActualizarHorario(id, dia, hora, salon) {
+
+    $('#myModalActualizarHorario').modal('show');
+
+    $("#titulomodalactualizarhorario").html("Actualizando horario con ID " + id);
+
+
+    $('#actidhorarioidentificador').val(id);
+
+    $('#actidhorariodia > option[value="' + dia + '"]').attr('selected', 'selected');
+
+    $('#actidhorariohora > option[value="' + hora + '"]').attr('selected', 'selected');
+
+    alert(salon);
+    $('#actidhorarioselectsala > option[value="' + salon + '"]').attr('selected', 'selected');
+
+}
+
+
+function actualizarHorario() {
+
+    let identificador = $("#actidhorarioidentificador").val();
+    let dia = $("#actidhorariodia").val();
+    let hora = $("#actidhorariohora").val();
+    let sala = $("#actidhorarioselectsala").val();
+    $.ajax({
+        url: `${url}/salas/modificar`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: {
+            id: identificador,
+            nombre: salon,
+            torre: edificio,
+            fila: fila,
+            columna: columna
+        },
+        success: function (res) {
+            if (res.success) {
+
+                swal("Salon actualizado", "Haga click en el boton para regresar", "success").then((value) => {
+                    $("#formactualizarsala")[0].reset();
+                    $("#myModalActualizarSala").modal('hide');
+                    cargarSeccionConsultarSala();
+
+                });
+
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+
+        },
+        error: function (err) {
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
     return false;
 }
 

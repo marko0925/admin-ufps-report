@@ -8,9 +8,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>UFPS Report</title>
+        <title>MuxBird</title>
 
-        <link rel="icon" type="image/png" sizes="96x96" href="dist/img/administrator.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="dist/img/logo.png">
         <!--ESTILOS PROPIOS-->
         <link rel="stylesheet" href="dist/css/styles.css">
         <!-- Tell the browser to be responsive to screen width -->
@@ -45,7 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <style type="text/css">
             #estiloLogin {
-                border: 2px solid #000000;
+                border: 2px solid #D9D9D9;
                 border-radius: 24px 24px 24px 24px;
             }
         </style>
@@ -62,10 +62,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="index2.html" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini">
-                        <b>U</b>R</span>
+                        <b>M</b>B</span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-lg">
-                        <b>UFPS</b>Report</span>
+                        <b>Mux</b>Bird</span>
                 </a>
 
                 <!-- Header Navbar -->
@@ -308,7 +308,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-md-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Dispositivos</h3>
+                                    <h3 class="box-title" id="titulosectiondispotivos"></h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -324,6 +324,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                             <!-- Your Page Content Here -->
                                             <div class="section-dispositivos">
+
+
 
                                                 <!-- <div class="row">
                                                         <div class="col-md-5">
@@ -507,7 +509,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-street-view"></i>
                                                         </span>
-                                                        <select class="form-control" id="idsalabloque" required autofocus>
+                                                        <select class="form-control select2" style="width: 100%;" id="idsalabloque" required autofocus>
 
                                                         </select>
 
@@ -542,7 +544,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                             <i class="fa fa-street-view"></i>
                                                         </span>
 
-                                                        <input type="number" class="form-control" id="idsalafila" placeholder="Ej: 3" required autofocus>
+                                                        <input type="number" class="form-control" id="idsalafila" placeholder="Ej: 4" required autofocus>
                                                     </div>
                                                 </div>
 
@@ -557,7 +559,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-child"></i>
                                                         </span>
-                                                        <input type="number" class="form-control" id="idsalacolumna" placeholder="Ej: 2" required autofocus>
+                                                        <input type="number" class="form-control" id="idsalacolumna" placeholder="Ej: 4" required autofocus>
 
                                                     </div>
                                                 </div>
@@ -649,7 +651,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <div class="row" style="display: none">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Bloque:
+                                                                            <label class="col-sm-3 control-label">Id:
                                                                                 <b>
                                                                                     <span style="color: red">*</span>
                                                                                 </b>
@@ -751,7 +753,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-primary" >Actualizar</button>
+                                                                <button type="submit" class="btn btn-primary" >Actualizar</button>
                                                             </div>
 
                                                         </form>
@@ -988,6 +990,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                     </tbody>
 
+
                                                 </table>
                                             </div>
 
@@ -1010,10 +1013,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         <form class="form-horizontal" id="formactualizarhorario" onsubmit="return actualizarHorario();">
 
                                                             <div class="modal-body">
+
                                                                 <div class="row" style="display: none">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Bloque:
+                                                                            <label class="col-sm-3 control-label">Id:
                                                                                 <b>
                                                                                     <span style="color: red">*</span>
                                                                                 </b>
@@ -1023,9 +1027,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                     <i class="fa fa-street-view"></i>
                                                                                 </span>
 
-                                                                                <input type="text" class="form-control" id="actidsalaidentificador" placeholder="404" required autofocus>
+                                                                                <input type="text" class="form-control" id="actidhorarioidentificador" placeholder="404" required autofocus>
 
 
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row" >
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label">Dia:
+                                                                                <b>
+                                                                                    <span style="color: red">*</span>
+                                                                                </b>
+                                                                            </label>
+                                                                            <div class="input-group col-sm-8">
+                                                                                <span class="input-group-addon">
+                                                                                    <i class="fa fa-street-view"></i>
+                                                                                </span>
+
+                                                                                <select class="form-control" id="actidhorariodia" required autofocus>
+                                                                                    <option value="1">Lunes</option>
+                                                                                    <option value="2">Martes</option>
+                                                                                    <option value="3">Miercoles</option>
+                                                                                    <option value="4">Jueves</option>
+                                                                                    <option value="5">Viernes</option>
+                                                                                    <option value="6">Sabado</option>
+                                                                                    <option value="7">Domingo</option>
+                                                                                </select>
                                                                             </div>
                                                                         </div>
 
@@ -1034,7 +1065,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Bloque:
+                                                                            <label class="col-sm-3 control-label">Hora:
                                                                                 <b>
                                                                                     <span style="color: red">*</span>
                                                                                 </b>
@@ -1043,10 +1074,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                 <span class="input-group-addon">
                                                                                     <i class="fa fa-street-view"></i>
                                                                                 </span>
-                                                                                <select class="form-control" id="actidsalabloque" required autofocus>
-
+                                                                                <select class="form-control" id="actidhorariohora" required autofocus>
+                                                                                    <option value="6">6</option>
+                                                                                    <option value="7">7</option>
+                                                                                    <option value="8">8</option>
+                                                                                    <option value="9">9</option>
+                                                                                    <option value="10">10</option>
+                                                                                    <option value="11">11</option>
+                                                                                    <option value="12">12</option>
+                                                                                    <option value="13">13</option>
+                                                                                    <option value="14">14</option>
+                                                                                    <option value="15">15</option>
+                                                                                    <option value="16">16</option>
+                                                                                    <option value="17">17</option>
+                                                                                    <option value="18">18</option>
+                                                                                    <option value="19">19</option>
+                                                                                    <option value="20">20</option>
+                                                                                    <option value="21">21</option>
+                                                                                    <option value="22">22</option>
                                                                                 </select>
-
                                                                             </div>
                                                                         </div>
 
@@ -1066,56 +1112,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                 <span class="input-group-addon">
                                                                                     <i class="fa fa-child"></i>
                                                                                 </span>
+                                                                                <select class="form-control" id="actidhorarioselectsala" required autofocus>
 
-                                                                                <input type="text" class="form-control" id="actidsalasalon" placeholder="404" required autofocus>
+                                                                                </select>
                                                                             </div>
                                                                         </div>
 
 
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Cantidad de filas:
-                                                                                <b>
-                                                                                    <span style="color: red">*</span>
-                                                                                </b>
-                                                                            </label>
-                                                                            <div class="input-group col-sm-8">
-                                                                                <span class="input-group-addon">
-                                                                                    <i class="fa fa-street-view"></i>
-                                                                                </span>
 
-                                                                                <input type="number" class="form-control" id="actidsalafila" placeholder="3" required autofocus>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <label class="col-sm-3 control-label">Cantidad de columnas:
-                                                                                <b>
-                                                                                    <span style="color: red">*</span>
-                                                                                </b>
-                                                                            </label>
-                                                                            <div class="input-group col-sm-8">
-                                                                                <span class="input-group-addon">
-                                                                                    <i class="fa fa-child"></i>
-                                                                                </span>
-                                                                                <input type="number" class="form-control" id="actidsalacolumna" placeholder="2" required autofocus>
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-primary" onclick="actualizarSala()">Actualizar</button>
+                                                                <button type="submit" class="btn btn-primary">Actualizar</button>
                                                             </div>
 
                                                         </form>
@@ -1291,7 +1301,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row" style="height: 20px"></div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        
+
                                         <form class="form-horizontal" id="formagregarmateria" onsubmit="return registrarMateria();">
                                             <div class="box-body">
 
@@ -1341,7 +1351,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                  <button type="submit" class="btn btn-primary pull-right">Registrar</button>  
+                                                <button type="submit" class="btn btn-primary pull-right">Registrar</button>  
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
@@ -1542,7 +1552,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row" style="height: 20px"></div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        
+
                                         <form class="form-horizontal" id="formagregardispositivo" onsubmit="return registrarDispositivo();">
 
                                             <div class="box-body">
@@ -1843,9 +1853,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row" style="height: 20px"></div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        
+
                                         <form class="form-horizontal" id="formagregaredificio" onsubmit="return registrarMateria();">
-                                           
+
                                             <div class="box-body">
 
                                                 <div class="form-group">
@@ -1862,7 +1872,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                  <button type="submit" class="btn btn-primary pull-right">Registrar</button>  
+                                                <button type="submit" class="btn btn-primary pull-right">Registrar</button>  
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
@@ -2008,11 +2018,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <footer class="main-footer">
                 <!-- To the right -->
                 <div class="pull-right hidden-xs">
-                    UFPS
+                    MuxBird
                 </div>
                 <!-- Default to the left -->
                 <strong>Copyright &copy; 2017
-                    <a href="#">Universidad Francisco de Paula Santander</a>.</strong> All rights reserved.
+                    <a href="#">MUXBIRD</a>.</strong> All rights reserved.
             </footer>
 
             <!-- Control Sidebar -->
@@ -2033,10 +2043,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="login-logo">
                         <a href="../../index2.html">
                             <b>Mux</b>Bird</a>
+
                     </div>
+                    <div class="text-center">
+                        <img src="dist/img/logo.png" width="200" >
+                    </div>
+
                     <!-- /.login-logo -->
                     <div class="login-box-body">
                         <p class="login-box-msg">Inicia sesion</p>
+                        <div id="msg" style="margin-top:20px;">
+
+                        </div>
 
                         <form method="GET" onsubmit="return signIn()">
                             <div class="form-group has-feedback">
@@ -2063,15 +2081,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         </div>
                                                       </div>-->
                                 <!-- /.col -->
-                                <div class="col-xs-4">
+                                <div class="col-xs-4 col-xs-offset-4">
                                     <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
                                 </div>
                                 <!-- /.col -->
                             </div>
                         </form>
-                        <div id="msg" style="margin-top:20px;">
 
-                        </div>
                         <!--  <div class="social-auth-links text-center">
                                                 <p>- OR -</p>
                                                 <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
@@ -2124,6 +2140,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Select2 -->
         <script src="plugins/select2/select2.full.min.js"></script>
+        <script>$('.select2').select2();</script>
 
         <script type="text/javascript" src="dist/js/jquery-qrcode-0.14.0.min.js"></script>
     </body>
