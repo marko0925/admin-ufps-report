@@ -382,7 +382,7 @@ function registrarDispositivo() {
 }
 
 
-function cargarTablaDispositivo(idsala) {
+function cargarTablaDispositivo(idsala, nombresala) {
 
     $("#bodytablaconsultardispositivo").empty();
     $("#table3").DataTable().destroy();
@@ -411,13 +411,13 @@ function cargarTablaDispositivo(idsala) {
                 console.log(res);
                 let b = res.sussess
                 if (res.sussess.length == 0) {
-                    swal("La sala: " + idsala + " aun no cuenta con dispositivos", "Haga click en el boton para regresar", "error").then((value) => {
+                    swal("La sala: " + nombresala + " aun no cuenta con dispositivos", "Haga click en el boton para regresar", "error").then((value) => {
                         cargarSeccionConsultarDispositivo();
 
                     });
 
                 } else {
-                    $("#nombresala").html("Consulta de dispositivos - Sala: " + idsala);
+                    $("#nombresala").html("Consulta de dispositivos - Sala: " + nombresala);
                     $("#table2").show();
 
                     for (let a of res.sussess) {
@@ -517,7 +517,7 @@ function cargarTablaSala2() {
                         <td>' + a.nombre + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Ver Dispositivos">\n\
-                                <button type="submit" class="btn btn-vimeo btn-xs" onclick="cargarTablaDispositivo(' + a.id + ')">\n\
+                                <button type="submit" class="btn btn-vimeo btn-xs" onclick="cargarTablaDispositivo(' + a.id + ',`' + a.nombre + '`)">\n\
                                     <i class="fa fa-desktop"></i>\n\
                                 </button>\n\
                             </span>\n\
