@@ -4,6 +4,7 @@
 var url = "http://35.227.122.71/servicioApp/index.php";
 var profesor = '';
 function cargarSeccionRegistrarMateria() {
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-materias").show();
     cargarProfesor();
@@ -11,6 +12,7 @@ function cargarSeccionRegistrarMateria() {
 
 
 function cargarSeccionConsultarMateria() {
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-materia").show();
     $("#table2").DataTable().destroy();
@@ -293,12 +295,14 @@ function eliminarMateria(id) {
 
 
 function cargarSeccionRegistrarDispositivo() {
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-dispositivo").show();
     cargarSalasDispositivo();
 }
 
 function cargarSeccionConsultarDispositivo() {
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-dispositivo").show();
     $("#table3").show();
@@ -687,11 +691,13 @@ function eliminarDispositivo(id) {
 
 
 function cargarSeccionRegistrarEdificio() {
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-edificio").show();
 }
 
 function cargarSeccionConsultarEdificio() {
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-edificio").show();
     $("#table2").DataTable().destroy();
