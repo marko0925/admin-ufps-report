@@ -25,11 +25,16 @@ function signIn() {
     let tipo = $("select[name='tipo']").val();
     console.log(correo, contrasena, tipo)
     if (!correo || !contrasena || !tipo) {
-        $("#msg").html(`<div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
-                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                 <h4><i class="icon fa fa-ban"></i>Datos vacios</h4>
-                 Asegurate de digitar todos los datos.
-               </div>`);
+        swal(
+            'Oops...',
+            'Asegurate de digitar todos los datos.',
+            'error'
+          )
+        // $("#msg").html(`<div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
+        //          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        //          <h4><i class="icon fa fa-ban"></i>Datos vacios</h4>
+        //          Asegurate de digitar todos los datos.
+        //        </div>`);
         resetInputs();
         return false;
     } else {
@@ -45,11 +50,16 @@ function signIn() {
             success: function (res) {
                 console.log(res);
                 if (res.err) {
-                    $("#msg").html(`<div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
-                    Verifica que tus datos esten correctos.
-                  </div>`);
+                    swal(
+                        'Oops...',
+                        'Verifica que tus datos esten correctos.',
+                        'error'
+                      )
+                //     $("#msg").html(`<div class="alert alert-danger alert-dismissible">
+                //     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                //     <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
+                //     Verifica que tus datos esten correctos.
+                //   </div>`);
                 } else {
                     $("#msg").html("");
                     for (let item in res[0]) {
@@ -63,11 +73,16 @@ function signIn() {
                 return false;
             },
             error: function (err) {
-                $("#msg").html(`<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
-                Verifica que tus datos esten correctos.
-              </div>`);
+                swal(
+                    'Oops...',
+                    'Verifica que tus datos esten correctos.',
+                    'error'
+                  )
+            //     $("#msg").html(`<div class="alert alert-danger alert-dismissible">
+            //     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            //     <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
+            //     Verifica que tus datos esten correctos.
+            //   </div>`);
                 return false;
             }
         })
@@ -630,22 +645,32 @@ function resolve(id_reporte) {
         },
         success: function (res) {
             $('.modal').modal('toggle');
-            $(".content-header").html(`<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> Solicitud enviada!</h4>
-            El reporte ha sido mandado a reparar.
-          </div>
-            `);
+            swal(
+                'Solicitud enviada!',
+                'El reporte ha sido mandado a reparar..',
+                'success'
+              )
+        //     $(".content-header").html(`<div class="alert alert-success alert-dismissible">
+        //     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        //     <h4><i class="icon fa fa-check"></i> Solicitud enviada!</h4>
+        //     El reporte ha sido mandado a reparar.
+        //   </div>
+        //     `);
             ufpsReportMsg();
         },
         error: function (err) {
             $('.modal').modal('toggle');
-            $(".content-header").html(`
-            <div class="alert alert-error alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> ¡Ups! algo ha ido mal.</h4>
-            Algo inesperado acaba de suceder, intentalo mas tarde.
-          </div>`)
+            swal(
+                'Oops...',
+                'Algo inesperado acaba de suceder, intentalo mas tarde.',
+                'error'
+              )
+        //     $(".content-header").html(`
+        //     <div class="alert alert-error alert-dismissible">
+        //     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        //     <h4><i class="icon fa fa-check"></i> ¡Ups! algo ha ido mal.</h4>
+        //     Algo inesperado acaba de suceder, intentalo mas tarde.
+        //   </div>`)
         }
     })
 }
