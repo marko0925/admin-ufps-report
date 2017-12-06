@@ -15,7 +15,7 @@ function cargarSeccionConsultarMateria() {
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-materia").show();
-    
+
     $('.datablepersonalizada').DataTable().destroy();
     $("#bodytablaconsultarmateria").empty();
 
@@ -98,20 +98,7 @@ function cargarTablaMateria() {
             if (res.sussess) {
 
                 for (let a of res.sussess) {
-//Consulta ajax para obtener el nombre del profesor
-//                    $.ajax({
-//                        url: `${url}/usuario/listar_docentes`,
-//                        type: "GET",
-//                        dataType: "json",
-//                        contentType: "application/json",
-//                        data: null,
-//
-//                        success: function (res) {
-//                            if (res.success) {
-//                                for (let p of res.success) {
-//                                    if (p.id == a.docente) {
-//----------------------------------------------------------------
-                                        $("#bodytablaconsultarmateria").append('<tr id="filaconsultarmateria1">\n\
+                    $("#bodytablaconsultarmateria").append('<tr id="filaconsultarmateria1">\n\
                         <td>' + a.id + '</td>\n\
                         <td>' + a.nombre + '</td>\n\
                         <td>' + a.grupo + '</td>\n\
@@ -130,20 +117,8 @@ function cargarTablaMateria() {
                             </span>\n\
                         </td>\n\
                         </tr>');
-                                        //cerrar el codigo de la consulta ajax para obtener el nombre del profesor
-//                                    }
-//                                }
-
-
-//               $(".datablepersonalizada").DataTable();
-//                            }
-//                            
-//                        }
-//                    });
-
-//-----------------------------------------------------------------------------------
                 }
-$(".datablepersonalizada").DataTable();
+                $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -204,7 +179,7 @@ function registrarMateria() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-
+    return false;
 }
 
 function actualizarMateria() {
@@ -309,8 +284,9 @@ function cargarSeccionConsultarDispositivo() {
     $(".seccioninfo").hide();
     $("#consultar-dispositivo").show();
     $("#table3").show();
-    $(".s2").hide();
+
     $(".datablepersonalizada").DataTable().destroy();
+
     $("#bodytablaconsultardispositivo").empty();
     $("#bodytablaconsultarsala2").empty();
     cargarSalasDispositivo();
@@ -401,88 +377,75 @@ function registrarDispositivo() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
+    
+    return false;
 }
 
 
 function cargarTablaDispositivo(idsala) {
-    $(".datablepersonalizada").DataTable().destroy();
+
     $("#bodytablaconsultardispositivo").empty();
+    $("#table3").DataTable().destroy();
+    $("#bodytablaconsultarsala2").empty();
     $("#table3").hide();
+
 
     swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
 
-
-    //Consulta ajax para obtener el nombre de la sala
     $.ajax({
-        url: `${url}/salas/visualizar`,
+        url: `${url}/dispositivo/listar`,
         type: "GET",
-        dataType: "json",
         contentType: "application/json",
         data: {
-            id: idsala
+            sala: idsala
         },
-
         success: function (res) {
+            console.log(res);
+            let tipo = '';
+            let estado = '';
+            let fila = '';
+            let columna = '';
+            $(".swal-overlay").remove();
 
-            if (res.success) {
-                let p = res.success
+            if (res.sussess) {
+                console.log(res);
+                let b = res.sussess
+                if (res.sussess.length == 0) {
+                    swal("La sala: " + idsala + " aun no cuenta con dispositivos", "Haga click en el boton para regresar", "error").then((value) => {
+                        cargarSeccionConsultarDispositivo();
 
-//                                  
-//----------------------------------------------------------------
+                    });
 
+                } else {
+                    $("#nombresala").html("Consulta de dispositivos - Sala: " + idsala);
+                    $("#table2").show();
 
-                $.ajax({
-                    url: `${url}/dispositivo/listar`,
-                    type: "GET",
-                    contentType: "application/json",
-                    data: {
-                        sala: idsala
-                    },
-                    success: function (res) {
-                        console.log(res);
-                        let tipo = '';
-                        let estado = '';
-                        let fila = '';
-                        let columna = '';
-                        $(".swal-overlay").remove();
+                    for (let a of res.sussess) {
+                        if (a.tipo == 1) {
+                            tipo = 'Computador';
+                            if (a.fila == '-1') {
+                                a.fila = 'Null';
+                            }
 
-                        if (res.sussess) {
-                            if (res.sussess.length == 0) {
-                                swal("La sala: "+  p.nombre+" aun no cuenta con dispositivos", "Haga click en el boton para regresar", "error").then((value) => {
-                                    cargarSeccionConsultarDispositivo();
-
-                                });
-
-                            } else {
-                                $("#nombresala").html("Consulta de dispositivos - Sala: " + p.nombre);
-                                $(".s2").show();
-
-                                for (let a of res.sussess) {
-                                    if (a.tipo == 1) {
-                                        tipo = 'Computador';
-                                        if (a.fila == '-1') {
-                                            a.fila = 'Null';
-                                        }
-
-                                        if (a.columna == '-1') {
-                                            a.columna = 'Null';
-                                        }
+                            if (a.columna == '-1') {
+                                a.columna = 'Null';
+                            }
 
 
-                                    } else if (a.tipo == 2) {
-                                        tipo = 'Video Beam';
+                        } else if (a.tipo == 2) {
+                            tipo = 'Video Beam';
 
-                                    } else
-                                    if (a.tipo == 3) {
-                                        tipo = 'Minicomponente';
-                                    }
-                                    if (a.estado == true) {
-                                        estado = 'Al dia';
-                                    } else {
-                                        estado = 'Averiado';
-                                    }
+                        } else
+                        if (a.tipo == 3) {
+                            tipo = 'Minicomponente';
+                        }
+                        if (a.estado == true) {
+                            estado = 'Al dia';
+                        } else {
+                            estado = 'Averiado';
+                        }
 
-                                    $("#bodytablaconsultardispositivo").append('<tr id="filaconsultardispositivo1">\n\
+                        $("#bodytablaconsultardispositivo").append('<tr id="filaconsultardispositivo1">\n\
                         <td>' + a.id + '</td>\n\
                         <td>' + a.numero + '</td>\n\
                         <td>' + a.numero_reportes + '</td>\n\
@@ -504,39 +467,33 @@ function cargarTablaDispositivo(idsala) {
                         </td>\n\
                         </tr>');
 
-                                }
-                                $("#volver").show();
-                            }
-
-                            $(".datablepersonalizada").DataTable();
-
-                        } else if (res.err) {
-                            let error = res.err;
-                            swal("Problemas encontrados", error, "error");
-                        }
-                    },
-                    error: function (err) {
-
-                        swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
                     }
-                });
+                    $("#volver").show();
+                }
 
+                $("#table2").DataTable();
 
-
-//cerrar el codigo de la consulta ajax para obtener el nombre de la sala
-
-
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
             }
+        },
+        error: function (err) {
+
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-//-----------------------------------------------------------------------------------
+
+
 }
 
 
 
 
 function cargarTablaSala2() {
-
+    $("#table2").DataTable().destroy();
+    $("#bodytablaconsultardispositivo").empty();
+    $("#table2").hide();
 
     swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
 
@@ -568,7 +525,7 @@ function cargarTablaSala2() {
                         </tr>');
                 }
                 $("#volver").hide();
-                $(".datablepersonalizada").DataTable();
+                $("#table3").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -736,6 +693,8 @@ function registrarEdificio() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
+    
+        return false;
 
 }
 

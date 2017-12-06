@@ -1291,8 +1291,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row" style="height: 20px"></div>
                                 <div class="row">
                                     <div class="col-md-12">
-
-                                        <form class="form-horizontal" id="formagregarmateria">
+                                        
+                                        <form class="form-horizontal" id="formagregarmateria" onsubmit="return registrarMateria();">
                                             <div class="box-body">
 
                                                 <div class="form-group">
@@ -1341,7 +1341,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                <button type="button" onclick="registrarMateria()" class="btn btn-primary pull-right">Registrar</button>
+                                                  <button type="submit" class="btn btn-primary pull-right">Registrar</button>  
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
@@ -1542,8 +1542,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row" style="height: 20px"></div>
                                 <div class="row">
                                     <div class="col-md-12">
+                                        
+                                        <form class="form-horizontal" id="formagregardispositivo" onsubmit="return registrarDispositivo();">
 
-                                        <form class="form-horizontal" id="formagregardispositivo">
                                             <div class="box-body">
 
                                                 <div class="form-group">
@@ -1614,7 +1615,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                <button type="button" onclick="registrarDispositivo()" class="btn btn-primary pull-right">Registrar</button>
+                                                <button type="submit" class="btn btn-primary pull-right">Registrar</button>
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
@@ -1656,7 +1657,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="row" style="height: 20px"></div>
 
                                             <div class="table-responsive">
-                                                <table id="table3" class="table table-bordered table-hover">
+                                                <table id="table3" style="display: none;" class="table table-bordered table-hover  ">
                                                     <thead style="background: #f7f7f7">
                                                         <tr id="encabezado">
                                                             <th class="text-center">Sala</th>
@@ -1676,7 +1677,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
 
                                             <div class="table-responsive">
-                                                <table id="table2" style="display: none;" class="table table-bordered table-hover s2">
+                                                <table id="table2" style="display: none;" class="table table-bordered table-hover  s2">
                                                     <thead style="background: #f7f7f7">
                                                         <tr id="encabezado">
                                                             <th class="text-center">Id</th>
@@ -1842,8 +1843,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row" style="height: 20px"></div>
                                 <div class="row">
                                     <div class="col-md-12">
-
-                                        <form class="form-horizontal" id="formagregaredificio">
+                                        
+                                        <form class="form-horizontal" id="formagregaredificio" onsubmit="return registrarMateria();">
+                                           
                                             <div class="box-body">
 
                                                 <div class="form-group">
@@ -1860,7 +1862,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                <button type="submit" onclick="registrarEdificio()" class="btn btn-primary pull-right">Registrar</button>
+                                                  <button type="submit" class="btn btn-primary pull-right">Registrar</button>  
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
@@ -1902,7 +1904,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="row" style="height: 20px"></div>
 
                                             <div class="table-responsive">
-                                                <table id="table2" class="table table-bordered table-hover">
+                                                <table  class="table table-bordered table-hover datablepersonalizada">
                                                     <thead style="background: #f7f7f7">
                                                         <tr id="encabezado">
                                                             <th class="text-center">Id</th>
@@ -2116,6 +2118,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="dist/js/dataTables.bootstrap.min.js"></script>
         <script>
                             $(".datablepersonalizada").DataTable();
+                            $("#table3").DataTable();
+                            $("#table2").DataTable();
         </script>
 
         <!-- Select2 -->
