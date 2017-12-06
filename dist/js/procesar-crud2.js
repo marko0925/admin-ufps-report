@@ -103,7 +103,7 @@ function cargarTablaMateria() {
                         <td>' + a.nombre + '</td>\n\
                         <td>' + a.grupo + '</td>\n\
                         <td>' + a.codigo + '</td>\n\
-                        <td>' + a.docente + '</td>\n\
+                        <td>' + a.nombre_docente + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
                                 <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarMateria(' + a.id + ',`' + a.nombre + '`,' + a.codigo + ',`' + a.grupo + '`,' + a.docente + ')">\n\
@@ -513,7 +513,7 @@ function cargarTablaSala2() {
 
                     $("#bodytablaconsultarsala2").append('<tr id="filaconsultarsala12">\n\
                         <td>' + a.id + '</td>\n\
-                        <td>' + a.edificio + '</td>\n\
+                        <td>' + a.nombre_edificio + '</td>\n\
                         <td>' + a.nombre + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Ver Dispositivos">\n\
