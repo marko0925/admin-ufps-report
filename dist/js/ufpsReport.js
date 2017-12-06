@@ -55,7 +55,7 @@ function signIn() {
                     for (let item in res[0]) {
                         localStorage.setItem(item, res[0][item]);
                     }
-                    $("#tipo").html(localStorage.getItem("nombre")).addClass("big-first-letter");
+                    $("#tipo").html(localStorage.getItem("tipo")).addClass("big-first-letter");
 
                     loadEdificios();
                     ctrlPages($("#pageLogin"), $("#pageReport"));
