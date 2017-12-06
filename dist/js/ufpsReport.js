@@ -110,8 +110,10 @@ function resetInputs() {
 
 function ufpsReportMsg() {
     $(".section-dispositivos").html(`
-        <div class="ufps-report">
-        <span><b>UFPS</b> REPORT</span>
+        <div class="ufps-report text-center">    
+        <span><b>Mux</b>Bird</span>     
+        <div class="row" style="height:1px"></div>
+        <img src="dist/img/logo.png" width="300px" >
         </div>
     `);
 }
@@ -177,8 +179,8 @@ function loadSalas() {
             </a>
         </li>`;
                     $("#edificio-" + sala.edificio).html(
-                        $("#edificio-" + sala.edificio).html() + salaFormat
-                    );
+                            $("#edificio-" + sala.edificio).html() + salaFormat
+                            );
 
                 }
             } else if (res.error) {
@@ -225,6 +227,7 @@ function get_nombre_sala(id) {
 function loadDispositivos(idSala, filas, columnas) {
     $(".seccioninfo").hide();
     $("#consultar-reportefallo").show();
+    $("#titulosectiondispotivos").html("Dispositivos")
 
     $(".content-header").html(`
         <h1>

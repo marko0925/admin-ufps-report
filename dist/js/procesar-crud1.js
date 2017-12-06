@@ -81,16 +81,16 @@ function registrarSala() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-
+    return false;
 }
 
 function cargarSeccionConsultarSala() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-salas").show();
 
-    $('#table2').DataTable().destroy();
+    $('.datablepersonalizada').DataTable().destroy();
     $("#bodytablaconsultarsala").empty();
 
     cargarTablaSala();
@@ -137,7 +137,7 @@ function cargarTablaSala() {
                         </tr>');
                 }
 
-                $("#table2").DataTable();
+                $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -193,7 +193,7 @@ function actualizarSala() {
             if (res.success) {
 
                 swal("Salon actualizado", "Haga click en el boton para regresar", "success").then((value) => {
-                    $("#formactualizarusuario")[0].reset();
+                    $("#formactualizarsala")[0].reset();
                     $("#myModalActualizarSala").modal('hide');
                     cargarSeccionConsultarSala();
 
@@ -210,7 +210,7 @@ function actualizarSala() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-
+    return false;
 }
 
 function eliminarSala(id) {
@@ -257,7 +257,7 @@ function eliminarSala(id) {
 }
 
 function cargarSeccionRegistrarHorario() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-horario").show();
@@ -304,20 +304,20 @@ function registrarHorario() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-
+    return false;
 }
 
 
 
 
 function cargarSeccionConsultarHorario() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-horario").show();
 
 
-    $('#table2').DataTable().destroy();
+    $('.datablepersonalizada').DataTable().destroy();
 
     $("#tablaconsultarhorario").hide();
     $("#bodytablaconsultarhorario").empty();
@@ -347,7 +347,7 @@ function cargarSelectMateria() {
                 for (let a of res.sussess) {
                     $("#idhorarioselectmateria").append('<option value=' + a.id + '>' + a.nombre + '</option>');
                     $("#idhorarioselectmateriaregistrar").append('<option value=' + a.id + '>' + a.nombre + '</option>');
-
+                    $("#actidhorarioselectsala").append('<option value=' + a.id + '>' + a.nombre + '</option>');
 
                 }
 
@@ -397,7 +397,7 @@ function cargarSelectSala() {
 function cargarTablaHorario() {
 
 
-    $('#table2').DataTable().destroy();
+    $('.datablepersonalizada').DataTable().destroy();
 
     $("#tablaconsultarhorario").hide();
     $("#bodytablaconsultarhorario").empty();
@@ -430,7 +430,7 @@ function cargarTablaHorario() {
                         <td>' + a.nombre_salon + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
-                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarHorario(' + a.id + ',' + a.dia + ',`' + a.hora + '`,' + a.fila + ',' + a.salon + ')">\n\
+                                <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarHorario(' + a.id + ',' + a.dia + ',`' + a.hora + '`,' + a.salon + ')">\n\
                                     <i class="fa fa-edit"></i>\n\
                                 </button>\n\
                             </span>\n\
@@ -443,7 +443,7 @@ function cargarTablaHorario() {
                         </tr>');
                 }
 
-                $("#table2").DataTable();
+                $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -457,6 +457,67 @@ function cargarTablaHorario() {
     });
 }
 
+
+function cargarInformacionActualizarHorario(id, dia, hora, salon) {
+
+    $('#myModalActualizarHorario').modal('show');
+
+    $("#titulomodalactualizarhorario").html("Actualizando horario con ID " + id);
+
+
+    $('#actidhorarioidentificador').val(id);
+
+    $('#actidhorariodia > option[value="' + dia + '"]').attr('selected', 'selected');
+
+    $('#actidhorariohora > option[value="' + hora + '"]').attr('selected', 'selected');
+
+    alert(salon);
+    $('#actidhorarioselectsala > option[value="' + salon + '"]').attr('selected', 'selected');
+
+}
+
+
+function actualizarHorario() {
+
+    let identificador = $("#actidhorarioidentificador").val();
+    let dia = $("#actidhorariodia").val();
+    let hora = $("#actidhorariohora").val();
+    let sala = $("#actidhorarioselectsala").val();
+    $.ajax({
+        url: `${url}/salas/modificar`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: {
+            id: identificador,
+            nombre: salon,
+            torre: edificio,
+            fila: fila,
+            columna: columna
+        },
+        success: function (res) {
+            if (res.success) {
+
+                swal("Salon actualizado", "Haga click en el boton para regresar", "success").then((value) => {
+                    $("#formactualizarsala")[0].reset();
+                    $("#myModalActualizarSala").modal('hide');
+                    cargarSeccionConsultarSala();
+
+                });
+
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+
+        },
+        error: function (err) {
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+    return false;
+}
 
 function eliminarHorario(id) {
 
@@ -503,7 +564,7 @@ function eliminarHorario(id) {
 
 
 function cargarSeccionRegistrarBeca() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-beca").show();
@@ -538,16 +599,16 @@ function registrarBeca() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-
+    return false;
 }
 
 function cargarSeccionConsultarBeca() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-beca").show();
 
-    $('#table2').DataTable().destroy();
+    $('.datablepersonalizada').DataTable().destroy();
     $("#bodytablaconsultarbeca").empty();
 
     cargarTablaBeca();
@@ -588,7 +649,7 @@ function cargarTablaBeca() {
                         </tr>');
                 }
 
-                $("#table2").DataTable();
+                $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -647,7 +708,7 @@ function eliminarBeca(id) {
 }
 
 function cargarSeccionCodigoQR() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#generar-qr").show();
