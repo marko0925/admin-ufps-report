@@ -43,9 +43,9 @@ function signIn() {
                 tipo: tipo
             },
             success: function (res) {
+                console.log(res);
                 if (res.success) {
                     $("#msg").html("");
-                    console.log(res);
                     for (let item in res.success) {
                         localStorage.setItem(item, res.success[item]);
                     }
@@ -177,8 +177,8 @@ function loadSalas() {
             </a>
         </li>`;
                     $("#edificio-" + sala.edificio).html(
-                            $("#edificio-" + sala.edificio).html() + salaFormat
-                            );
+                        $("#edificio-" + sala.edificio).html() + salaFormat
+                    );
 
                 }
             } else if (res.error) {
@@ -617,19 +617,20 @@ function resolve(id_reporte) {
 
 
     $.ajax({
-        url: `${url}/reporte/solucionado`,
-        type: "POST",
+        url: `${url}/reporte/reparar`,
+        type: "GET",
         contentType: "application/json",
-        processData: false,
-        data: JSON.stringify({
-            id: id_reporte
-        }),
+        data: {
+            id: id_reporte,
+            descripcion: "Se mando a reparar",
+            autor: localStorage.getItem("id")
+        },
         success: function (res) {
             $('.modal').modal('toggle');
             $(".content-header").html(`<div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> Reporte solucionado!</h4>
-            El reporte ha sido solucionado con exito.
+            <h4><i class="icon fa fa-check"></i> Solicitud enviada!</h4>
+            El reporte ha sido mandado a reparar.
           </div>
             `);
             ufpsReportMsg();
@@ -638,8 +639,8 @@ function resolve(id_reporte) {
             $(".content-header").html(`
             <div class="alert alert-error alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i> Reporte solucionado!</h4>
-            El reporte ha sido solucionado con exito.
+            <h4><i class="icon fa fa-check"></i> ¡Ups! algo ha ido mal.</h4>
+            Algo inesperado acaba de suceder, intentalo mas tarde.
           </div>`)
         }
     })
