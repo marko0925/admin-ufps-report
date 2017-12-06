@@ -308,7 +308,8 @@ function cargarSeccionConsultarDispositivo() {
     $("#bodytablaconsultarsala2").empty();
     cargarSalasDispositivo();
     cargarTablaSala2();
-    $("#nombresala").html("Consulta de dispositivo");
+    $("#nombresala").html("Consulta un dispositivo de alguna de las siguintes salas");
+    $("#volver").hide();
 }
 
 
@@ -381,7 +382,7 @@ function registrarDispositivo() {
         },
         success: function (res) {
             if (res.succes) {
-                swal("Dispositivo registrado", "Haga click en el boton para regresar", "succes");
+                swal("Dispositivo registrado", "Haga click en el boton para regresar", "success");
                 $("#formagregardispositivo")[0].reset();
 
             } else if (res.err) {
@@ -418,7 +419,7 @@ function cargarTablaDispositivo(idsala) {
 
             if (res.success) {
                 let p = res.success
-                $("#nombresala").html("Consulta de dispositivos - Sala: " + p.nombre);
+
 //                                  
 //----------------------------------------------------------------
 
@@ -440,13 +441,15 @@ function cargarTablaDispositivo(idsala) {
 
                         if (res.sussess) {
                             if (res.sussess.length == 0) {
-                                swal("No existen dispositivos en esta Sala", "Haga click en el boton para regresar", "error").then((value) => {
+                                swal("La sala: "+  p.nombre+" aun no cuenta con dispositivos", "Haga click en el boton para regresar", "error").then((value) => {
                                     cargarSeccionConsultarDispositivo();
 
                                 });
 
                             } else {
+                                $("#nombresala").html("Consulta de dispositivos - Sala: " + p.nombre);
                                 $(".s2").show();
+
                                 for (let a of res.sussess) {
                                     if (a.tipo == 1) {
                                         tipo = 'Computador';
@@ -495,6 +498,7 @@ function cargarTablaDispositivo(idsala) {
                         </tr>');
 
                                 }
+                                $("#volver").show();
                             }
 
                             $("#table2").DataTable();
@@ -549,14 +553,14 @@ function cargarTablaSala2() {
                         <td>' + a.nombre + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Ver Dispositivos">\n\
-                                <button type="submit" class="btn btn-success btn-xs" onclick="cargarTablaDispositivo(' + a.id + ')">\n\
+                                <button type="submit" class="btn btn-vimeo btn-xs" onclick="cargarTablaDispositivo(' + a.id + ')">\n\
                                     <i class="fa fa-desktop"></i>\n\
                                 </button>\n\
                             </span>\n\
                           </td>\n\
                         </tr>');
                 }
-
+                $("#volver").hide();
                 $("#table2").DataTable();
 
             } else if (res.err) {
