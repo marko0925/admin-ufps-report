@@ -99,24 +99,24 @@ function cargarTablaMateria() {
 
                 for (let a of res.sussess) {
 //Consulta ajax para obtener el nombre del profesor
-                    $.ajax({
-                        url: `${url}/usuario/listar_docentes`,
-                        type: "GET",
-                        dataType: "json",
-                        contentType: "application/json",
-                        data: null,
-
-                        success: function (res) {
-                            if (res.success) {
-                                for (let p of res.success) {
-                                    if (p.id == a.docente) {
+//                    $.ajax({
+//                        url: `${url}/usuario/listar_docentes`,
+//                        type: "GET",
+//                        dataType: "json",
+//                        contentType: "application/json",
+//                        data: null,
+//
+//                        success: function (res) {
+//                            if (res.success) {
+//                                for (let p of res.success) {
+//                                    if (p.id == a.docente) {
 //----------------------------------------------------------------
                                         $("#bodytablaconsultarmateria").append('<tr id="filaconsultarmateria1">\n\
                         <td>' + a.id + '</td>\n\
                         <td>' + a.nombre + '</td>\n\
                         <td>' + a.grupo + '</td>\n\
                         <td>' + a.codigo + '</td>\n\
-                        <td>' + p.nombre + '</td>\n\
+                        <td>' + a.docente + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
                                 <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarMateria(' + a.id + ',`' + a.nombre + '`,' + a.codigo + ',`' + a.grupo + '`,' + a.docente + ')">\n\
@@ -131,17 +131,19 @@ function cargarTablaMateria() {
                         </td>\n\
                         </tr>');
                                         //cerrar el codigo de la consulta ajax para obtener el nombre del profesor
-                                    }
-                                }
+//                                    }
+//                                }
 
-                            }
-                        }
-                    });
+
+//               $(".datablepersonalizada").DataTable();
+//                            }
+//                            
+//                        }
+//                    });
 
 //-----------------------------------------------------------------------------------
                 }
-
-               $(".datablepersonalizada").DataTable();
+$(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
