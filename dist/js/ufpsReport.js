@@ -318,13 +318,13 @@ function loadOtrosDevices() {
             if (instrumento.tipo == 3) {
                 if (!instrumento.estado) {
                     estado = "broken";
-                    $(`.audio`).html(`<span data-toggle="tooltip" title="" class="fa fa-info-circle" data-original-title="Ref:${instrumento.referencia} Reportes: ${instrumento.numero_reportes}"></span>
+                    $(`.audio`).html(`<span data-toggle="tooltip" title="" class=" hidden-sm hidden-xs fa fa-info-circle" data-original-title="Ref:${instrumento.referencia} Reportes: ${instrumento.numero_reportes}"></span>
                     <div class="instrument" data-toggle="modal" data-target=".modal" onclick="showModal(${instrumento.id},${instrumento.tipo})">
                                                             <i class="fa fa-music ${estado}" aria-hidden="true"></i>
                                                         </div>`);
                 } else {
                     estado = "working";
-                    $(`.audio`).html(`<span data-toggle="tooltip" title="" class="fa fa-info-circle" data-original-title="Ref:${instrumento.referencia}"></span>
+                    $(`.audio`).html(`<span data-toggle="tooltip" title="" class="hidden-sm hidden-xs fa fa-info-circle" data-original-title="Ref:${instrumento.referencia}"></span>
                     <div class="instrument" >
                     <i class="fa fa-music ${estado}" aria-hidden="true"></i>
                     </div>`);
@@ -345,13 +345,13 @@ function loadDispositivoIndividual(i, j) {
                     estado = "broken";
 
                     return `
-                    <span data-toggle="tooltip" title="" class=" fa fa-info-circle" data-original-title="Ref: ${instrumento.referencia} - Reportes: ${instrumento.numero_reportes}"></span>
+                    <span data-toggle="tooltip" title="" class="hidden-sm hidden-xs fa fa-info-circle" data-original-title="Ref: ${instrumento.referencia} - Reportes: ${instrumento.numero_reportes}"></span>
                     <div class="instrument" data-toggle="modal"  data-target=".modal" onclick="showModal(${instrumento.id},${instrumento.tipo})">
                                                 <i class="fa fa-desktop ${estado}" aria-hidden="true"></i>
                                             </div>`;
                 }
                 estado = "working";
-                return `<span data-toggle="tooltip" title="" class=" fa fa-info-circle" data-original-title="Ref: ${instrumento.referencia}"></span>
+                return `<span data-toggle="tooltip" title="" class=" hidden-sm hidden-xs fa fa-info-circle" data-original-title="Ref: ${instrumento.referencia}"></span>
                 <div class="instrument" >
                                                 <i class="fa fa-desktop ${estado}" aria-hidden="true"></i>
                                             </div>`;
