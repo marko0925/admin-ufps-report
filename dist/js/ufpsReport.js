@@ -35,7 +35,7 @@ function signIn() {
     } else {
         $.ajax({
             url: `${url}/validar`,
-            type: "POST",
+            type: "GET",
             contentType: "application/json",
             data: {
                 correo: correo,
@@ -44,21 +44,21 @@ function signIn() {
             },
             success: function (res) {
                 console.log(res);
-                if (res.success) {
-                    $("#msg").html("");
-                    for (let item in res.success) {
-                        localStorage.setItem(item, res.success[item]);
-                    }
-                    $("#tipo").html(localStorage.getItem("nombre")).addClass("big-first-letter");
-
-                    loadEdificios();
-                    ctrlPages($("#pageLogin"), $("#pageReport"));
-                } else {
+                if (res.err) {
                     $("#msg").html(`<div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <h4><i class="icon fa fa-ban"></i>Algo ha ido mal</h4>
                     Verifica que tus datos esten correctos.
                   </div>`);
+                } else {
+                    $("#msg").html("");
+                    for (let item in res[0]) {
+                        localStorage.setItem(item, res[0][item]);
+                    }
+                    $("#tipo").html(localStorage.getItem("nombre")).addClass("big-first-letter");
+
+                    loadEdificios();
+                    ctrlPages($("#pageLogin"), $("#pageReport"));
                 }
                 return false;
             },
@@ -636,6 +636,7 @@ function resolve(id_reporte) {
             ufpsReportMsg();
         },
         error: function (err) {
+            $('.modal').modal('toggle');
             $(".content-header").html(`
             <div class="alert alert-error alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -645,3 +646,9 @@ function resolve(id_reporte) {
         }
     })
 }
+
+
+$('.modal').on('hide.bs.modal', function (e) {
+    //     $('.modal').modal('toggle');   
+    $(".modal-backdrop").hide();
+})
