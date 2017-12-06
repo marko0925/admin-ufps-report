@@ -5,7 +5,7 @@
 var url = "http://35.227.122.71/servicioApp/index.php";
 function cargarSeccionRegistrarSala() {
 
-
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-salas").show();
 
@@ -85,6 +85,8 @@ function registrarSala() {
 }
 
 function cargarSeccionConsultarSala() {
+    
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-salas").show();
 
@@ -255,6 +257,8 @@ function eliminarSala(id) {
 }
 
 function cargarSeccionRegistrarHorario() {
+    
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-horario").show();
 
@@ -307,6 +311,8 @@ function registrarHorario() {
 
 
 function cargarSeccionConsultarHorario() {
+    
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-horario").show();
 
@@ -497,6 +503,8 @@ function eliminarHorario(id) {
 
 
 function cargarSeccionRegistrarBeca() {
+    
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-beca").show();
 
@@ -534,6 +542,8 @@ function registrarBeca() {
 }
 
 function cargarSeccionConsultarBeca() {
+    
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-beca").show();
 
@@ -637,6 +647,8 @@ function eliminarBeca(id) {
 }
 
 function cargarSeccionCodigoQR() {
+    
+    vaciar_header();
     $(".seccioninfo").hide();
     $("#generar-qr").show();
 }
