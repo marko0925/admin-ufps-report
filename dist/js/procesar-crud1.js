@@ -81,16 +81,16 @@ function registrarSala() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-
+    return false;
 }
 
 function cargarSeccionConsultarSala() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-salas").show();
 
-    $('#table2').DataTable().destroy();
+    $('.datablepersonalizada').DataTable().destroy();
     $("#bodytablaconsultarsala").empty();
 
     cargarTablaSala();
@@ -137,7 +137,7 @@ function cargarTablaSala() {
                         </tr>');
                 }
 
-                $("#table2").DataTable();
+                $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -210,7 +210,7 @@ function actualizarSala() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-
+    return false;
 }
 
 function eliminarSala(id) {
@@ -257,7 +257,7 @@ function eliminarSala(id) {
 }
 
 function cargarSeccionRegistrarHorario() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-horario").show();
@@ -304,20 +304,20 @@ function registrarHorario() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-
+    return false;
 }
 
 
 
 
 function cargarSeccionConsultarHorario() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-horario").show();
 
 
-    $('#table2').DataTable().destroy();
+    $('.datablepersonalizada').DataTable().destroy();
 
     $("#tablaconsultarhorario").hide();
     $("#bodytablaconsultarhorario").empty();
@@ -397,7 +397,7 @@ function cargarSelectSala() {
 function cargarTablaHorario() {
 
 
-    $('#table2').DataTable().destroy();
+    $('.datablepersonalizada').DataTable().destroy();
 
     $("#tablaconsultarhorario").hide();
     $("#bodytablaconsultarhorario").empty();
@@ -443,7 +443,7 @@ function cargarTablaHorario() {
                         </tr>');
                 }
 
-                $("#table2").DataTable();
+                $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -457,6 +457,9 @@ function cargarTablaHorario() {
     });
 }
 
+function actualizarHorario(){
+    return false;
+}
 
 function eliminarHorario(id) {
 
@@ -503,7 +506,7 @@ function eliminarHorario(id) {
 
 
 function cargarSeccionRegistrarBeca() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#registrar-beca").show();
@@ -538,16 +541,16 @@ function registrarBeca() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
-
+    return false;
 }
 
 function cargarSeccionConsultarBeca() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-beca").show();
 
-    $('#table2').DataTable().destroy();
+    $('.datablepersonalizada').DataTable().destroy();
     $("#bodytablaconsultarbeca").empty();
 
     cargarTablaBeca();
@@ -588,7 +591,7 @@ function cargarTablaBeca() {
                         </tr>');
                 }
 
-                $("#table2").DataTable();
+                $(".datablepersonalizada").DataTable();
 
             } else if (res.err) {
                 let error = res.err;
@@ -647,7 +650,7 @@ function eliminarBeca(id) {
 }
 
 function cargarSeccionCodigoQR() {
-    
+
     vaciar_header();
     $(".seccioninfo").hide();
     $("#generar-qr").show();
