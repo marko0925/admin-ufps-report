@@ -707,21 +707,54 @@ function eliminarBeca(id) {
 
 }
 
-function cargarSeccionCodigoQR() {
+function generarMensajeparaQR(numero) {
 
-    vaciar_header();
-    $(".seccioninfo").hide();
-    $("#generar-qr").show();
+
+    swal("Generando codigo QR.", "La ventana se cerrara automáticamente.", "info");
+
+    $.ajax({
+        url: `${url}/reporte/buscar_qr`,
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        data: {
+            numero: numero
+        },
+        success: function (res) {
+            
+            $(".swal-overlay").remove();
+            if (res.succes) {
+
+                $('#myModalGenerarQR').modal('show');
+
+                $("#titulomodalgenerarqr").html("Codigo QR del dispositivo con numero: " + numero);
+
+                let respuesta = res.succes;
+
+                $('#modalImpresionCodigoQr').html("");
+                $('#identificadorcodigoqr').val(respuesta);
+                generarCodigoQR(respuesta);
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+
+        },
+        error: function (err) {
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+    return false;
 }
 
 
-function generarCodigoQR() {
+function generarCodigoQR(mensaje) {
 
 
-    let mensaje = $("#idqrmensaje").val();
-    $("#divbotoncodigo").show();
+    $("#modaldivbotoncodigo").show();
 
-    $('#impresionCodigoQr').qrcode({
+    $('#modalImpresionCodigoQr').qrcode({
         render: 'canvas',
         minVersion: 6,
         maxVersion: 40,
@@ -749,16 +782,16 @@ function generarCodigoQR() {
 
 
 function descargarCodigoQR() {
-    var canvas = $("canvas");
+    let mensaje = $('#identificadorcodigoqr').val();
 
-    let mensaje = $("#idqrmensaje").val();
+    var canvas = $("canvas");
 
     var filename = mensaje;
     if (canvas.msToBlob) { //para internet explorer
         var blob = canvas.msToBlob();
         window.navigator.msSaveBlob(blob, filename + ".png");// la extensión de preferencia pon jpg o png
     } else {
-        link = document.getElementById("botondescargarqr");
+        link = document.getElementById("modalbotondescargarqr");
         //Otros navegadores: Google chrome, Firefox etc...        
         link.href = (canvas[0]).toDataURL("image/png");// Extensión .png ("image/png") --- Extension .jpg ("image/jpeg")
 

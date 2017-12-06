@@ -255,24 +255,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
 
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-link"></i>
-                                <span>Codigo QR</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu" id="ul-becas">
-                                <li>
-                                    <a href="#" onclick="cargarSeccionCodigoQR()">
-                                        <i class="fa fa-circle-o"></i>Generar</a>
-                                </li>
-
-
-                            </ul>
-                        </li>
-
 
                     </ul>
                     <!-- /.sidebar-menu -->
@@ -395,83 +377,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- ...............CODIGO  CRISTIAN...................... -->
 
 
-                    <!-- CODIGO QR -->
-
-
-                    <div id="generar-qr" class="row seccioninfo" style="display: none">
-                        <div class="col-md-12">
-                            <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Generar QR</h3>
-
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-
-                                    </div>
-                                </div>
-                                <!-- /.box-header -->
-
-                                <div class="row" style="height: 20px"></div>
-                                <div class="row">
-                                    <div class="col-md-12">
-
-                                        <form class="form-horizontal" id="formgenerarqr">
-                                            <div class="box-body">
-
-                                                <div class="col-md-9">
-                                                    <div class="form-group">
-                                                        <label class="col-sm-3 control-label">Informacion:
-                                                            <b>
-                                                                <span style="color: red">*</span>
-                                                            </b>
-                                                        </label>
-                                                        <div class="input-group col-sm-8">
-                                                            <span class="input-group-addon">
-                                                                <i class="fa fa-street-view"></i>
-                                                            </span>
-
-                                                            <input type="text" class="form-control" id="idqrmensaje" placeholder="SA402" required autofocus>
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <button type="button" onclick="generarCodigoQR()" class="btn btn-primary pull-left">Generar</button>
-
-                                                </div>
-
-
-                                            </div>
-
-                                        </form>
-
-                                        <!-- /.chart-responsive -->
-                                    </div>
-
-                                </div>
-                                <div class="row" style="height: 20px"></div>
-                                <div class="row text-center">
-                                    <div id="impresionCodigoQr">
-                                    </div>
-                                </div>
-
-                                <div class="row" style="height: 20px"></div>
-                                <div id="divbotoncodigo" class="row text-center" style="display: none">
-                                    <a id="botondescargarqr" class="btn btn-primary" onclick="descargarCodigoQR()">Descargar Codigo QR</a>
-                                    <div class="row" style="height: 20px"></div>
-                                </div>
-                                <!-- /.row -->
-
-                                <!-- ./box-body -->
-
-                            </div>
-                            <!-- /.box -->
-                        </div>
-                        <!-- /.col -->
-                    </div>
 
                     <!-- .................  -->
 
@@ -1710,6 +1615,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
 
                                             <div class="col-md-1 col-md-offset-11" id="volver" style="display: none;">
+                                                <div class="row" style="height: 10px;"></div>
                                                 <button type="button" onclick="cargarSeccionConsultarDispositivo()" class="btn btn-instagram">Volver</button>
 
                                             </div>
@@ -1814,7 +1720,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </div>
                                             </div>
                                             <!-- /.modal -->
+                                            <!-- Modal -->
+                                            <div id="myModalGenerarQR" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background: #f7f7f7">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title text-center"><b id="titulomodalgenerarqr"> </b></h4>
+                                                        </div>
 
+                                                        <div class="modal-body">
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    
+                                                                    <input id="identificadorcodigoqr" type="text" value="" style="display: none">
+                                                                    <div id="modalImpresionCodigoQr" class="text-center">
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div id="modaldivbotoncodigo" class="row text-center" style="display: none">
+                                                                <a id="modalbotondescargarqr" class="btn btn-primary" onclick="descargarCodigoQR()">Descargar Codigo QR</a>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal -->
 
 
 

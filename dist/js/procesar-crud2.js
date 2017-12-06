@@ -283,6 +283,8 @@ function cargarSeccionConsultarDispositivo() {
     vaciar_header();
     $(".seccioninfo").hide();
     $("#consultar-dispositivo").show();
+    
+    $("#table3").DataTable().destroy();
     $("#table3").show();
 
     $(".datablepersonalizada").DataTable().destroy();
@@ -291,7 +293,7 @@ function cargarSeccionConsultarDispositivo() {
     $("#bodytablaconsultarsala2").empty();
     cargarSalasDispositivo();
     cargarTablaSala2();
-    $("#nombresala").html("Consulta un dispositivo de alguna de las siguintes salas");
+    $("#nombresala").html("Seleccione la sala para observar los dispositivos dentro de ella");
     $("#volver").hide();
 }
 
@@ -454,6 +456,11 @@ function cargarTablaDispositivo(idsala, nombresala) {
                         <td>' + a.columna + '</td>\n\
                         <td>' + estado + '</td>\n\
                         <td class="text-center">\n\
+                            <span id="tooltipGenerarQR" data-toggle="tooltip" data-placement="top" title="Generar QR">\n\
+                                <button type="submit" class="btn btn-success btn-xs" onclick="generarMensajeparaQR(' + a.numero + ')">\n\
+                                    <i class="fa fa-barcode"></i>\n\
+                                </button>\n\
+                            </span>\n\
                             <span id="tooltipModificar" data-toggle="tooltip" data-placement="top" title="Actualizar">\n\
                                 <button type="submit" class="btn btn-primary btn-xs" onclick="cargarInformacionActualizarDispositivo(' + a.id + ',' + a.numero + ',' + a.salon + ',' + a.fila + ',' + a.columna + ')">\n\
                                     <i class="fa fa-edit"></i>\n\
