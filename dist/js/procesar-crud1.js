@@ -347,7 +347,6 @@ function cargarSelectMateria() {
                 for (let a of res.sussess) {
                     $("#idhorarioselectmateria").append('<option value=' + a.id + '>' + a.nombre + '</option>');
                     $("#idhorarioselectmateriaregistrar").append('<option value=' + a.id + '>' + a.nombre + '</option>');
-                    $("#actidhorarioselectsala").append('<option value=' + a.id + '>' + a.nombre + '</option>');
 
                 }
 
@@ -380,6 +379,8 @@ function cargarSelectSala() {
             if (res.sussess) {
                 for (let a of res.sussess) {
                     $("#idhorarioselectsala").append('<option value=' + a.id + '>' + a.nombre + '</option>');
+                    $("#actidhorarioselectsala").append('<option value=' + a.id + '>' + a.nombre + '</option>');
+
                 }
 
             } else if (res.err) {
@@ -405,6 +406,10 @@ function cargarTablaHorario() {
 
 
     swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
+
+    $("#actidhorarioselectsala").empty();
+
+    cargarSelectSala();
     var idmateria = $("#idhorarioselectmateria").val();
     console.log(idmateria);
     $.ajax({
@@ -721,7 +726,7 @@ function generarMensajeparaQR(numero) {
             numero: numero
         },
         success: function (res) {
-            
+
             $(".swal-overlay").remove();
             if (res.succes) {
 
