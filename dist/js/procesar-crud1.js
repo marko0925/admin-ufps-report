@@ -275,8 +275,10 @@ function registrarHorario() {
 
     let dia = $("#idhorariodia").val();
     let hora = $("#idhorariohora").val();
-    let materia = $("#idhorarioselectmateria").val();
+    let materia = $("#idhorarioselectmateriaregistrar").val();
     let sala = $("#idhorarioselectsala").val();
+    
+    alert(dia +" "+hora+" "+materia+" "+sala);
     $.ajax({
         url: `${url}/materia/asignar_horario`,
         type: "GET",
@@ -461,6 +463,7 @@ function cargarTablaHorario(idmateria, codigo) {
 
     swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
 
+    $('#actidhorarioselectsala').empty();
     cargarSelectSala();
 
     $.ajax({
@@ -528,6 +531,7 @@ function cargarInformacionActualizarHorario(id, dia, hora, salon) {
 
     $('#myModalActualizarHorario').modal('show');
     $("#titulomodalactualizarhorario").html("Actualizando horario con ID " + id);
+
 
 
     $('#actidhorarioidentificador').val(id);

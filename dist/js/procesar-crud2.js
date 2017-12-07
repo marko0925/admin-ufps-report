@@ -208,7 +208,7 @@ function actualizarMateria() {
             if (res.success) {
 
                 swal("Materia actualizada", "Haga click en el boton para regresar", "success").then((value) => {
-                    $("#formactualizarusuario")[0].reset();
+                    $("#formactualizarmateria")[0].reset();
                     $("#myModalActualizarMateria").modal('hide');
                     cargarSeccionConsultarMateria();
 
@@ -594,7 +594,7 @@ function actualizarDispositivo() {
             if (res.success) {
 
                 swal("Dispositivo actualizado", "Haga click en el boton para regresar", "success").then((value) => {
-                    $("#formactualizarusuario")[0].reset();
+                    $("#formactualizardispositivo")[0].reset();
                     $("#myModalActualizarDispositivo").modal('hide');
                     cargarSeccionConsultarDispositivo();
 
@@ -611,6 +611,7 @@ function actualizarDispositivo() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
+    return false;
 }
 
 
