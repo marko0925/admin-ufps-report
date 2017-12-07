@@ -826,7 +826,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-md-12">
                             <div class="box">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Consulta de horarios</h3>
+                                    <h3 id="tituloboxconsultarhorario" class="box-title">Seleccione la materia para observar su horario</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -838,42 +838,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!-- /.box-header -->
                                 <div class="box-body">
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form class="form-horizontal" id="formconsultarhorarioselectmateria">
-                                                <div class="box-body">
-
-                                                    <div class="col-md-9">
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Materia:
-                                                                <b>
-                                                                    <span style="color: red">*</span>
-                                                                </b>
-                                                            </label>
-                                                            <div class="input-group col-sm-8">
-                                                                <span class="input-group-addon">
-                                                                    <i class="fa fa-street-view"></i>
-                                                                </span>
-
-                                                                <select class="form-control" id="idhorarioselectmateria" required autofocus>
-
-                                                                </select>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <button type="button" onclick="cargarTablaHorario()" class="btn btn-primary pull-left">Consultar</button>
-
-                                                    </div>
-
-
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div id="tablaconsultarhorario" class="row" style="display: none">
+                                    <div id="tablaconsultarhorario" class="row">
                                         <div class="col-md-12">
 
                                             <div class="row" style="height: 20px"></div>
@@ -881,7 +846,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="table-responsive">
                                                 <table class="table table-bordered table-hover datablepersonalizada">
                                                     <thead style="background: #f7f7f7">
-                                                        <tr id="encabezado">
+                                                        <tr id="encabezadotablahorario">
                                                             <th class="text-center">ID</th>
                                                             <th class="text-center">Dia</th>
                                                             <th class="text-center">Hora</th>
@@ -898,7 +863,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                 </table>
                                             </div>
+                                            <div class="col-md-1 col-md-offset-11" id="volverAtrasHorario" style="display: none;">
+                                                <div class="row" style="height: 10px;"></div>
+                                                <button type="button" onclick="cargarSeccionConsultarHorario()" class="btn btn-instagram">Volver</button>
 
+                                            </div>
 
 
                                             <!-- Modal -->
@@ -940,6 +909,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="row" >
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
@@ -1733,7 +1703,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    
+
                                                                     <input id="identificadorcodigoqr" type="text" value="" style="display: none">
                                                                     <div id="modalImpresionCodigoQr" class="text-center">
                                                                     </div>
@@ -1792,7 +1762,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="row">
                                     <div class="col-md-12">
 
-                                        <form class="form-horizontal" id="formagregaredificio" onsubmit="return registrarMateria();">
+                                        <form class="form-horizontal" id="formagregaredificio" onsubmit="return registrarEdificio();">
 
                                             <div class="box-body">
 
@@ -1881,7 +1851,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         </div>
 
 
-                                                        <form class="form-horizontal" id="formactualizaredificio">
+                                                        <form class="form-horizontal" id="formactualizaredificio" onsubmit="return actualizarEdificio();">
 
                                                             <div class="modal-body">
                                                                 <div class="row" style="display: none">
@@ -1918,7 +1888,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-primary" onclick="actualizarEdificio()">Actualizar</button>                                                           
+                                                                <button type="submit" class="btn btn-primary" >Actualizar</button>                                                           
                                                             </div>
 
                                                         </form>

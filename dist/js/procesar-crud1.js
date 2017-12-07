@@ -319,15 +319,70 @@ function cargarSeccionConsultarHorario() {
 
     $('.datablepersonalizada').DataTable().destroy();
 
-    $("#tablaconsultarhorario").hide();
     $("#bodytablaconsultarhorario").empty();
 
 
-    $("#idhorarioselectmateria").empty();
+    cargarTablaHorarioPorMateria();
 
-    cargarSelectMateria();
 
 }
+function cargarTablaHorarioPorMateria() {
+
+    swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
+
+    $.ajax({
+        url: `${url}/materia/listar`,
+        type: "GET",
+        contentType: "application/json",
+        data: null,
+
+        success: function (res) {
+
+            $(".swal-overlay").remove();
+
+            if (res.sussess) {
+
+
+                $("#volverAtrasHorario").hide();
+                $("#tituloboxconsultarhorario").html("Seleccione la materia para observar su horario");
+                $("#encabezadotablahorario").html(`<th class="text-center">ID</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Grupo</th>
+                    <th class="text-center">Codigo</th>
+                    <th class="text-center">Salon</th>
+                    <th class="text-center">Ver horario</th>`);
+
+                for (let a of res.sussess) {
+                    $("#bodytablaconsultarhorario").append('<tr id="filaconsultarhorario1">\n\
+                        <td>' + a.id + '</td>\n\
+                        <td>' + a.nombre + '</td>\n\
+                        <td>' + a.grupo + '</td>\n\
+                        <td>' + a.codigo + '</td>\n\
+                        <td>' + a.nombre_docente + '</td>\n\
+                        <td class="text-center">\n\
+                            <span id="tooltipHorario" data-toggle="tooltip" data-placement="top" title="Horario">\n\
+                                <button type="submit" class="btn btn-success btn-xs" onclick="cargarTablaHorario(' + a.id + ',' + a.codigo + ')">\n\
+                                    <i class="fa fa-book"></i>\n\
+                                </button>\n\
+                            </span>\n\
+                            \n\
+                        </td>\n\
+                        </tr>');
+                }
+                $(".datablepersonalizada").DataTable();
+
+            } else if (res.err) {
+                let error = res.err;
+                swal("Problemas encontrados", error, "error");
+            }
+        },
+        error: function (err) {
+
+            swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
+        }
+    });
+}
+
 
 
 function cargarSelectMateria() {
@@ -395,23 +450,19 @@ function cargarSelectSala() {
     });
 }
 
-function cargarTablaHorario() {
+function cargarTablaHorario(idmateria, codigo) {
+
 
 
     $('.datablepersonalizada').DataTable().destroy();
-
     $("#tablaconsultarhorario").hide();
+
     $("#bodytablaconsultarhorario").empty();
-
-
 
     swal("Cargando información.", "La ventana se cerrara automáticamente.", "info");
 
-    $("#actidhorarioselectsala").empty();
-
     cargarSelectSala();
-    var idmateria = $("#idhorarioselectmateria").val();
-    console.log(idmateria);
+
     $.ajax({
         url: `${url}/materia/listar_horario`,
         type: "GET",
@@ -426,6 +477,15 @@ function cargarTablaHorario() {
             $("#tablaconsultarhorario").show();
 
             if (res.sussess) {
+
+                $("#volverAtrasHorario").show();
+                $("#tituloboxconsultarhorario").html("Consultar horario - Materia: " + codigo);
+
+                $("#encabezadotablahorario").html(`<th class="text-center">ID</th>
+                    <th class="text-center">Dia</th>
+                    <th class="text-center">Hora</th>
+                    <th class="text-center">Salon</th>
+                    <th class="text-center">Opciones</th>`);
                 for (let a of res.sussess) {
 
                     $("#bodytablaconsultarhorario").append('<tr id="filaconsultarhorario1">\n\
@@ -465,48 +525,54 @@ function cargarTablaHorario() {
 
 function cargarInformacionActualizarHorario(id, dia, hora, salon) {
 
-    $('#myModalActualizarHorario').modal('show');
 
+    $('#myModalActualizarHorario').modal('show');
     $("#titulomodalactualizarhorario").html("Actualizando horario con ID " + id);
 
 
     $('#actidhorarioidentificador').val(id);
 
+    $('option').removeAttr("selected");
+
     $('#actidhorariodia > option[value="' + dia + '"]').attr('selected', 'selected');
+
 
     $('#actidhorariohora > option[value="' + hora + '"]').attr('selected', 'selected');
 
-    alert(salon);
+
     $('#actidhorarioselectsala > option[value="' + salon + '"]').attr('selected', 'selected');
+
 
 }
 
 
 function actualizarHorario() {
 
+
+    var materia = $("#idhorarioselectmateria").val();
     let identificador = $("#actidhorarioidentificador").val();
     let dia = $("#actidhorariodia").val();
     let hora = $("#actidhorariohora").val();
     let sala = $("#actidhorarioselectsala").val();
     $.ajax({
-        url: `${url}/salas/modificar`,
+        url: `${url}/materia/modificar_horario`,
         type: "GET",
         dataType: "json",
         contentType: "application/json",
         data: {
             id: identificador,
-            nombre: salon,
-            torre: edificio,
-            fila: fila,
-            columna: columna
+            hora: hora,
+            salon: sala,
+            materia: materia,
+            dia: dia
         },
         success: function (res) {
             if (res.success) {
 
-                swal("Salon actualizado", "Haga click en el boton para regresar", "success").then((value) => {
-                    $("#formactualizarsala")[0].reset();
-                    $("#myModalActualizarSala").modal('hide');
-                    cargarSeccionConsultarSala();
+                swal("Horario actualizado", "Haga click en el boton para regresar", "success").then((value) => {
+                    $("#formactualizarhorario")[0].reset();
+                    $("#myModalActualizarHorario").modal('hide');
+                    cargarSeccionConsultarHorario();
 
                 });
 

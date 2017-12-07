@@ -136,6 +136,7 @@ function cargarTablaMateria() {
 function cargarInformacionActualizarMateria(idmateria, nombre, codigo, grupo, docente) {
     $('#myModalActualizarMateria').modal('show');
 
+    $('option').removeAttr("selected");
     $("#titulomodalactualizarMateria").html("Actualizando Materia con ID " + idmateria);
 
     $('#actidmateriaidentificador').val(idmateria);
@@ -550,6 +551,7 @@ function cargarTablaSala2() {
 function cargarInformacionActualizarDispositivo(idDispositivo, numero, salon, fila, columna) {
     $('#myModalActualizarDispositivo').modal('show');
 
+    $('option').removeAttr("selected");
     $("#titulomodalactualizarDispositivo").html("Actualizando Dispositivo con ID " + idDispositivo);
 
     $('#actiddispositivoidentificador').val(idDispositivo);
@@ -800,6 +802,7 @@ function actualizarEdificio() {
             swal("Problemas encontrados", "Existe un problema entre la peticion y el servidor", "error");
         }
     });
+    return false;
 }
 
 
