@@ -802,7 +802,7 @@ function generarMensajeparaQR(numero) {
 
                 $('#myModalGenerarQR').modal('show');
 
-                $("#titulomodalgenerarqr").html("Codigo QR del dispositivo con numero: " + numero);
+                $("#titulomodalgenerarqr").html("Codigo QR del dispositivo con ID: " + numero);
 
                 let respuesta = res.succes;
 
