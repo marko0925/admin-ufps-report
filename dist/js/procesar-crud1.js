@@ -277,8 +277,8 @@ function registrarHorario() {
     let hora = $("#idhorariohora").val();
     let materia = $("#idhorarioselectmateriaregistrar").val();
     let sala = $("#idhorarioselectsala").val();
-    
-    alert(dia +" "+hora+" "+materia+" "+sala);
+
+    alert(dia + " " + hora + " " + materia + " " + sala);
     $.ajax({
         url: `${url}/materia/asignar_horario`,
         type: "GET",
@@ -793,7 +793,7 @@ function generarMensajeparaQR(numero) {
         dataType: "json",
         contentType: "application/json",
         data: {
-            numero: numero
+            id: numero
         },
         success: function (res) {
 
@@ -825,7 +825,6 @@ function generarMensajeparaQR(numero) {
 
 
 function generarCodigoQR(mensaje) {
-
 
     $("#modaldivbotoncodigo").show();
 

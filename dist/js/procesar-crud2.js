@@ -458,7 +458,7 @@ function cargarTablaDispositivo(idsala, nombresala) {
                         <td>' + estado + '</td>\n\
                         <td class="text-center">\n\
                             <span id="tooltipGenerarQR" data-toggle="tooltip" data-placement="top" title="Generar QR">\n\
-                                <button type="submit" class="btn btn-success btn-xs" onclick="generarMensajeparaQR(' + a.numero + ')">\n\
+                                <button type="submit" class="btn btn-success btn-xs" onclick="generarMensajeparaQR(' + a.id + ')">\n\
                                     <i class="fa fa-barcode"></i>\n\
                                 </button>\n\
                             </span>\n\
